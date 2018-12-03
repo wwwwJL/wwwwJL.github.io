@@ -95,7 +95,8 @@
 <meta property="og:description" content="熟练运用spring(一)：概述 &amp;nbsp;&amp;nbsp;Spring是一个开放源代码的设计层面框架，他解决的是业务逻辑层和其他各层的松耦合问题，因此它将面向接口的编程思想贯穿整个系统应用。 Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EE full-stack(一站式) 轻量级开源框架。 1、sp">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/wwwwJL/wwwwJL.github.io/blob/master/images/spring(%E4%B8%80">
-<meta property="og:updated_time" content="2018-12-03T15:31:47.820Z">
+<meta property="og:image" content="https://github.com/wwwwJL/wwwwJL.github.io/blob/master/images/spring(%E4%B8%80">
+<meta property="og:updated_time" content="2018-12-03T16:04:24.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用spring(一)：概述">
 <meta name="twitter:description" content="熟练运用spring(一)：概述 &amp;nbsp;&amp;nbsp;Spring是一个开放源代码的设计层面框架，他解决的是业务逻辑层和其他各层的松耦合问题，因此它将面向接口的编程思想贯穿整个系统应用。 Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EE full-stack(一站式) 轻量级开源框架。 1、sp">
@@ -353,7 +354,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  673字
+                  812字
                 </span>
               
 
@@ -369,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  3分钟
                 </span>
               
             </div>
@@ -395,7 +396,9 @@
 <h3 id="2、什么叫程序的耦合？"><a href="#2、什么叫程序的耦合？" class="headerlink" title="2、什么叫程序的耦合？"></a>2、什么叫程序的耦合？</h3><p>&nbsp;&nbsp;<strong>耦合性(Coupling)</strong>，也叫耦合度，是对模块间关联程度的度量。耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差( 降低耦合性，可以提高其独立性)。软件设计中通常用耦合度和内聚度作为衡量模块独立程度的标准。划分模块的一个准则就是高内聚低耦合。<br>&nbsp;&nbsp;<strong>简而言之就是对象之间的耦合度就是对象之间的依赖性。对象之间的耦合越高，维护成本越高，因此对象的设计应使类和构件之间的耦合最小，</strong>这样无论从升级，修改，二次开发来说都是利好的。  </p>
 <p><img src="https://github.com/wwwwJL/wwwwJL.github.io/blob/master/images/spring(%E4%B8%80" alt="123123">/1.jpg)</p>
 <p>如上，可以看到，三层代码之间的调用，每层调用之前都要new对象，很麻烦，而且想换个对象也不好换，需要修改多处，这就是高耦合带来的诸多问题之一。</p>
-<h3 id="4、工厂模式解耦-基本版"><a href="#4、工厂模式解耦-基本版" class="headerlink" title="4、工厂模式解耦-基本版"></a>4、工厂模式解耦-基本版</h3><p>&nbsp;&nbsp;接下来我们来运用常用设计模式-<strong>工厂模式</strong>来进行优化。</p>
+<h3 id="4、工厂模式解耦-基本版"><a href="#4、工厂模式解耦-基本版" class="headerlink" title="4、工厂模式解耦-基本版"></a>4、工厂模式解耦-基本版</h3><p>&nbsp;&nbsp;接下来我们来运用常用设计模式-<strong>工厂模式</strong>来进行优化。  </p>
+<p>思路：将之前创建对象的工作由一个类负责，同时创建一个文件，通过k-v的形式预定义好，负责创建对象类通过读取文件，传入方法参数，通过反射创建对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line"></span><br><span class="line">    private static Properties properties;</span><br><span class="line"></span><br><span class="line">    public static void load()&#123;</span><br><span class="line">        properties = new Properties();</span><br><span class="line">        try &#123;</span><br><span class="line">            properties.load(new FileInputStream(&quot;classpath:config.properies&quot;));</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Object getBean(String beanName)&#123;</span><br><span class="line">        if(properties == null)&#123;</span><br><span class="line">            load();</span><br><span class="line">        &#125;</span><br><span class="line">        String beanPath = properties.getProperty(beanName);</span><br><span class="line">        try &#123;</span><br><span class="line">            return Class.forName(beanName).newInstance();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/wwwwJL/wwwwJL.github.io/blob/master/images/spring(%E4%B8%80" alt="123123">/2.jpg)</p>
 
       
     </div>
@@ -659,7 +662,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.6k</span>
+    <span title="Site words total count">1.7k</span>
   
 </div>
 
