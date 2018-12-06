@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了急速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T14:51:57.593Z">
+<meta property="og:updated_time" content="2018-12-05T15:39:58.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(三)：IOC&#x2F;DI进阶">
 <meta name="twitter:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了急速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  428字
+                  844字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -397,8 +397,28 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class Spring03Config &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @Profile(&quot;dev&quot;)</span><br><span class="line">    public DataSource devDataSource()&#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql:///school&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @Profile(&quot;prod&quot;)</span><br><span class="line">    public DataSource prodDataSource()&#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql:///school&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //就算多环境，bean的id也不能重复！</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：尽管每个bean都在声明在各自profile中，但是只有当规定profile激活后，相应的bean才能被创建。没有profile的bean始终会被创建。</p>
 <ul>
-<li>激活profile</li>
+<li><p>激活profile</p>
+<ul>
+<li>spring.profiles.active</li>
+<li>spring.profiles.default  </li>
 </ul>
+</li>
+</ul>
+<p>  如果在项目启动过程中，设置了spring.profiles.active属性，那么他的值将会用来确定哪个profile的bean需要创建。若没有设置active，则spring会查找spring.profiles.default的值。若都没有设置，则spring只会创建没有定义在profile的bean。</p>
+<p>  junit分环境测试的话，则在该测试类加上配套的profile注解即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(classes = Spring03Config.class)</span><br><span class="line">@ActiveProfiles(&quot;dev&quot;)</span><br><span class="line">public class Test01 &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    @org.junit.Test</span><br><span class="line">    public void test1()&#123;</span><br><span class="line">        System.out.println(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、装配的细节"><a href="#2、装配的细节" class="headerlink" title="2、装配的细节"></a>2、装配的细节</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public Dog dog()&#123;</span><br><span class="line">    return new Dog();</span><br><span class="line">&#125;</span><br><span class="line">向容器中创建了id为方法名dog的组件</span><br><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public Dog dog1()&#123;</span><br><span class="line">    return new Dog();</span><br><span class="line">&#125;</span><br><span class="line">向容器中创建了id为方法名dog1的组件</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private Dog dog;</span><br><span class="line">向容器中查找id为dog的组件并赋值</span><br><span class="line"></span><br><span class="line">@Autowired</span><br><span class="line">private Dog dog1;</span><br><span class="line">向容器中查找id为dog1的组件并赋值</span><br></pre></td></tr></table></figure>
+<p>如找不到，则直接抛出异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public @interface Autowired &#123;</span><br><span class="line">  boolean required() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若不想程序中断，可以在注解required属性传false即可。</p>
+<h3 id="3、bean的作用域"><a href="#3、bean的作用域" class="headerlink" title="3、bean的作用域"></a>3、bean的作用域</h3><p>&nbsp;&nbsp;默认情况下，spring的上下文中所有的bean都是单例，也就是说不管一个bean被注入到其他任何bean，每次注入的都是同一个实例。<br>&nbsp;&nbsp;spring定义了多种bean的作用域：  </p>
+<ul>
+<li>单例：整个应用中，只创建一个实例。</li>
+<li>原型：每次注入都会创建实例。</li>
+<li>会话：在web中，每个会话创建一个实例。</li>
+<li>请求：在web中，每个请求创建一个实例。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">可用在类上，也可用在方法上</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)</span><br><span class="line">public class Dog &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)</span><br><span class="line">public Dog dog()&#123;</span><br><span class="line">    return new Dog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>  &nbsp;&nbsp;至此，第1章的内容已结束了，我们也在最后一个demo中看到了spring的影子，给大家留个小问题：<br>  &nbsp;&nbsp;&nbsp;&nbsp;在你日常使用spring中，有没有在对象中定义变量且使用过呢？<br>  &nbsp;&nbsp;&nbsp;&nbsp;请在留言区留言呦~</p>
 
@@ -462,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/熟练运用Spring(二)：IOC入门/" rel="next" title="熟练运用Spring(二)：IOC/DI">
-                <i class="fa fa-chevron-left"></i> 熟练运用Spring(二)：IOC/DI
+              <a href="/2018/12/05/熟练运用Spring(二)：IOC入门/" rel="next" title="熟练运用Spring(二)：IOC/DI入门">
+                <i class="fa fa-chevron-left"></i> 熟练运用Spring(二)：IOC/DI入门
               </a>
             
           </div>
@@ -626,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用spring-三-：IOC-DI进阶"><span class="nav-number">1.</span> <span class="nav-text">熟练运用spring(三)：IOC/DI进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、环境与profile"><span class="nav-number">1.1.</span> <span class="nav-text">1、环境与profile</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用spring-三-：IOC-DI进阶"><span class="nav-number">1.</span> <span class="nav-text">熟练运用spring(三)：IOC/DI进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、环境与profile"><span class="nav-number">1.1.</span> <span class="nav-text">1、环境与profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、装配的细节"><span class="nav-number">1.2.</span> <span class="nav-text">2、装配的细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、bean的作用域"><span class="nav-number">1.3.</span> <span class="nav-text">3、bean的作用域</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -660,7 +680,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.6k</span>
+    <span title="Site words total count">3.9k</span>
   
 </div>
 
