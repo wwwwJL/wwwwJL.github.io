@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用Spring(四)：AOP1、什么是AOP?  &amp;nbsp;&amp;nbsp;AOP（Aspect Oriented Programming），即面向切面编程，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。    OOP的缺陷？   &amp;nbsp;&amp;nbsp;OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T15:28:15.508Z">
+<meta property="og:updated_time" content="2018-12-07T16:15:53.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(四)：AOP">
 <meta name="twitter:description" content="熟练运用Spring(四)：AOP1、什么是AOP?  &amp;nbsp;&amp;nbsp;AOP（Aspect Oriented Programming），即面向切面编程，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。    OOP的缺陷？   &amp;nbsp;&amp;nbsp;OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不">
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  2.1k字
+                  2.2k字
                 </span>
               
 
@@ -410,136 +410,56 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public interface Move &#123;</span><br><span class="line">    void move();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Car implements Move &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void move() &#123;</span><br><span class="line">      System.out.println(&quot;行驶中&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class CarProxy extends Car &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void move() &#123;</span><br><span class="line">      System.out.println(&quot;系安全带&quot;);</span><br><span class="line">      super.move();</span><br><span class="line">      System.out.println(&quot;倒车入库&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//测试</span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">      Move move = new CarProxy();</span><br><span class="line">      move.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：系安全带</span><br><span class="line">          行驶中</span><br><span class="line">          倒车入库</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>基于接口实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    public class CarImplementsProxy implements Move &#123;</span><br><span class="line">        private Car car;</span><br><span class="line"></span><br><span class="line">        public CarImplementsProxy(Car car)&#123;</span><br><span class="line">          this.car = car;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void move()&#123;</span><br><span class="line">            System.out.println(&quot;系安全带&quot;);</span><br><span class="line">            car.move();</span><br><span class="line">            System.out.println(&quot;倒车入库&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //测试</span><br><span class="line">    public class Test &#123;</span><br><span class="line">        public static void main(String[] args) &#123;</span><br><span class="line">          Move move = new CarImplementsProxy(new Car());</span><br><span class="line">          move1.move();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    执行结果：系安全带</span><br><span class="line">              行驶中</span><br><span class="line">              倒车入库</span><br><span class="line">    ```  </span><br><span class="line"></span><br><span class="line">- jdk动态代理  </span><br><span class="line">`在程序运行时，运用反射机制动态创建而成，无需程序员手工编写它的源代码。动态代理类不仅简化了编程工作，而且提高了软件系统的可扩展性，因为Java 反射机制可以生成任意类型的动态代理类。`  </span><br><span class="line"></span><br><span class="line">**核心角色**：  </span><br><span class="line">InvocationHandler(Interface)：每一个动态代理类都必须要实现这个接口，并且每个代理类的实例都关联到了一个handler，当我们通过代理对象调用一个方法的时候，这个方法的调用就会被转发为由InvocationHandler这个接口的 invoke 方法来进行调用。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class CarImplementsProxy implements Move &#123;</span><br><span class="line">    private Car car;</span><br><span class="line"></span><br><span class="line">    public CarImplementsProxy(Car car)&#123;</span><br><span class="line">      this.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void move()&#123;</span><br><span class="line">        System.out.println(&quot;系安全带&quot;);</span><br><span class="line">        car.move();</span><br><span class="line">        System.out.println(&quot;倒车入库&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//测试</span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">      Move move = new CarImplementsProxy(new Car());</span><br><span class="line">      move1.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">执行结果：系安全带</span><br><span class="line">          行驶中</span><br><span class="line">          倒车入库</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>public class CarProxy implements InvocationHandler{</p>
-<p>  private Object object;</p>
-<p>  public CarProxy(Object object){</p>
-<pre><code>this.object = object;
-</code></pre><p>  }</p>
-<p>  /**</p>
+</li>
+<li><p>jdk动态代理<br><code>在程序运行时，运用反射机制动态创建而成，无需程序员手工编写它的源代码。动态代理类不仅简化了编程工作，而且提高了软件系统的可扩展性，因为Java 反射机制可以生成任意类型的动态代理类。</code>  </p>
+<p><strong>核心角色</strong>：<br>InvocationHandler(Interface)：每一个动态代理类都必须要实现这个接口，并且每个代理类的实例都关联到了一个handler，当我们通过代理对象调用一个方法的时候，这个方法的调用就会被转发为由InvocationHandler这个接口的 invoke 方法来进行调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class CarProxy implements InvocationHandler&#123;</span><br><span class="line"></span><br><span class="line">    private Object object;</span><br><span class="line"></span><br><span class="line">    public CarProxy(Object object)&#123;</span><br><span class="line">        this.object = object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param proxy 被代理的对象</span><br><span class="line">     * @param method 被代理的方法对象</span><br><span class="line">     * @param args 被带理的方法参数</span><br><span class="line">     * @return 被带离的方法返回值</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line"></span><br><span class="line">        //在代理真实对象前我们可以添加一些自己的操作</span><br><span class="line">        System.out.println(&quot;开始计时&quot;);</span><br><span class="line">        long time = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        //注意这里第一个参数，不要用proxy，而是用类属性object</span><br><span class="line">        method.invoke(object,args);</span><br><span class="line"></span><br><span class="line">        //在代理真实对象后我们可以添加一些自己的操作</span><br><span class="line">        System.out.println(&quot;计时结束，执行消耗：&quot; + (time-System.currentTimeMillis()) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Proxy：这个类的作用就是用来动态创建一个代理对象的类，它提供了许多的方法，但是我们用的最多的就是 newProxyInstance 这个方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Car car = new Car();</span><br><span class="line">        Class&lt;?&gt; cls = car.getClass();</span><br><span class="line"></span><br><span class="line">        InvocationHandler handler = new CarProxy(car);</span><br><span class="line">        /**</span><br><span class="line">          * 该方法用于为指定类装载器、一组接口及调用处理器生成动态代理类实例</span><br><span class="line">          * 参数1：指定产生代理对象的类加载器，需要将其指定为和目标对象同一个类加载器</span><br><span class="line">          * 参数2：参数要实现和目标对象一样的接口，所以只需要拿到目标对象的实现接口  </span><br><span class="line">          * 参数3：参数表明这些被拦截的方法在被拦截时需要执行哪个InvocationHandler的invoke方法</span><br><span class="line">          */</span><br><span class="line">        Move move = (Move) Proxy.newProxyInstance(cls.getClassLoader(),cls.getInterfaces(),handler);</span><br><span class="line">        move.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3、了解AOP术语"><a href="#3、了解AOP术语" class="headerlink" title="3、了解AOP术语"></a>3、了解AOP术语</h3><ul>
+<li>通知（Advice）<ul>
+<li>前置通知（Before）：目标方法之前调用</li>
+<li>后置通知（After）：之后调用</li>
+<li>返回通知（After-returning）：执行成功之后调用</li>
+<li>异常通知（After-throwing）：抛出异常后调用</li>
+<li>环绕通知（Around）：目标方法的之前和之后调用  </li>
+</ul>
+</li>
+</ul>
 <ul>
-<li>@param proxy 被代理的对象</li>
-<li>@param method 被代理的方法对象</li>
-<li>@param args 被带理的方法参数</li>
-<li><p>@return 被带离的方法返回值<br>*/<br>@Override<br>public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {</p>
-<p> //在代理真实对象前我们可以添加一些自己的操作<br> System.out.println(“开始计时”);<br> long time = System.currentTimeMillis();</p>
-<p> //注意这里第一个参数，不要用proxy，而是用类属性object<br> method.invoke(object,args);</p>
-<p> //在代理真实对象后我们可以添加一些自己的操作<br> System.out.println(“计时结束，执行消耗：” + (time-System.currentTimeMillis()) + “毫秒”);</p>
-<p> return null;<br>}<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Proxy：这个类的作用就是用来动态创建一个代理对象的类，它提供了许多的方法，但是我们用的最多的就是 newProxyInstance 这个方法。</span><br></pre></td></tr></table></figure>
+<li><p>连接点（Join point）<br>&nbsp;&nbsp;在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。</p>
+</li>
+<li><p>切点（Pointcut）<br>&nbsp;&nbsp;匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。</p>
+</li>
+<li><p>切面（Aspect）<br>&nbsp;&nbsp;一个关注点的模块化，这个关注点可能会横切多个对象。</p>
+</li>
+<li><p>引入（Introduction）<br>&nbsp;&nbsp;用来给一个类型声明额外的方法或属性。</p>
+</li>
+<li><p>织入（Weaving）<br>&nbsp;&nbsp;把切面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时（例如使用AspectJ编译器），类加载时和运行时完成。用来给一个类型声明额外的方法或属性。</p>
 </li>
 </ul>
-<p>public class Test {</p>
-<p>  public static void main(String[] args) {</p>
-<pre><code>Car car = new Car();
-Class&lt;?&gt; cls = car.getClass();
-
-InvocationHandler handler = new CarProxy(car);
-/**
-  * 该方法用于为指定类装载器、一组接口及调用处理器生成动态代理类实例
-  * 参数1：指定产生代理对象的类加载器，需要将其指定为和目标对象同一个类加载器
-  * 参数2：参数要实现和目标对象一样的接口，所以只需要拿到目标对象的实现接口  
-  * 参数3：参数表明这些被拦截的方法在被拦截时需要执行哪个InvocationHandler的invoke方法
-  */
-Move move = (Move) Proxy.newProxyInstance(cls.getClassLoader(),cls.getInterfaces(),handler);
-move.move();
-</code></pre><p>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 3、了解AOP术语</span><br><span class="line">  - 通知（Advice）</span><br><span class="line">      - 前置通知（Before）：目标方法之前调用</span><br><span class="line">      - 后置通知（After）：之后调用</span><br><span class="line">      - 返回通知（After-returning）：执行成功之后调用</span><br><span class="line">      - 异常通知（After-throwing）：抛出异常后调用</span><br><span class="line">      - 环绕通知（Around）：目标方法的之前和之后调用  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  - 连接点（Join point）  </span><br><span class="line">    &amp;nbsp;&amp;nbsp;在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。</span><br><span class="line"></span><br><span class="line">  - 切点（Pointcut）  </span><br><span class="line">    &amp;nbsp;&amp;nbsp;匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。</span><br><span class="line"></span><br><span class="line">  - 切面（Aspect）  </span><br><span class="line">    &amp;nbsp;&amp;nbsp;一个关注点的模块化，这个关注点可能会横切多个对象。</span><br><span class="line"></span><br><span class="line">  - 引入（Introduction）  </span><br><span class="line">    &amp;nbsp;&amp;nbsp;用来给一个类型声明额外的方法或属性。</span><br><span class="line"></span><br><span class="line">  - 织入（Weaving）  </span><br><span class="line">    &amp;nbsp;&amp;nbsp;把切面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时（例如使用AspectJ编译器），类加载时和运行时完成。用来给一个类型声明额外的方法或属性。</span><br><span class="line"></span><br><span class="line">### 4、SpringAOP快速入门</span><br><span class="line">&amp;nbsp;&amp;nbsp;说了那么多，手痒痒的很，马上来一发试试!</span><br><span class="line">- maven构建项目</span><br></pre></td></tr></table></figure>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
-    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
-    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;junit&lt;/groupId&gt;
-    &lt;artifactId&gt;junit&lt;/artifactId&gt;
-    &lt;version&gt;4.12&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;
-
-//springAOP基于AspectJ实现
-&lt;dependency&gt;
-    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
-    &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
-    &lt;version&gt;1.9.2&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
-    &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
-    &lt;version&gt;1.9.2&lt;/version&gt;
-&lt;/dependency&gt;
-
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
-    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="4、SpringAOP快速入门"><a href="#4、SpringAOP快速入门" class="headerlink" title="4、SpringAOP快速入门"></a>4、SpringAOP快速入门</h3><p>&nbsp;&nbsp;说了那么多，手痒痒的很，马上来一发试试!</p>
+<ul>
+<li>maven构建项目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">//springAOP基于AspectJ实现</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.9.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.9.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>@Component<br>public class Car {</p>
-<pre><code>public void move(){
-    System.out.println(&quot;开车&quot;);
-    try {
-        Thread.sleep(5000);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-}
-</code></pre><p>}</p>
-<p>@Aspect//证明这是一个切面组件<br>@Component//放入容器中<br>public class Timer {</p>
-<pre><code>private String format = &quot;yyyy-MMM-dd HH:mm:ss&quot;;
-
-//切入点
-@Pointcut(&quot;execution(* spring04..*.*(..))&quot;)
-public void method(){}
-
-//之前
-@Before(&quot;method()&quot;)
-public void before(){
-    System.out.println(new SimpleDateFormat(format).format(new Date()) + &quot; 开始执行&quot;);
-}
-
-//之后
-@After(&quot;method()&quot;)
-public void after(){
-    System.out.println(new SimpleDateFormat(format).format(new Date()) + &quot; 结束执行&quot;);
-}
-
-//@AfterReturning 结束
-//@AfterThrowing 异常
-</code></pre><p>}</p>
-<p>@Configuration<br>@ComponentScan//扫描<br>@EnableAspectJAutoProxy//启动AspectJ自动代理<br>public class Spring04Config {<br>}</p>
-<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@ContextConfiguration(classes = Spring04Config.class)//测试的上下文配置指向<br>public class Test02 {</p>
-<pre><code>@Autowired
-private Car car;
-
-@Test
-public void test(){
-    car.move();
-}
-</code></pre><p>}</p>
-<p>结果： 2018-十二月-07 23:06:37 开始执行<br>       开车<br>      2018-十二月-07 23:06:42 结束执行</p>
-<p><code>`</code></p>
-<h3 id="5、基于SpringAOP实现日志记录功能"><a href="#5、基于SpringAOP实现日志记录功能" class="headerlink" title="5、基于SpringAOP实现日志记录功能"></a>5、基于SpringAOP实现日志记录功能</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class Car &#123;</span><br><span class="line"></span><br><span class="line">    public void move()&#123;</span><br><span class="line">        System.out.println(&quot;开车&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(5000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Aspect//证明这是一个切面组件</span><br><span class="line">@Component//放入容器中</span><br><span class="line">public class Timer &#123;</span><br><span class="line"></span><br><span class="line">    private String format = &quot;yyyy-MMM-dd HH:mm:ss&quot;;</span><br><span class="line"></span><br><span class="line">    //切入点</span><br><span class="line">    @Pointcut(&quot;execution(* spring04..*.*(..))&quot;)</span><br><span class="line">    public void method()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    //之前</span><br><span class="line">    @Before(&quot;method()&quot;)</span><br><span class="line">    public void before()&#123;</span><br><span class="line">        System.out.println(new SimpleDateFormat(format).format(new Date()) + &quot; 开始执行&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //之后</span><br><span class="line">    @After(&quot;method()&quot;)</span><br><span class="line">    public void after()&#123;</span><br><span class="line">        System.out.println(new SimpleDateFormat(format).format(new Date()) + &quot; 结束执行&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //@AfterReturning 结束</span><br><span class="line">    //@AfterThrowing 异常</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@ComponentScan//扫描</span><br><span class="line">@EnableAspectJAutoProxy//启动AspectJ自动代理</span><br><span class="line">public class Spring04Config &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(classes = Spring04Config.class)//测试的上下文配置指向</span><br><span class="line">public class Test02 &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private Car car;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        car.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果： 2018-十二月-07 23:06:37 开始执行</span><br><span class="line">       开车</span><br><span class="line">      2018-十二月-07 23:06:42 结束执行</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切点配置<br><code>@Pointcut(&quot;execution(* spring04..*.*(..))&quot;)</code><br>从左至右解读：<ul>
+<li>execution 在方法执行时触发</li>
+<li><code>*</code> 任意返回类型</li>
+<li>spring04..<code>*</code> 表示spring04包下和子包下的所有类</li>
+<li>.<code>*</code>类中所有方法，若特定某个方法，则.<code>方法名*</code></li>
+<li>(..)方法下的任何类型</li>
+</ul>
+</li>
+</ul>
+<hr>
 <p>  &nbsp;&nbsp;未完待续，尽情关注……</p>
 
       
@@ -602,8 +522,8 @@ public void test(){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/熟练运用Spring(三)：IOC进阶/" rel="next" title="熟练运用Spring(三)：IOC/DI进阶">
-                <i class="fa fa-chevron-left"></i> 熟练运用Spring(三)：IOC/DI进阶
+              <a href="/2018/12/06/熟练运用Spring(五)：基于SpringAOP的日志记录实现/" rel="next" title="熟练运用Spring(五)：基于SpringAOP的日志记录实现">
+                <i class="fa fa-chevron-left"></i> 熟练运用Spring(五)：基于SpringAOP的日志记录实现
               </a>
             
           </div>
@@ -612,8 +532,8 @@ public void test(){
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/07/熟练运用Spring(五)：JdbcTemplate的使用/" rel="prev" title="熟练运用Spring(五)：JdbcTemplate的使用">
-                熟练运用Spring(五)：JdbcTemplate的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/" rel="prev" title="熟练运用Spring(六)：JdbcTemplate的使用">
+                熟练运用Spring(六)：JdbcTemplate的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +622,7 @@ public void test(){
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -770,7 +690,7 @@ public void test(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-四-：AOP"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(四)：AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是AOP"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是AOP?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、AOP的基石-代理模式"><span class="nav-number">1.2.</span> <span class="nav-text">2、AOP的基石-代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、基于SpringAOP实现日志记录功能"><span class="nav-number">1.3.</span> <span class="nav-text">5、基于SpringAOP实现日志记录功能</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-四-：AOP"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(四)：AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是AOP"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是AOP?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、AOP的基石-代理模式"><span class="nav-number">1.2.</span> <span class="nav-text">2、AOP的基石-代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、了解AOP术语"><span class="nav-number">1.3.</span> <span class="nav-text">3、了解AOP术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、SpringAOP快速入门"><span class="nav-number">1.4.</span> <span class="nav-text">4、SpringAOP快速入门</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -804,7 +724,7 @@ public void test(){
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.4k</span>
+    <span title="Site words total count">6.5k</span>
   
 </div>
 
