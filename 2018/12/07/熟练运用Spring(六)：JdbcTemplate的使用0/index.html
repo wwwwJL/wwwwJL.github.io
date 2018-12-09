@@ -90,11 +90,11 @@
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用Spring(六)：JdbcTemplate的使用">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/index.html">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用0/index.html">
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用Spring(六)：JdbcTemplate的使用1、概述  &amp;nbsp;&amp;nbsp;JdbcTemplate是spring框架中提供的一个对象，是对原始Jdbc Api对象的简单封装，同时spring给我们也提供了很多模板类。  JdbcTemplate ReidsTemplate JmsTemplate   等等。 &amp;nbsp;&amp;nbsp;还是老规矩，我们来利用模板模式，来手写简单实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T13:06:55.730Z">
+<meta property="og:updated_time" content="2018-12-09T14:14:15.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(六)：JdbcTemplate的使用">
 <meta name="twitter:description" content="熟练运用Spring(六)：JdbcTemplate的使用1、概述  &amp;nbsp;&amp;nbsp;JdbcTemplate是spring框架中提供的一个对象，是对原始Jdbc Api对象的简单封装，同时spring给我们也提供了很多模板类。  JdbcTemplate ReidsTemplate JmsTemplate   等等。 &amp;nbsp;&amp;nbsp;还是老规矩，我们来利用模板模式，来手写简单实现">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用0/">
 
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用/" itemprop="commentCount"></span>
+                <a href="/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/07/熟练运用Spring(六)：JdbcTemplate的使用0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  861字
+                  1.1k字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  5分钟
                 </span>
               
             </div>
@@ -410,8 +410,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@ComponentScan</span><br><span class="line">public class Spring06Config &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource()&#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql://127.0.0.1:3306/school?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public JdbcTemplate jdbcTemplate(DataSource dataSource)&#123;</span><br><span class="line">        return new JdbcTemplate(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这一块用到了ioc的知识，不清楚的同学可以去<a href="https://wwwwjl.github.io/2018/12/04/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8Spring\(%E5%9B%9\%EF%BC%9AAOP/">&nbsp;<strong>熟练运用Spring(二)：IOC/DI入门</strong> &nbsp;</a>查看。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(classes = Spring06Config.class)</span><br><span class="line">public class Test04 &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        jdbcTemplate.execute(&quot;update student set sname = &apos;123&apos; where sid = &apos;001&apos;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3、JdbcTemplate方法分析"><a href="#3、JdbcTemplate方法分析" class="headerlink" title="3、JdbcTemplate方法分析"></a>3、JdbcTemplate方法分析</h3><hr>
-<p>  &nbsp;&nbsp;未完待续，尽情关注……<br>  &nbsp;&nbsp;JdbcTemplate是spring框架中提供的一个对象，是对原始Jdbc Api对象简单封装，同时spring给我们也提供了很多模板类。<br>  的</p>
+<h3 id="3、JdbcTemplate常用方法"><a href="#3、JdbcTemplate常用方法" class="headerlink" title="3、JdbcTemplate常用方法"></a>3、JdbcTemplate常用方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void execute(String sql);//执行方法</span><br><span class="line">void update(String sql);//也是执行方法，但通常增删改都用upate</span><br><span class="line">void update(String sql,Object... args);</span><br><span class="line"></span><br><span class="line">List&lt;T&gt; query(String sql, RowMapper&lt;T&gt; rowMapper);//查询</span><br><span class="line">List&lt;T&gt; query(String sql, RowMapper&lt;T&gt; rowMapper), Object... args;</span><br><span class="line"></span><br><span class="line">T queryForObject(String sql, Class&lt;T&gt; clazz);//函数查询</span><br></pre></td></tr></table></figure>
+<ul>
+<li>query(String sql, RowMapper<t> rowMapper)</t></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Users &#123;</span><br><span class="line">    private String id;</span><br><span class="line">    private String phone;</span><br><span class="line">    private String email;</span><br><span class="line">    private String passWord;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void test1()&#123;</span><br><span class="line">    /**</span><br><span class="line">    * RowMapper是一个接口，这里需要实现它，主要实现他的maprow方法，</span><br><span class="line">    * 用于查询出来的结果集和java中对象之间的值对应</span><br><span class="line">    */</span><br><span class="line">    List&lt;Users&gt; list = jdbcTemplate.query(&quot;select * from users&quot;, new RowMapper&lt;Users&gt;() &#123;</span><br><span class="line">        @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Users mapRow(ResultSet resultSet, int i) throws SQLException &#123;</span><br><span class="line">            Users users = new Users();</span><br><span class="line">            users.setId(resultSet.getString(&quot;uid&quot;));</span><br><span class="line">            users.setEmail(resultSet.getString(&quot;email&quot;));</span><br><span class="line">            users.setPassWord(resultSet.getString(&quot;password&quot;));</span><br><span class="line">            users.setPhone(resultSet.getString(&quot;phone&quot;));</span><br><span class="line">            return users;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(list);</span><br><span class="line"></span><br><span class="line">    //也可以用spring为我们设计好的实现类BeanPropertyRowMapper，这需要告诉它对应对象是哪一个即可。</span><br><span class="line">    List&lt;Users&gt; list1 = jdbcTemplate.query(&quot;select * from users&quot;, new BeanPropertyRowMapper&lt;&gt;(Users.class));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>queryForObject(String sql, Class<t> clazz)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 一般用于函数查找</span><br><span class="line">  */</span><br><span class="line">long i =jdbcTemplate.queryForObject(&quot;select count(1) from users&quot;,long.class);</span><br></pre></td></tr></table></figure>
+</t></li>
+</ul>
+<hr>
+<p>  &nbsp;&nbsp;下一章节属于一个JdbcTemplate使用的番外篇，利用自定义注解和配套方法，来简单实现下不用写sql的crud！</p>
 
       
     </div>
@@ -473,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/06/熟练运用Spring(四)：AOP/" rel="next" title="熟练运用Spring(四)：AOP">
-                <i class="fa fa-chevron-left"></i> 熟练运用Spring(四)：AOP
+              <a href="/2018/12/06/熟练运用Spring(五)：基于SpringAOP的日志记录实现/" rel="next" title="熟练运用Spring(五)：基于SpringAOP的日志记录实现">
+                <i class="fa fa-chevron-left"></i> 熟练运用Spring(五)：基于SpringAOP的日志记录实现
               </a>
             
           </div>
@@ -483,8 +492,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/08/熟练运用Spring(七)：事务的使用/" rel="prev" title="熟练运用Spring(七)：事务的使用">
-                熟练运用Spring(七)：事务的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/08/熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud/" rel="prev" title="熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud">
+                熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +582,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-六-：JdbcTemplate的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(六)：JdbcTemplate的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、JdbcTemplate方法分析"><span class="nav-number">1.3.</span> <span class="nav-text">3、JdbcTemplate方法分析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-六-：JdbcTemplate的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(六)：JdbcTemplate的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、JdbcTemplate常用方法"><span class="nav-number">1.3.</span> <span class="nav-text">3、JdbcTemplate常用方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -675,7 +684,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.4k</span>
+    <span title="Site words total count">8.7k</span>
   
 </div>
 
