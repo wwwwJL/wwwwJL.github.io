@@ -86,18 +86,24 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用SpringBoot(十二)：自动配置的秘密">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/22/熟练运用SpringBoot(十二)：自动配置的秘密/index.html">
+<meta property="og:title" content="熟练运用Spring(七)：事务的使用">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/09/熟练运用Spring(七)：事务概述/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T02:19:55.741Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring7.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring7.1.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring7.2.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring7.3.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring7.4.jpg">
+<meta property="og:updated_time" content="2018-12-11T14:53:40.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用SpringBoot(十二)：自动配置的秘密">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:title" content="熟练运用Spring(七)：事务的使用">
+<meta name="twitter:description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/spring7.0.jpg">
 
 
 
@@ -127,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/22/熟练运用SpringBoot(十二)：自动配置的秘密/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/09/熟练运用Spring(七)：事务概述/">
 
 
 
 
 
-  <title>熟练运用SpringBoot(十二)：自动配置的秘密 | 突突的技术博客</title>
+  <title>熟练运用Spring(七)：事务的使用 | 突突的技术博客</title>
   
 
 
@@ -251,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/22/熟练运用SpringBoot(十二)：自动配置的秘密/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/09/熟练运用Spring(七)：事务概述/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(十二)：自动配置的秘密</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用Spring(七)：事务的使用</h1>
         
 
         <div class="post-meta">
@@ -280,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T00:00:00+08:00">
-                2018-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T00:00:00+08:00">
+                2018-12-09
               </time>
             
 
@@ -303,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/熟练运用SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">熟练运用SpringBoot</span>
+                  <a href="/categories/熟练运用Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">熟练运用Spring</span>
                   </a>
                 </span>
 
@@ -321,8 +327,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/22/熟练运用SpringBoot(十二)：自动配置的秘密/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/22/熟练运用SpringBoot(十二)：自动配置的秘密/" itemprop="commentCount"></span>
+                <a href="/2018/12/09/熟练运用Spring(七)：事务概述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/熟练运用Spring(七)：事务概述/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +357,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  1.9k字
                 </span>
               
 
@@ -367,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  6分钟
                 </span>
               
             </div>
@@ -388,7 +394,116 @@
       
 
       
-        
+        <h2 id="熟练运用Spring-七-：事务的使用"><a href="#熟练运用Spring-七-：事务的使用" class="headerlink" title="熟练运用Spring(七)：事务的使用"></a>熟练运用Spring(七)：事务的使用</h2><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>  &nbsp;&nbsp;<strong>事务</strong>（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。</p>
+<p>  举个例子：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">比如你去ATM机取1000块钱，大体有两个步骤：</span><br><span class="line">1.输入密码金额，银行卡扣掉1000元钱；</span><br><span class="line">2.从ATM出1000元钱。</span><br><span class="line">这两个步骤必须是要么都执行要么都不执行。如果银行卡扣除了1000块但是ATM出钱失败的话，你将会损失1000元；如果银行卡扣钱失败但是ATM却出了1000块，那么银行将损失1000元。</span><br></pre></td></tr></table></figure>
+<p>　　如何保证这两个步骤不会出现一个出现异常了，而另一个执行成功呢？事务就是用来解决这样的问题。事务是一系列的动作，它们综合在一起才是一个完整的工作单元，这些动作必须全部完成，如果有一个失败的话，那么事务就会回滚到最开始的状态，仿佛什么都没发生过一样。 在企业级应用程序开发中，事务管理是必不可少的技术，用来确保数据的完整性和一致性。</p>
+<h3 id="2、特性"><a href="#2、特性" class="headerlink" title="2、特性"></a>2、特性</h3><ul>
+<li>原子性（Atomicity）<br><code>事务是一个原子操作，由一系列动作组成。事务的原子性确保动作要么全部完成，要么完全不起作用。</code></li>
+<li>一致性（Consistency）<br><code>一旦事务完成（不管成功还是失败），系统必须确保它所建模的业务处于一致的状态，而不会是部分完成部分失败。在现实中的数据不应该被破坏。</code></li>
+<li>隔离性（Isolation）<br><code>可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。</code></li>
+<li>持久性（Durability）<br><code>一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能从任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。</code></li>
+</ul>
+<h3 id="3、Spring-事务管理的核心接口"><a href="#3、Spring-事务管理的核心接口" class="headerlink" title="3、Spring 事务管理的核心接口"></a>3、Spring 事务管理的核心接口</h3><p>  &nbsp;&nbsp;spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，下面通过讲解Spring的事务接口来了解Spring实现事务的具体策略。<br>Spring事务管理涉及的接口的联系如下：  </p>
+<p><img src="\images\spring7.0.jpg" alt="事务">  </p>
+<p>上面所示的三个类文件便是Spring的事务管理接口。如下图所示：下面我们分别对这三个接口进行简单的介绍：  </p>
+<p><img src="\images\spring7.1.jpg" alt="事务">  </p>
+<ul>
+<li>PlatformTransactionManager事务管理器</li>
+</ul>
+<p><code>spring事务管理器的接口是
+org.springframework.transaction.PlatformTransactionManager，
+如上图所示，spring并不直接管理事务，通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，也就是将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。</code></p>
+<p>  以下是该接口提供的主要方法：</p>
+<pre><code>- TransactionStatus getTransaction(TransactionDefinition definition)  
+通过TransactionDefinition，获得“事务状态”，从而管理事务
+- void commit(TransactionStatus status)  根据状态提交
+- void rollback(TransactionStatus status) 根据状态回滚
+</code></pre><p>  也就是说Spring事务管理的为不同的事务API提供一致的编程模型，具体的事务管理机制由对应各个平台去实现。</p>
+<ul>
+<li>TransactionStatus事务状态</li>
+</ul>
+<p><code>上面的第一个方法返回的就是TransactionStatus对象，然后各自第三方orm框架提供的PlatformTransactionManager实现类会根据获取的事务状态，来进行下一步操作。</code></p>
+<p><img src="\images\spring7.2.jpg" alt="事务"></p>
+<ul>
+<li>TransactionDefinition基本事务属性的定义</li>
+</ul>
+<p><code>上面第一个方法的参数就是TransactionDefinition类，这个类就定义了一些基本的事务属性。</code></p>
+<p><img src="\images\spring7.3.jpg" alt="事务"></p>
+<p>方法如下：<br><img src="\images\spring7.4.jpg" alt="事务">  </p>
+<ol>
+<li>传播行为<br>&nbsp;&nbsp;当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。以下为几个常用的行为：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">  PROPAGATION_REQUIRED</td>
+<td style="text-align:left">required , 必须。默认值，A如果有事务，B将使用该事务；如果A没有事务，B将创建一个新的事务。</td>
+</tr>
+<tr>
+<td style="text-align:left">  PROPAGATION_REQUIRES_NEW</td>
+<td style="text-align:left">requires_new，必须新的。如果A有事务，将A的事务挂起，B创建一个新的事务；如果A没有事务，B创建一个新的事务。</td>
+</tr>
+<tr>
+<td style="text-align:left">  PROPAGATION_NESTED</td>
+<td style="text-align:left">nested ，嵌套。A和B底层采用保存点机制，形成嵌套事务。</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>隔离级别<br>&nbsp;&nbsp;定义了一个事务可能受其他并发事务影响的程度。在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务。并发虽然是必须的，但可能会导致以下的问题：<ul>
+<li>脏读（Dirty reads）：脏读发生在一个事务读取了另一个事务改写但尚未提交的数据时。如果改写在稍后被回滚了，那么第一个事务获取的数据就是无效的。</li>
+<li>不可重复读（Nonrepeatable read）：不可重复读发生在一个事务执行相同的查询两次或两次以上，但是每次都得到不同的数据时。这通常是因为另一个并发事务在两次查询期间进行了更新。</li>
+<li>幻读（Phantom read）：幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录。</li>
+</ul>
+</li>
+</ol>
+<p>　　　　注意：不可重复读重点是修改，而幻读重点是新增或删除。以下为spring在事务管理中定义几个级别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">  ISOLATION_DEFAULT</td>
+<td style="text-align:left">使用后端数据库默认的隔离级别</td>
+</tr>
+<tr>
+<td style="text-align:left">  ISOLATION_READ_UNCOMMITTED</td>
+<td style="text-align:left">最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读</td>
+</tr>
+<tr>
+<td style="text-align:left">  ISOLATION_READ_COMMITTED</td>
+<td style="text-align:left">允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生</td>
+</tr>
+<tr>
+<td style="text-align:left">  ISOLATION_REPEATABLE_READ</td>
+<td style="text-align:left">对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生</td>
+</tr>
+<tr>
+<td style="text-align:left">  ISOLATION_SERIALIZABLE</td>
+<td style="text-align:left">最高的隔离级别，完全服从ACID的隔离级别，确保阻止脏读、不可重复读以及幻读，也是最慢的事务隔离级别，因为它通常是通过完全锁定事务相关的数据库表来实现的</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li><p>只读<br>&nbsp;&nbsp;如果事务只对后端的数据库进行读操作，数据库可以利用事务的只读特性来进行一些特定的优化。通过将事务设置为只读，可让数据库去选用更优化的处理方式，来提高访问的吞吐量。</p>
+</li>
+<li><p>事务超时<br>&nbsp;&nbsp;为了使程序很好的运行，事务不能运行太长时间。因为长时间的事务会不必要的占用数据库资源。事务超时就是事务的一个定时器，在特定时间内事务如果没有执行完毕，就会自动回滚，而不是一直等待其结束。</p>
+</li>
+<li><p>回滚规则<br>&nbsp;&nbsp;五边形的最后一个方面是一组规则，这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常时才会回滚，而在遇到检查型异常时不会回滚。</p>
+</li>
+</ol>
+
       
     </div>
     
@@ -449,8 +564,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/21/熟练运用SpringBoot(十一)：全局异常处理/" rel="next" title="熟练运用SpringBoot(十一)：全局异常处理">
-                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(十一)：全局异常处理
+              <a href="/2018/12/08/熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud/" rel="next" title="熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud">
+                <i class="fa fa-chevron-left"></i> 熟练运用Spring(番外篇)：自定义注解+JdbcTemplate实现无sql的crud
               </a>
             
           </div>
@@ -459,8 +574,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/23/熟练运用SpringBoot(十三)：事件监听/" rel="prev" title="熟练运用SpringBoot(十三)：事件监听">
-                熟练运用SpringBoot(十三)：事件监听 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/10/熟练运用Spring(八)：事务实战/" rel="prev" title="熟练运用Spring(八)：事务实战">
+                熟练运用Spring(八)：事务实战 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,8 +637,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -598,6 +722,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-七-：事务的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(七)：事务的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特性"><span class="nav-number">1.2.</span> <span class="nav-text">2、特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Spring-事务管理的核心接口"><span class="nav-number">1.3.</span> <span class="nav-text">3、Spring 事务管理的核心接口</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
