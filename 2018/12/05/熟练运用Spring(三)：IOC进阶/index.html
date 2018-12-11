@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了快速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T11:47:50.670Z">
+<meta property="og:updated_time" content="2018-12-11T07:47:51.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(三)：IOC&#x2F;DI进阶">
 <meta name="twitter:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了快速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
@@ -410,7 +410,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private Dog dog;</span><br><span class="line">向容器中查找id为dog的组件并赋值</span><br><span class="line"></span><br><span class="line">@Autowired</span><br><span class="line">private Dog dog1;</span><br><span class="line">向容器中查找id为dog1的组件并赋值</span><br><span class="line"></span><br><span class="line">如容器中只有1个Dog组件，则变量名可随便设置，都能被spring所找到</span><br></pre></td></tr></table></figure>
 <p>如找不到，则直接抛出异常。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public @interface Autowired &#123;</span><br><span class="line">  boolean required() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若不想程序中断，可以在注解required属性传false即可。</p>
+<p>如果不想程序中断运行，可以在注解required属性传false即可。</p>
+<p>若部分业务需求，需要注入容器的组件延迟加载，可加@Lazy。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">@Lazy</span><br><span class="line">public CatService catService()&#123;</span><br><span class="line">    return new CatService();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若在装配注入时，想调用某个初始化方法，则在@bean设置init即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Bean(initMethod = &quot;&quot;, destroyMethod = &quot;&quot;)</span><br><span class="line">public CatService catService()&#123;</span><br><span class="line">    return new CatService();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="3、bean的作用域"><a href="#3、bean的作用域" class="headerlink" title="3、bean的作用域"></a>3、bean的作用域</h3><p>&nbsp;&nbsp;默认情况下，spring的上下文中所有的bean都是单例，也就是说不管一个bean被注入到其他任何bean，每次注入的都是同一个实例。<br>&nbsp;&nbsp;spring定义了多种bean的作用域：  </p>
 <ul>
 <li>单例：整个应用中，只创建一个实例。</li>
@@ -693,7 +695,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">9.7k</span>
+    <span title="Site words total count">10.6k</span>
   
 </div>
 
