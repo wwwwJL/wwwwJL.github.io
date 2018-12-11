@@ -86,23 +86,23 @@
 
 
 
-<meta name="description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
+<meta name="description" content="熟练运用Spring(七)：事务概述1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执行">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用Spring(七)：事务的使用">
+<meta property="og:title" content="熟练运用Spring(七)：事务概述">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/09/熟练运用Spring(七)：事务概述/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
+<meta property="og:description" content="熟练运用Spring(七)：事务概述1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执行">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.0.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.1.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.2.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.3.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.4.jpg">
-<meta property="og:updated_time" content="2018-12-11T14:53:40.926Z">
+<meta property="og:updated_time" content="2018-12-11T14:57:15.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用Spring(七)：事务的使用">
-<meta name="twitter:description" content="熟练运用Spring(七)：事务的使用1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执">
+<meta name="twitter:title" content="熟练运用Spring(七)：事务概述">
+<meta name="twitter:description" content="熟练运用Spring(七)：事务概述1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执行">
 <meta name="twitter:image" content="http://wwwwjl.github.io/images/spring7.0.jpg">
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>熟练运用Spring(七)：事务的使用 | 突突的技术博客</title>
+  <title>熟练运用Spring(七)：事务概述 | 突突的技术博客</title>
   
 
 
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用Spring(七)：事务的使用</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用Spring(七)：事务概述</h1>
         
 
         <div class="post-meta">
@@ -357,7 +357,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  1.9k字
+                  2k字
                 </span>
               
 
@@ -394,7 +394,7 @@
       
 
       
-        <h2 id="熟练运用Spring-七-：事务的使用"><a href="#熟练运用Spring-七-：事务的使用" class="headerlink" title="熟练运用Spring(七)：事务的使用"></a>熟练运用Spring(七)：事务的使用</h2><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>  &nbsp;&nbsp;<strong>事务</strong>（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。</p>
+        <h2 id="熟练运用Spring-七-：事务概述"><a href="#熟练运用Spring-七-：事务概述" class="headerlink" title="熟练运用Spring(七)：事务概述"></a>熟练运用Spring(七)：事务概述</h2><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>  &nbsp;&nbsp;<strong>事务</strong>（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。</p>
 <p>  举个例子：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">比如你去ATM机取1000块钱，大体有两个步骤：</span><br><span class="line">1.输入密码金额，银行卡扣掉1000元钱；</span><br><span class="line">2.从ATM出1000元钱。</span><br><span class="line">这两个步骤必须是要么都执行要么都不执行。如果银行卡扣除了1000块但是ATM出钱失败的话，你将会损失1000元；如果银行卡扣钱失败但是ATM却出了1000块，那么银行将损失1000元。</span><br></pre></td></tr></table></figure>
 <p>　　如何保证这两个步骤不会出现一个出现异常了，而另一个执行成功呢？事务就是用来解决这样的问题。事务是一系列的动作，它们综合在一起才是一个完整的工作单元，这些动作必须全部完成，如果有一个失败的话，那么事务就会回滚到最开始的状态，仿佛什么都没发生过一样。 在企业级应用程序开发中，事务管理是必不可少的技术，用来确保数据的完整性和一致性。</p>
@@ -503,6 +503,8 @@ org.springframework.transaction.PlatformTransactionManager，
 <li><p>回滚规则<br>&nbsp;&nbsp;五边形的最后一个方面是一组规则，这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常时才会回滚，而在遇到检查型异常时不会回滚。</p>
 </li>
 </ol>
+<hr>
+<p>&nbsp;&nbsp;至此，第7章的内容已结束了，希望大家在概念上对事务有理解，后面自己再去看源码的时候，也能更好地理解。  </p>
 
       
     </div>
@@ -732,7 +734,7 @@ org.springframework.transaction.PlatformTransactionManager，
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-七-：事务的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(七)：事务的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特性"><span class="nav-number">1.2.</span> <span class="nav-text">2、特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Spring-事务管理的核心接口"><span class="nav-number">1.3.</span> <span class="nav-text">3、Spring 事务管理的核心接口</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-七-：事务概述"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(七)：事务概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特性"><span class="nav-number">1.2.</span> <span class="nav-text">2、特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Spring-事务管理的核心接口"><span class="nav-number">1.3.</span> <span class="nav-text">3、Spring 事务管理的核心接口</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -766,7 +768,7 @@ org.springframework.transaction.PlatformTransactionManager，
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">11.9k</span>
+    <span title="Site words total count">12k</span>
   
 </div>
 
