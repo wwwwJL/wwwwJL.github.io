@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.2.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.3.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/spring7.4.jpg">
-<meta property="og:updated_time" content="2018-12-11T14:57:15.443Z">
+<meta property="og:updated_time" content="2018-12-11T15:06:55.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(七)：事务概述">
 <meta name="twitter:description" content="熟练运用Spring(七)：事务概述1、介绍  &amp;nbsp;&amp;nbsp;事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。   举个例子：   1234比如你去ATM机取1000块钱，大体有两个步骤：1.输入密码金额，银行卡扣掉1000元钱；2.从ATM出1000元钱。这两个步骤必须是要么都执行要么都不执行">
@@ -404,10 +404,10 @@
 <li>隔离性（Isolation）<br><code>可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。</code></li>
 <li>持久性（Durability）<br><code>一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能从任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。</code></li>
 </ul>
-<h3 id="3、Spring-事务管理的核心接口"><a href="#3、Spring-事务管理的核心接口" class="headerlink" title="3、Spring 事务管理的核心接口"></a>3、Spring 事务管理的核心接口</h3><p>  &nbsp;&nbsp;spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，下面通过讲解Spring的事务接口来了解Spring实现事务的具体策略。<br>Spring事务管理涉及的接口的联系如下：  </p>
-<p><img src="\images\spring7.0.jpg" alt="事务">  </p>
-<p>上面所示的三个类文件便是Spring的事务管理接口。如下图所示：下面我们分别对这三个接口进行简单的介绍：  </p>
-<p><img src="\images\spring7.1.jpg" alt="事务">  </p>
+<h3 id="3、Spring-事务管理的核心接口"><a href="#3、Spring-事务管理的核心接口" class="headerlink" title="3、Spring 事务管理的核心接口"></a>3、Spring 事务管理的核心接口</h3><p>  &nbsp;&nbsp;spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，下面通过讲解spring的事务接口来了解实现事务的具体策略。  </p>
+<p>Spring事务管理涉及的接口的联系如下：<br><img src="\images\spring7.0.jpg" alt="事务">  </p>
+<p>上面所示的三个类文件便是spring的事务管理接口。如下图所示：<br><img src="\images\spring7.1.jpg" alt="事务">  </p>
+<p>我们分别对这三个接口进行简单的介绍：  </p>
 <ul>
 <li>PlatformTransactionManager事务管理器</li>
 </ul>
@@ -576,8 +576,8 @@ org.springframework.transaction.PlatformTransactionManager，
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/10/熟练运用Spring(八)：事务实战/" rel="prev" title="熟练运用Spring(八)：事务实战">
-                熟练运用Spring(八)：事务实战 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/10/熟练运用SpringBoot(一)：概述/" rel="prev" title="熟练运用SpringBoot(一)：概述">
+                熟练运用SpringBoot(一)：概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
