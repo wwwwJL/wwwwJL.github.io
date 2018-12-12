@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  12">
+<meta name="description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253&amp;lt;depe">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用Spring(八)：事务实战">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/10/熟练运用Spring(八)：事务实战/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  12">
+<meta property="og:description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253&amp;lt;depe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-11T14:59:37.627Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/spring8.0.jpg">
+<meta property="og:updated_time" content="2018-12-12T15:43:18.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(八)：事务实战">
-<meta name="twitter:description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  12">
+<meta name="twitter:description" content="熟练运用Spring(八)：事务实战&amp;nbsp;&amp;nbsp;上一章节，我们对spring事务进行的全面的认识，这一章节，会对其中的快速使用与使用细节做具体讲解。 1、快速入门 maven  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253&amp;lt;depe">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/spring8.0.jpg">
 
 
 
@@ -351,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  60字
+                  856字
                 </span>
               
 
@@ -367,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  4分钟
                 </span>
               
             </div>
@@ -392,7 +394,44 @@
 <h3 id="1、快速入门"><a href="#1、快速入门" class="headerlink" title="1、快速入门"></a>1、快速入门</h3><ul>
 <li>maven</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.10&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;6.0.6&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.16.20&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@ComponentScan</span><br><span class="line">@EnableTransactionManagement</span><br><span class="line">public class Spring08Config &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource()&#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql://127.0.0.1:3306/spring_tran?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //配置事务管理器</span><br><span class="line">    @Bean</span><br><span class="line">    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource)&#123;</span><br><span class="line">        return new DataSourceTransactionManager(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public JdbcTemplate jdbcTemplate(DataSource dataSource)&#123;</span><br><span class="line">        return new JdbcTemplate(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Data</span><br><span class="line">public class Bank &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private int amount;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Data</span><br><span class="line">public class Person &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private int amount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class BankService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Transactional</span><br><span class="line">    public void extract(int amount)&#123;</span><br><span class="line">        //业务逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;@Transactional可以在类上，也可以在方法上。</p>
+<h3 id="2、属性配置"><a href="#2、属性配置" class="headerlink" title="2、属性配置"></a>2、属性配置</h3><ul>
+<li><p>传播行为  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(propagation = Propagation.REQUIRED)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>REQUIRED 自始至终都是一个事务，不管方法之间再怎么嵌套调用。</li>
+<li>REQUIRED_NEW 表示若在本方法中调用其他方法，之前事务挂起，然后为这个方法新开一个事务，详细见下图：<br><img src="\images\spring8.0.jpg" alt="事务"></li>
+</ul>
+</li>
+<li><p>隔离级别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(isolation = Isolation.READ_COMMITTED)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常回滚</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(rollbackFor = RuntimeException.class, //发生异常回滚</span><br><span class="line">  noRollbackFor= RuntimeException.class)//发生异常不回滚</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>是否只读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(readOnly = true)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>超时时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(timeout = 100)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3、自己遇到的坑"><a href="#3、自己遇到的坑" class="headerlink" title="3、自己遇到的坑"></a>3、自己遇到的坑</h3><p>&nbsp;&nbsp;场景：在一个service方法上加了@Transactional，但是在方法内部用了并行流去对数据库进行了操作，结果事务就失效了，甚至报错。后来不开多线程，则事务就恢复正常了。</p>
+<p>看了几篇博文，总结了下原因：</p>
+<ol>
+<li>parallelStream是采用fork/join框架提供了并发执行能力  </li>
+<li>spring的事务是通过ThreadLocal来保证线程安全的</li>
+<li>通过对ThreadLocal的使用来达到事务和当前线程之间的绑定</li>
+<li>transactionManager只会管着开启事务的线程</li>
+<li>未开启事务的子线程不受事务控制，且子线程出现错误是直接中断，不会抛出异常。</li>
+</ol>
 
       
     </div>
@@ -622,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-八-：事务实战"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(八)：事务实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、快速入门"><span class="nav-number">1.1.</span> <span class="nav-text">1、快速入门</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用Spring-八-：事务实战"><span class="nav-number">1.</span> <span class="nav-text">熟练运用Spring(八)：事务实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、快速入门"><span class="nav-number">1.1.</span> <span class="nav-text">1、快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、属性配置"><span class="nav-number">1.2.</span> <span class="nav-text">2、属性配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、自己遇到的坑"><span class="nav-number">1.3.</span> <span class="nav-text">3、自己遇到的坑</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -656,7 +695,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12k</span>
+    <span title="Site words total count">12.8k</span>
   
 </div>
 
