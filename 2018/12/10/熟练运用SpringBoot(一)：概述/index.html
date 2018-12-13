@@ -96,7 +96,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot1.0.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot1.1.jpg">
-<meta property="og:updated_time" content="2018-12-13T14:43:35.830Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot1.2.jpg">
+<meta property="og:updated_time" content="2018-12-13T16:13:28.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(一)：概述">
 <meta name="twitter:description" content="熟练运用SpringBoot(一)：概述1、介绍  &amp;nbsp;&amp;nbsp;springboot的出现是用来简化spring应用开发的，采用约定大于配置的思想，从而使开发人员不再需要定义样板化的配置，去繁从简，just run就能创建一个独立的，产品级别的应用程序。 优点 能快速创建spring项目 轻松与主流框架整合 使用内嵌式的servlet容器，无需达成war包 starters自动依赖与版">
@@ -354,7 +355,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  193字
+                  1.2k字
                 </span>
               
 
@@ -370,7 +371,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  5分钟
                 </span>
               
             </div>
@@ -408,9 +409,38 @@
 <h3 id="3、快速入门"><a href="#3、快速入门" class="headerlink" title="3、快速入门"></a>3、快速入门</h3><ul>
 <li><p>创建项目<br><img src="\images\springboot1.0.jpg" alt="123"></p>
 </li>
-<li><p>启用项目<br><img src="\images\springboot1.1.jpg" alt="123"></p>
+<li><p>启动项目<br><img src="\images\springboot1.1.jpg" alt="123"><br>至此一个springboot项目已经创建并启动完成！</p>
+</li>
+<li><p>编写接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RestController（@ResponseBody+@Controller）</span><br><span class="line">public class ControllerTest &#123;</span><br><span class="line"></span><br><span class="line">    @GetMapping</span><br><span class="line">    public String test()&#123;</span><br><span class="line">       return &quot;成功！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>外部启动  </p>
+<ul>
+<li>mvn打包<br><code>mvn package</code></li>
+<li>命令运行<br><code>java -jar 文件</code></li>
+</ul>
 </li>
 </ul>
+<h3 id="4、项目内部结构探究"><a href="#4、项目内部结构探究" class="headerlink" title="4、项目内部结构探究"></a>4、项目内部结构探究</h3><ul>
+<li><p>spring-boot-starter-parent<br>&nbsp;&nbsp;由上向下看，会先发现这里有个父项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">	 &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	 &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">	 &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">	 &lt;relativePath/&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;然后从父项目点进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;relativePath&gt;../../spring-boot-dependencies&lt;/relativePath&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;可以看到这个父项目其实是一个依赖管理的项目，然后我们再点进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;activemq.version&gt;5.15.8&lt;/activemq.version&gt;</span><br><span class="line">    &lt;antlr2.version&gt;2.7.7&lt;/antlr2.version&gt;</span><br><span class="line">    &lt;appengine-sdk.version&gt;1.9.68&lt;/appengine-sdk.version&gt;</span><br><span class="line">    &lt;artemis.version&gt;2.6.3&lt;/artemis.version&gt;</span><br><span class="line">    &lt;aspectj.version&gt;1.9.2&lt;/aspectj.version&gt;</span><br><span class="line">    &lt;assertj.version&gt;3.11.1&lt;/assertj.version&gt;</span><br><span class="line">    &lt;atomikos.version&gt;4.0.6&lt;/atomikos.version&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;以上能看到，这里有着大量的第三方框架依赖的版本控制，所以我们称spring-boot-dependencies为springboot的<strong>依赖版本控制中心</strong>。以后我们再导入依赖的时候，就可以不用去写版本号了（若想自定义或者还未在这个项目中管理的依赖需要声明版本）。</p>
+</li>
+<li><p>spring-boot-starter-web<br>&nbsp;&nbsp;spring-boot-starter即springboot的场景启动器，帮助我们导入该模块提供正常运行的组件依赖，简单说就是一组提前定义好的组件依赖。spring-boot-starter-web则为web的启动器。  </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>  &nbsp;&nbsp;点进去如下：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter-json&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.hibernate.validator&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;6.0.13.Final&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-web&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;5.1.3.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;5.1.3.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">  &lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<p>  &nbsp;&nbsp;官方解释：springboot将所有的功能场景都抽取出来，做成一个个的starters，只需要在项目中引入这些starters，那该场景下的所有依赖也就导入进来了。要用到什么场景就导入什么场景的starters。</p>
+<h3 id="5、主程序类"><a href="#5、主程序类" class="headerlink" title="5、主程序类"></a>5、主程序类</h3><p> <img src="\images\springboot1.2.jpg" alt="123"><br>  &nbsp;&nbsp;@SpringBootApplication：springboot应用标注在某个类上说明这个类是springboot的主配置类，运行这个类的main方法来启用应用。<br>  &nbsp;&nbsp;既然这么重要，那么我们就点进去一探究竟。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@SpringBootConfiguration //springboot的配置类（还记得上一系列的configuration吗?）</span><br><span class="line">@EnableAutoConfiguration //开启自动配置功能</span><br><span class="line">@ComponentScan( //扫描地址（上一系列也有讲到这个，默认是扫描本包+子包）</span><br><span class="line">    excludeFilters = &#123;@Filter(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), @Filter(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;由于本章是快速入门，后面会有专门的章节介绍@SpringBootApplication内部运行的机制。</p>
+<hr>
+<p>&nbsp;&nbsp;至此，第1章的内容已结束了，如有理解不同的地方可在下方留言与我讨论呦~</p>
 
       
     </div>
@@ -640,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-一-：概述"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(一)：概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.1.1.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、学习前需要掌握的知识点"><span class="nav-number">1.2.</span> <span class="nav-text">2、学习前需要掌握的知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、快速入门"><span class="nav-number">1.3.</span> <span class="nav-text">3、快速入门</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-一-：概述"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(一)：概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.1.1.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、学习前需要掌握的知识点"><span class="nav-number">1.2.</span> <span class="nav-text">2、学习前需要掌握的知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、快速入门"><span class="nav-number">1.3.</span> <span class="nav-text">3、快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、项目内部结构探究"><span class="nav-number">1.4.</span> <span class="nav-text">4、项目内部结构探究</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、主程序类"><span class="nav-number">1.5.</span> <span class="nav-text">5、主程序类</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -674,7 +704,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.9k</span>
+    <span title="Site words total count">14k</span>
   
 </div>
 
