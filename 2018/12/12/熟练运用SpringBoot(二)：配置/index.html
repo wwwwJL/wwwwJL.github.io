@@ -86,22 +86,18 @@
 
 
 
-<meta name="description" content="熟练运用spring(一)：概述1、什么是Spring？&amp;nbsp;&amp;nbsp;Spring是一个开源框架，既IOC(DI)和AOP容器框架。它为简化企业级应用开发而生。使用Spring可以使简单的JavaBean实现以前只有EJB才能实现的功能。 2、特点 轻量级：低侵入，代码污染低。     依赖注入：DI、IOC，降低了对象替换的复杂性，提高了组件之间的解耦。   面向切面：AOP，支持允许">
+<meta name="description" content="熟练运用SpringBoot(二)：配置1、配置文件&amp;nbsp;&amp;nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。  xml  123&amp;lt;server&amp;gt;  &amp;lt;port&amp;gt;8080&amp;lt">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用Spring(一)：概述">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/01/熟练运用Spring(一)：概述/index.html">
+<meta property="og:title" content="熟练运用SpringBoot(二)：配置">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/12/熟练运用SpringBoot(二)：配置/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用spring(一)：概述1、什么是Spring？&amp;nbsp;&amp;nbsp;Spring是一个开源框架，既IOC(DI)和AOP容器框架。它为简化企业级应用开发而生。使用Spring可以使简单的JavaBean实现以前只有EJB才能实现的功能。 2、特点 轻量级：低侵入，代码污染低。     依赖注入：DI、IOC，降低了对象替换的复杂性，提高了组件之间的解耦。   面向切面：AOP，支持允许">
+<meta property="og:description" content="熟练运用SpringBoot(二)：配置1、配置文件&amp;nbsp;&amp;nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。  xml  123&amp;lt;server&amp;gt;  &amp;lt;port&amp;gt;8080&amp;lt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wwwwjl.github.io/images/spring1.0.jpg">
-<meta property="og:image" content="http://wwwwjl.github.io/images/spring1.1.jpg">
-<meta property="og:image" content="http://wwwwjl.github.io/images/spring1.2.jpg">
-<meta property="og:updated_time" content="2018-12-13T13:41:06.883Z">
+<meta property="og:updated_time" content="2018-12-14T15:45:58.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用Spring(一)：概述">
-<meta name="twitter:description" content="熟练运用spring(一)：概述1、什么是Spring？&amp;nbsp;&amp;nbsp;Spring是一个开源框架，既IOC(DI)和AOP容器框架。它为简化企业级应用开发而生。使用Spring可以使简单的JavaBean实现以前只有EJB才能实现的功能。 2、特点 轻量级：低侵入，代码污染低。     依赖注入：DI、IOC，降低了对象替换的复杂性，提高了组件之间的解耦。   面向切面：AOP，支持允许">
-<meta name="twitter:image" content="http://wwwwjl.github.io/images/spring1.0.jpg">
+<meta name="twitter:title" content="熟练运用SpringBoot(二)：配置">
+<meta name="twitter:description" content="熟练运用SpringBoot(二)：配置1、配置文件&amp;nbsp;&amp;nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。  xml  123&amp;lt;server&amp;gt;  &amp;lt;port&amp;gt;8080&amp;lt">
 
 
 
@@ -131,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/01/熟练运用Spring(一)：概述/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/12/熟练运用SpringBoot(二)：配置/">
 
 
 
 
 
-  <title>熟练运用Spring(一)：概述 | 突突的技术博客</title>
+  <title>熟练运用SpringBoot(二)：配置 | 突突的技术博客</title>
   
 
 
@@ -255,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/01/熟练运用Spring(一)：概述/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/12/熟练运用SpringBoot(二)：配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -272,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用Spring(一)：概述</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(二)：配置</h1>
         
 
         <div class="post-meta">
@@ -284,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T00:00:00+08:00">
-                2018-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T00:00:00+08:00">
+                2018-12-12
               </time>
             
 
@@ -307,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/熟练运用Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">熟练运用Spring</span>
+                  <a href="/categories/熟练运用SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">熟练运用SpringBoot</span>
                   </a>
                 </span>
 
@@ -325,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/01/熟练运用Spring(一)：概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/熟练运用Spring(一)：概述/" itemprop="commentCount"></span>
+                <a href="/2018/12/12/熟练运用SpringBoot(二)：配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/12/熟练运用SpringBoot(二)：配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -355,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  1.1k字
+                  925字
                 </span>
               
 
@@ -371,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  3分钟
                 </span>
               
             </div>
@@ -392,24 +388,64 @@
       
 
       
-        <h2 id="熟练运用spring-一-：概述"><a href="#熟练运用spring-一-：概述" class="headerlink" title="熟练运用spring(一)：概述"></a>熟练运用spring(一)：概述</h2><h3 id="1、什么是Spring？"><a href="#1、什么是Spring？" class="headerlink" title="1、什么是Spring？"></a>1、什么是Spring？</h3><p>&nbsp;&nbsp;Spring是一个开源框架，既IOC(DI)和AOP容器框架。它为简化企业级应用开发而生。使用Spring可以使简单的JavaBean实现以前只有EJB才能实现的功能。</p>
-<h3 id="2、特点"><a href="#2、特点" class="headerlink" title="2、特点"></a>2、特点</h3><ul>
-<li>轻量级：低侵入，代码污染低。    </li>
-<li>依赖注入：DI、IOC，降低了对象替换的复杂性，提高了组件之间的解耦。  </li>
-<li>面向切面：AOP，支持允许将一些通用任务如安全、事务、日志等进行集中式管理，从而提供了更好的复用。  </li>
-<li>容器：包含并管理应用对象的生命周期。</li>
+        <h2 id="熟练运用SpringBoot-二-：配置"><a href="#熟练运用SpringBoot-二-：配置" class="headerlink" title="熟练运用SpringBoot(二)：配置"></a>熟练运用SpringBoot(二)：配置</h2><h3 id="1、配置文件"><a href="#1、配置文件" class="headerlink" title="1、配置文件"></a>1、配置文件</h3><p>&nbsp;&nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。</p>
+<ul>
+<li>xml</li>
 </ul>
-<h3 id="3、模块"><a href="#3、模块" class="headerlink" title="3、模块"></a>3、模块</h3><p> <img src="\images\spring1.0.jpg" alt="123"></p>
-<h3 id="4、耦合"><a href="#4、耦合" class="headerlink" title="4、耦合"></a>4、耦合</h3><p>&nbsp;&nbsp;上面提到Spring提高了组件之间的解耦,那究竟什么是解耦呢，不解耦会怎么样呢？<br><strong>耦合(Coupling)</strong>，是对模块间关联程度的度量。耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差( 降低耦合性，可以提高其独立性)。软件设计中通常用耦合度和内聚度作为衡量模块独立程度的标准。划分模块的一个准则就是高内聚低耦合。<br>&nbsp;&nbsp;<strong>简而言之，对象之间的耦合度就是对象之间的依赖性。对象之间的耦合越高，维护成本越高，因此对象的设计应使类和构件之间的耦合最小，</strong>这样无论从升级，修改，二次开发来说都是利好的。  </p>
-<p><img src="\images\spring1.1.jpg" alt="123123"></p>
-<p>如上，可以看到，三层代码之间的调用，每层调用之前都要new对象，很麻烦，而且如果对象的地址发生了改变，需要修改多处，这就是高耦合带来的诸多问题之一。</p>
-<h3 id="5、工厂模式解耦-基本版"><a href="#5、工厂模式解耦-基本版" class="headerlink" title="5、工厂模式解耦-基本版"></a>5、工厂模式解耦-基本版</h3><p>&nbsp;&nbsp;接下来我们来运用常用设计模式-<strong>工厂模式</strong>来进行优化。  </p>
-<p>思路：将之前创建对象的工作由一个类负责，把创建这个控制动作反转给这个类，同时创建一个文件，通过k-v的形式预定义好，负责创建对象类通过读取文件，通过传入方法参数，反射创建对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line"></span><br><span class="line">    private static Properties properties;</span><br><span class="line"></span><br><span class="line">    public static void load()&#123;</span><br><span class="line">        properties = new Properties();</span><br><span class="line">        try &#123;</span><br><span class="line">            properties.load(new FileInputStream(&quot;E://blog-spring//src//config.properies&quot;));</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Object getBean(String beanName)&#123;</span><br><span class="line">        if(properties == null)&#123;</span><br><span class="line">            load();</span><br><span class="line">        &#125;</span><br><span class="line">        String beanPath = properties.getProperty(beanName);</span><br><span class="line">        try &#123;</span><br><span class="line">            return Class.forName(beanName).newInstance();//每次都创建对象</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="\images\spring1.2.jpg" alt="123123"></p>
-<h3 id="6、工厂模式解耦-升级版"><a href="#6、工厂模式解耦-升级版" class="headerlink" title="6、工厂模式解耦-升级版"></a>6、工厂模式解耦-升级版</h3><p>&nbsp;&nbsp;在刚才的代码中，client类控制了创建对象这件事，彻底从中解耦了出来，但是每次调用client类创建对象时，都是重新创建对象，若代码量上来，对jvm内存实在是一种挑战，接下来我们采用<strong>单例模式</strong>来进行优化。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line"></span><br><span class="line">    private static Properties properties;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 对象容器</span><br><span class="line">     */</span><br><span class="line">    private static Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        load();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void load()&#123;</span><br><span class="line">        properties = new Properties();</span><br><span class="line">        try &#123;</span><br><span class="line">            properties.load(new FileInputStream(&quot;E://blog-spring//src//config.properies&quot;));</span><br><span class="line">            Enumeration keys = properties.keys();</span><br><span class="line">            while (keys.hasMoreElements())&#123;</span><br><span class="line">                String key = (String) keys.nextElement();</span><br><span class="line">                Object value = Class.forName(properties.getProperty(key));</span><br><span class="line">                map.put(key,value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            System.out.println(&quot;容器初始化失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Object getBean(String beanName)&#123;</span><br><span class="line">        return map.get(beanName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;单例模式虽好，但是会存在线程安全性问题，比如1个对象持有1个变量并加载到容器中，这里若任意线程对其变量进行了修改，如变量没有被volatile修饰，则其他线程则有可能无法感知到该变量已发生变化等等。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;server&gt;</span><br><span class="line">  &lt;port&gt;8080&lt;/port&gt;</span><br><span class="line">&lt;/server&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>properies</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.port=8080</span><br></pre></td></tr></table></figure>
+<ul>
+<li>yml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br></pre></td></tr></table></figure>
+<h4 id="（1）yml语法"><a href="#（1）yml语法" class="headerlink" title="（1）yml语法"></a>（1）yml语法</h4><p>k:(空格)v  表示一对键值对（注意空格必须有），<strong>区分大小写</strong>。<br>以空格的缩进来控制层次关系，左对齐的一列数据表示为一个层级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line">  path: /hello</span><br></pre></td></tr></table></figure></p>
+<h4 id="（2）值写法"><a href="#（2）值写法" class="headerlink" title="（2）值写法"></a>（2）值写法</h4><p>字符串默认不用加双引号，若特殊需求需要值包含””的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: /&quot;8080/&quot;</span><br></pre></td></tr></table></figure></p>
+<p>对象、Map<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">friends:</span><br><span class="line">  name: 李明</span><br><span class="line">  age: 18</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">friends: &#123;name: 黎明,age: 18&#125;</span><br></pre></td></tr></table></figure></p>
+<p>List、Set<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">friengs:</span><br><span class="line">  - 黎明</span><br><span class="line">  - 刘德华</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">friends: [黎明,刘德华]</span><br></pre></td></tr></table></figure></p>
+<h4 id="（3）配置文件注入"><a href="#（3）配置文件注入" class="headerlink" title="（3）配置文件注入"></a>（3）配置文件注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">person:</span><br><span class="line">  name: 测试</span><br><span class="line">  age: 12</span><br><span class="line">  sex: true</span><br><span class="line">  bir: 2018/12/05   //默认/隔开，不然识别错误</span><br><span class="line">  maps: &#123;id: 123,name: 123&#125;</span><br><span class="line">  lists: [123,123,123]</span><br><span class="line">  dog:</span><br><span class="line">    id: 123</span><br><span class="line">    name: 123</span><br><span class="line">    age: 123</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**  </span><br><span class="line">  * 将配置文件中配置的每一个属性的值，映射到这个组件中</span><br><span class="line">  * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定； * prefix = &quot;person&quot;：配置文件中哪个下面的所有属性进行一一映射  </span><br><span class="line">  *  </span><br><span class="line">  * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；  </span><br><span class="line">  *  </span><br><span class="line">  */</span><br><span class="line">@Component</span><br><span class="line">@ConfigurationProperties(prefix = &quot;person&quot;)</span><br><span class="line">public class Person &#123;       </span><br><span class="line">    private String name;     </span><br><span class="line">    private Integer age;     </span><br><span class="line">    private Boolean sex;    </span><br><span class="line">    private Date bir;      </span><br><span class="line">    private Map&lt;String,Object&gt; maps;     </span><br><span class="line">    private List&lt;Object&gt; lists;     </span><br><span class="line">    private Dog dog;</span><br></pre></td></tr></table></figure>
+<p>注意：@Component+@ConfigurationProperties绑定使用才会生效</p>
+<p>也可以选择性的导入依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!‐‐导入配置文件处理器，配置文件进行绑定就会有提示‐‐&gt;</span><br><span class="line">&lt;dependency&gt;         </span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring‐boot‐configuration‐processor&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt;             </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>还可以通过@value来单个映射，具体使用可参考 <a href="https://wwwwjl.github.io/2018/12/03/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8Spring(%E4%B8%89&#41;%EF%BC%9AIOC%E8%BF%9B%E9%98%B6/">熟练运用Spring(三)：IOC/DI进阶</a>。</p>
+<p>个人建议：各别值映射，使用@Value<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;批量值映射，使用@ConﬁgurationProperties</p>
+<p>@ConﬁgurationProperties也可以结合@PropertySource使用。<br>若读取xml的话，可使用@ImportResource。</p>
+<h4 id="（4）随机数"><a href="#（4）随机数" class="headerlink" title="（4）随机数"></a>（4）随机数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;random.value&#125;、$&#123;random.int&#125;、$&#123;random.long&#125;、$&#123;random.int(10)&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="（5）值之间互调"><a href="#（5）值之间互调" class="headerlink" title="（5）值之间互调"></a>（5）值之间互调</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">person:</span><br><span class="line">  name: 黎明</span><br><span class="line">  age: 19</span><br><span class="line"></span><br><span class="line">dog:</span><br><span class="line">  name: $&#123;pserson.name:默认值&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="（6）profile多环境"><a href="#（6）profile多环境" class="headerlink" title="（6）profile多环境"></a>（6）profile多环境</h4><p>&nbsp;&nbsp;在配置文件编写的时候，文件名可以是application-{proﬁle}.properties/yml，项目默认使用application.properties（yml）的配置。</p>
+<p>&nbsp;&nbsp;同时yml支持在同个文件下的多块配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:   </span><br><span class="line">  port: 8081</span><br><span class="line">spring:   </span><br><span class="line">  profiles:</span><br><span class="line">    active: prod  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">server:   </span><br><span class="line">  port: 8081</span><br><span class="line">spring:   </span><br><span class="line">  profiles:</span><br><span class="line">    active: prod  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  profiles: prod //指定使用哪个环境</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、加载顺序"><a href="#2、加载顺序" class="headerlink" title="2、加载顺序"></a>2、加载顺序</h3><ul>
+<li>内部配置加载  <ul>
+<li>ﬁle:./conﬁg/</li>
+<li>ﬁle:./</li>
+<li>classpath:/conﬁg/</li>
+<li>classpath:/  </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>外部配置加载<ul>
+<li>命令行参数 java -jar 项目 –server.port=8087 –server.context-path=/abc</li>
+<li>java:comp/env的JNDI属性</li>
+<li>Java系统属性（System.getProperties()）</li>
+<li>操作系统环境变量</li>
+<li>RandomValuePropertySource配置的random.*属性值  </li>
+<li>jar包外部的application-{proﬁle} (带spring.proﬁle)配置文件</li>
+<li>jar包内部的application-{proﬁle} (带spring.proﬁle)配置文件</li>
+<li>.jar包外部的application (不带spring.proﬁle)配置文件</li>
+<li>.jar包内部的application (不带spring.proﬁle)配置文件</li>
+<li>@Conﬁguration注解类上的@PropertySource</li>
+<li>通过SpringApplication.setDefaultProperties指定的默认属性</li>
+</ul>
+</li>
+</ul>
+<p>优先级由高到底，高优先级的配置会覆盖低优先级的配置。采用互补原则。</p>
 <hr>
-<p>  &nbsp;&nbsp;至此，第1章的内容已结束了，我们也在最后一个demo中看到了spring的影子，给大家留个小问题：<br>  &nbsp;&nbsp;&nbsp;&nbsp;在你日常使用spring中，有没有在对象中定义变量且使用过呢？<br>  &nbsp;&nbsp;&nbsp;&nbsp;请在留言区留言呦~</p>
+<p>&nbsp;&nbsp;至此，springboot的自定义配置已详细讲完，下一章节会详细分析springboot的核心特性-<strong>自动配置</strong>！</p>
 
       
     </div>
@@ -471,14 +507,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/10/熟练运用SpringBoot(一)：快速入门/" rel="next" title="熟练运用SpringBoot(一)：快速入门">
+                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(一)：快速入门
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/01/markdown写作语法/" rel="prev" title="Markdown写作常用语法">
-                Markdown写作常用语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/" rel="prev" title="熟练运用SpringBoot(三)：自动配置的秘密">
+                熟练运用SpringBoot(三)：自动配置的秘密 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用spring-一-：概述"><span class="nav-number">1.</span> <span class="nav-text">熟练运用spring(一)：概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是Spring？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是Spring？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特点"><span class="nav-number">1.2.</span> <span class="nav-text">2、特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、模块"><span class="nav-number">1.3.</span> <span class="nav-text">3、模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、耦合"><span class="nav-number">1.4.</span> <span class="nav-text">4、耦合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、工厂模式解耦-基本版"><span class="nav-number">1.5.</span> <span class="nav-text">5、工厂模式解耦-基本版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、工厂模式解耦-升级版"><span class="nav-number">1.6.</span> <span class="nav-text">6、工厂模式解耦-升级版</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-二-：配置"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(二)：配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">1、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）yml语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">（1）yml语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）值写法"><span class="nav-number">1.1.2.</span> <span class="nav-text">（2）值写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）配置文件注入"><span class="nav-number">1.1.3.</span> <span class="nav-text">（3）配置文件注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（4）随机数"><span class="nav-number">1.1.4.</span> <span class="nav-text">（4）随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（5）值之间互调"><span class="nav-number">1.1.5.</span> <span class="nav-text">（5）值之间互调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（6）profile多环境"><span class="nav-number">1.1.6.</span> <span class="nav-text">（6）profile多环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、加载顺序"><span class="nav-number">1.2.</span> <span class="nav-text">2、加载顺序</span></a></li></ol></li></ol></div>
             
 
           </div>
