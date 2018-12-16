@@ -86,18 +86,21 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用SpringBoot(四)：日志1、概述&amp;nbsp;&amp;nbsp;系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因，或者寻找受到攻击时攻击者留下的痕迹。系统日志包括系统日志、应用程序日志和安全日志。 2、springboot日志关系    springboot选用sl4j和logback作为日志实现方 springboot会将">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用SpringBoot(四)：日志">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/14/熟练运用SpringBoot(四)：日志/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用SpringBoot(四)：日志1、概述&amp;nbsp;&amp;nbsp;系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因，或者寻找受到攻击时攻击者留下的痕迹。系统日志包括系统日志、应用程序日志和安全日志。 2、springboot日志关系    springboot选用sl4j和logback作为日志实现方 springboot会将">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T02:18:59.031Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot4.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot4.1.jpg">
+<meta property="og:updated_time" content="2018-12-16T14:23:51.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(四)：日志">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:description" content="熟练运用SpringBoot(四)：日志1、概述&amp;nbsp;&amp;nbsp;系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因，或者寻找受到攻击时攻击者留下的痕迹。系统日志包括系统日志、应用程序日志和安全日志。 2、springboot日志关系    springboot选用sl4j和logback作为日志实现方 springboot会将">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot4.0.jpg">
 
 
 
@@ -351,7 +354,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  645字
                 </span>
               
 
@@ -367,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,7 +391,27 @@
       
 
       
-        
+        <h2 id="熟练运用SpringBoot-四-：日志"><a href="#熟练运用SpringBoot-四-：日志" class="headerlink" title="熟练运用SpringBoot(四)：日志"></a>熟练运用SpringBoot(四)：日志</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因，或者寻找受到攻击时攻击者留下的痕迹。系统日志包括系统日志、应用程序日志和安全日志。</p>
+<h3 id="2、springboot日志关系"><a href="#2、springboot日志关系" class="headerlink" title="2、springboot日志关系"></a>2、springboot日志关系</h3><p> <img src="\images\springboot4.0.jpg" alt="123"><br> <img src="\images\springboot4.1.jpg" alt="123"></p>
+<ul>
+<li>springboot选用sl4j和logback作为日志实现方</li>
+<li>springboot会将系统中其他日志框架先排除出去</li>
+<li><p>用中间包来替换原有的日志框架</p>
+<p>如果项目中要引入其他框架，一定要把这个框架的默认日志依赖移除掉！<br>例如：<br>spring用的是commons-logging</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;             </span><br><span class="line">    &lt;artifactId&gt;spring‐core&lt;/artifactId&gt;             </span><br><span class="line">      &lt;exclusions&gt;             </span><br><span class="line">        &lt;exclusion&gt;                 </span><br><span class="line">          &lt;groupId&gt;commons‐logging&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;commons‐logging&lt;/artifactId&gt;                     </span><br><span class="line">          &lt;/exclusion&gt;                 </span><br><span class="line">        &lt;/exclusions&gt;             </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>springboot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除掉即可。</strong></p>
+</li>
+</ul>
+<h3 id="3、使用"><a href="#3、使用" class="headerlink" title="3、使用"></a>3、使用</h3><ul>
+<li>代码使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//记录器</span><br><span class="line">Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void contextLoads() &#123;</span><br><span class="line">  //日志的级别</span><br><span class="line">  //由低到高</span><br><span class="line">  //可以调整输出的日志级别</span><br><span class="line">  logger.trace(&quot;这是trace日志...&quot;);</span><br><span class="line">  logger.debug(&quot;这是debug日志...&quot;);</span><br><span class="line">  //SpringBoot默认给我们使用的是info级别的，没有指定级别的就用SpringBoot默认规定的级别；info以下级别不会被打印</span><br><span class="line">  logger.info(&quot;这是info日志...&quot;);</span><br><span class="line">  logger.warn(&quot;这是warn日志...&quot;);</span><br><span class="line">  logger.error(&quot;这是error日志...&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">日志输出格式：</span><br><span class="line">%d表示日期时间</span><br><span class="line">%thread表示线程名</span><br><span class="line">%‐5level：级别从左显示5个字符宽度</span><br><span class="line">%logger&#123;50&#125; 表示logger名字长50个字符，否则按照句点分割</span><br><span class="line">%msg：日志消息</span><br><span class="line">%n是换行符     </span><br><span class="line"></span><br><span class="line">%d&#123;yyyy‐MM‐dd HH:mm:ss.SSS&#125; [%thread] %‐5level %logger&#123;50&#125; ‐ %msg%n</span><br></pre></td></tr></table></figure>
+<p>springboot修改日志的默认配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#logging.path=</span><br><span class="line">#不指定路径在当前项目下生成springboot.log日志</span><br><span class="line"></span><br><span class="line">#可以指定完整的路径</span><br><span class="line">logging.file=G:/springboot.log</span><br><span class="line"></span><br><span class="line">#在当前磁盘的根路径下创建spring文件夹和里面的log文件使用 spring.log 作为默认文件</span><br><span class="line">logging.path=/spring/log</span><br><span class="line"></span><br><span class="line">#在控制台输出的日志的格式</span><br><span class="line">logging.pattern.console=%d&#123;yyyy‐MM‐dd&#125; [%thread] %‐5level %logger&#123;50&#125; ‐ %msg%n</span><br><span class="line"></span><br><span class="line"># 指定文件中日志输出的格式</span><br><span class="line">logging.pattern.file=%d&#123;yyyy‐MM‐dd&#125; === [%thread] === %‐5level === %logger&#123;50&#125; ==== %msg%n</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注解使用</li>
+</ul>
+
       
     </div>
     
@@ -522,8 +545,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -599,6 +631,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-四-：日志"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(四)：日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、springboot日志关系"><span class="nav-number">1.2.</span> <span class="nav-text">2、springboot日志关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用"><span class="nav-number">1.3.</span> <span class="nav-text">3、使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +674,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">17.6k</span>
   
 </div>
 
