@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication12345678910@SpringBootApplication//对于程序这个类是一个主程序类，对于开发者是一个springboot应用public class SpringbootApplication &amp;#123;	public static void main(String[] args) &amp;#1">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用SpringBoot(三)：自动配置的秘密">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/index.html">
+<meta property="og:title" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication12345678910@SpringBootApplication//对于程序这个类是一个主程序类，对于开发者是一个springboot应用public class SpringbootApplication &amp;#123;	public static void main(String[] args) &amp;#1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-14T15:46:37.136Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot3.0.jpg">
+<meta property="og:updated_time" content="2018-12-16T08:41:23.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用SpringBoot(三)：自动配置的秘密">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:title" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication">
+<meta name="twitter:description" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication12345678910@SpringBootApplication//对于程序这个类是一个主程序类，对于开发者是一个springboot应用public class SpringbootApplication &amp;#123;	public static void main(String[] args) &amp;#1">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot3.0.jpg">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/">
 
 
 
 
 
-  <title>熟练运用SpringBoot(三)：自动配置的秘密 | 突突的技术博客</title>
+  <title>熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication | 突突的技术博客</title>
   
 
 
@@ -251,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(三)：自动配置的秘密</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication</h1>
         
 
         <div class="post-meta">
@@ -321,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/" itemprop="commentCount"></span>
+                <a href="/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  542字
                 </span>
               
 
@@ -367,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,7 +390,25 @@
       
 
       
-        
+        <h2 id="熟练运用SpringBoot-三-：探秘核心注解-SpringBootApplication"><a href="#熟练运用SpringBoot-三-：探秘核心注解-SpringBootApplication" class="headerlink" title="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication"></a>熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">//对于程序这个类是一个主程序类，对于开发者是一个springboot应用</span><br><span class="line">public class SpringbootApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">    //主函数调用SpringApplication静态方法run</span><br><span class="line">		SpringApplication.run(SpringbootApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;@SpringBootApplication这个注解可以说是非常重要了，对程序而言，它是主程序类，是带有一系列springboot核心功能的重要注解，对开发者而言，它则直接的提示开发者此项目是springboot项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@SpringBootConfiguration //springboot的配置类（还记得上一系列的configuration吗?）</span><br><span class="line">@EnableAutoConfiguration //开启自动配置功能</span><br><span class="line">@ComponentScan(</span><br><span class="line">    excludeFilters = &#123;@Filter(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), @Filter(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>第一章我们从这个组合注解点进去简单的介绍了下，这一章将带大家对此重点探究！</p>
+<h3 id="1、-SpringBootConfiguration"><a href="#1、-SpringBootConfiguration" class="headerlink" title="1、@SpringBootConfiguration"></a>1、@SpringBootConfiguration</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Configuration</span><br><span class="line">public @interface SpringBootConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Configuration这个注解相信大家一定不会陌生，<strong>熟练运用Spring全系列</strong>都在使用这个注解，有不懂的小伙伴可以先从上个系列看起。<br>这个注解其实和@Configuration没什么区别，唯一的区别就是名称变了而已。</p>
+<h3 id="2、-ComponentScan"><a href="#2、-ComponentScan" class="headerlink" title="2、@ComponentScan"></a>2、@ComponentScan</h3><p>上一系列也有讲到这个，这个就是一个用于扫面的注解，默认是扫描本包+子包，一般建议将它放在项目的根目录下。</p>
+<h3 id="3、-EnableAutoConfiguration"><a href="#3、-EnableAutoConfiguration" class="headerlink" title="3、@EnableAutoConfiguration"></a>3、@EnableAutoConfiguration</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@AutoConfigurationPackage</span><br><span class="line">@Import(&#123;AutoConfigurationImportSelector.class&#125;)</span><br><span class="line">public @interface EnableAutoConfiguration &#123;</span><br><span class="line">    String ENABLED_OVERRIDE_PROPERTY = &quot;spring.boot.enableautoconfiguration&quot;;</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt;[] exclude() default &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    String[] excludeName() default &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开启自动配置功能，以前需要配置的文件，springboot帮我们自动配置。@EnableAutoConﬁguration负责告诉springboot开启自动配置功能，这样自动配置才能生效。</p>
+<ul>
+<li>@AutoConfigurationPackage自动配置包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@Import(&#123;Registrar.class&#125;)</span><br><span class="line">public @interface AutoConfigurationPackage &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）@Import：通过导入的方式实现把实例加入springIOC容器中。  </p>
+<p>用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Circular &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Square &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Import(&#123;Square.class,Circular.class&#125;)//将2个类注入至ioc中</span><br><span class="line">@Configuration</span><br><span class="line">public class Config&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（2）Registrar.class<br> <img src="\images\springboot3.0.jpg" alt="123"></p>
+<ul>
+<li>@Import({AutoConfigurationImportSelector.class})</li>
+</ul>
+
       
     </div>
     
@@ -522,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -599,6 +628,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-三-：探秘核心注解-SpringBootApplication"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-SpringBootConfiguration"><span class="nav-number">1.1.</span> <span class="nav-text">1、@SpringBootConfiguration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-ComponentScan"><span class="nav-number">1.2.</span> <span class="nav-text">2、@ComponentScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-EnableAutoConfiguration"><span class="nav-number">1.3.</span> <span class="nav-text">3、@EnableAutoConfiguration</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +671,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.9k</span>
+    <span title="Site words total count">15.5k</span>
   
 </div>
 

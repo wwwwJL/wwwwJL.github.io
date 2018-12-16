@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用SpringBoot(二)：配置1、配置文件&amp;nbsp;&amp;nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。  xml  123&amp;lt;server&amp;gt;  &amp;lt;port&amp;gt;8080&amp;lt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-14T15:45:58.116Z">
+<meta property="og:updated_time" content="2018-12-16T08:06:51.668Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(二)：配置">
 <meta name="twitter:description" content="熟练运用SpringBoot(二)：配置1、配置文件&amp;nbsp;&amp;nbsp;springboot使用一个全局的配置文件，文件后缀名固定2中，properies和yml。上一章已经提到，springboot采用了约定大于配置的原理，根据导入的依赖包，自动进行配置，若根据业务需要调整，可在配置文件中进行逐个修改。  xml  123&amp;lt;server&amp;gt;  &amp;lt;port&amp;gt;8080&amp;lt">
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  925字
+                  983字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  4分钟
                 </span>
               
             </div>
@@ -418,6 +418,7 @@
 <h4 id="（5）值之间互调"><a href="#（5）值之间互调" class="headerlink" title="（5）值之间互调"></a>（5）值之间互调</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">person:</span><br><span class="line">  name: 黎明</span><br><span class="line">  age: 19</span><br><span class="line"></span><br><span class="line">dog:</span><br><span class="line">  name: $&#123;pserson.name:默认值&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="（6）profile多环境"><a href="#（6）profile多环境" class="headerlink" title="（6）profile多环境"></a>（6）profile多环境</h4><p>&nbsp;&nbsp;在配置文件编写的时候，文件名可以是application-{proﬁle}.properties/yml，项目默认使用application.properties（yml）的配置。</p>
 <p>&nbsp;&nbsp;同时yml支持在同个文件下的多块配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:   </span><br><span class="line">  port: 8081</span><br><span class="line">spring:   </span><br><span class="line">  profiles:</span><br><span class="line">    active: prod  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">server:   </span><br><span class="line">  port: 8081</span><br><span class="line">spring:   </span><br><span class="line">  profiles:</span><br><span class="line">    active: prod  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  profiles: prod //指定使用哪个环境</span><br></pre></td></tr></table></figure></p>
+<h4 id="（7）命令行参数"><a href="#（7）命令行参数" class="headerlink" title="（7）命令行参数"></a>（7）命令行参数</h4><p>&nbsp;&nbsp;通过java -jar app.jar –name=”Spring” –server.port=9090方式来传递参数。<br>参数用–xxx=xxx的形式传递。使用的参数可以是自定义，也可以是springboot中默认的参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar 项目 --server.port=8087 --server.context-path=/abc</span><br></pre></td></tr></table></figure></p>
 <h3 id="2、加载顺序"><a href="#2、加载顺序" class="headerlink" title="2、加载顺序"></a>2、加载顺序</h3><ul>
 <li>内部配置加载  <ul>
 <li>ﬁle:./conﬁg/</li>
@@ -429,7 +430,7 @@
 </ul>
 <ul>
 <li>外部配置加载<ul>
-<li>命令行参数 java -jar 项目 –server.port=8087 –server.context-path=/abc</li>
+<li>命令行参数</li>
 <li>java:comp/env的JNDI属性</li>
 <li>Java系统属性（System.getProperties()）</li>
 <li>操作系统环境变量</li>
@@ -517,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/13/熟练运用SpringBoot(三)：自动配置的秘密/" rel="prev" title="熟练运用SpringBoot(三)：自动配置的秘密">
-                熟练运用SpringBoot(三)：自动配置的秘密 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/13/熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication/" rel="prev" title="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication">
+                熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -675,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-二-：配置"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(二)：配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">1、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）yml语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">（1）yml语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）值写法"><span class="nav-number">1.1.2.</span> <span class="nav-text">（2）值写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）配置文件注入"><span class="nav-number">1.1.3.</span> <span class="nav-text">（3）配置文件注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（4）随机数"><span class="nav-number">1.1.4.</span> <span class="nav-text">（4）随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（5）值之间互调"><span class="nav-number">1.1.5.</span> <span class="nav-text">（5）值之间互调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（6）profile多环境"><span class="nav-number">1.1.6.</span> <span class="nav-text">（6）profile多环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、加载顺序"><span class="nav-number">1.2.</span> <span class="nav-text">2、加载顺序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-二-：配置"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(二)：配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">1、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）yml语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">（1）yml语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）值写法"><span class="nav-number">1.1.2.</span> <span class="nav-text">（2）值写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）配置文件注入"><span class="nav-number">1.1.3.</span> <span class="nav-text">（3）配置文件注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（4）随机数"><span class="nav-number">1.1.4.</span> <span class="nav-text">（4）随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（5）值之间互调"><span class="nav-number">1.1.5.</span> <span class="nav-text">（5）值之间互调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（6）profile多环境"><span class="nav-number">1.1.6.</span> <span class="nav-text">（6）profile多环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（7）命令行参数"><span class="nav-number">1.1.7.</span> <span class="nav-text">（7）命令行参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、加载顺序"><span class="nav-number">1.2.</span> <span class="nav-text">2、加载顺序</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -709,7 +710,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.9k</span>
+    <span title="Site words total count">15.5k</span>
   
 </div>
 
