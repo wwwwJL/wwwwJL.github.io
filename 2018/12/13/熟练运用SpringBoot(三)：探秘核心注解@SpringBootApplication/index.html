@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot3.9.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot3.0.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot3.1.jpg">
-<meta property="og:updated_time" content="2018-12-16T12:35:32.333Z">
+<meta property="og:updated_time" content="2018-12-16T13:01:06.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(三)：探秘核心注解@SpringBootApplication">
 <meta name="twitter:description" content="熟练运用SpringBoot(三)： 探秘核心注解12345678910@SpringBootApplication//对于程序这个类是一个主程序类，对于开发者是一个springboot应用public class SpringbootApplication &amp;#123;	public static void main(String[] args) &amp;#123;                //">
@@ -361,7 +361,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  1.7k字
+                  2k字
                 </span>
               
 
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6分钟
+                  7分钟
                 </span>
               
             </div>
@@ -406,7 +406,9 @@
 <h3 id="2、-ComponentScan"><a href="#2、-ComponentScan" class="headerlink" title="2、@ComponentScan"></a>2、@ComponentScan</h3><p>上一系列也有讲到这个，这个就是一个用于扫面的注解，默认是扫描本包+子包，一般建议将它放在项目的根目录下。</p>
 <h3 id="3、-EnableAutoConfiguration"><a href="#3、-EnableAutoConfiguration" class="headerlink" title="3、@EnableAutoConfiguration"></a>3、@EnableAutoConfiguration</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@AutoConfigurationPackage</span><br><span class="line">@Import(&#123;AutoConfigurationImportSelector.class&#125;)</span><br><span class="line">public @interface EnableAutoConfiguration &#123;</span><br><span class="line">    String ENABLED_OVERRIDE_PROPERTY = &quot;spring.boot.enableautoconfiguration&quot;;</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt;[] exclude() default &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    String[] excludeName() default &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>作用为开启自动配置功能。以前需要配置的文件，springboot帮我们自动配置。@EnableAutoConﬁguration负责告诉springboot开启自动配置功能，这样自动配置才能生效。</p>
-<h4 id="（1）-Import-AutoConfigurationImportSelector-class"><a href="#（1）-Import-AutoConfigurationImportSelector-class" class="headerlink" title="（1）@Import({AutoConfigurationImportSelector.class})"></a>（1）@Import({AutoConfigurationImportSelector.class})</h4><p>AutoConfigurationImportSelector：自动配置导入选择器  </p>
+<h4 id="（1）-Import-AutoConfigurationImportSelector-class"><a href="#（1）-Import-AutoConfigurationImportSelector-class" class="headerlink" title="（1）@Import({AutoConfigurationImportSelector.class})"></a>（1）@Import({AutoConfigurationImportSelector.class})</h4><p>@Import：通过导入的方式实现把实例加入springIOC容器中。  </p>
+<p>用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Circular &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Square &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Import(&#123;Square.class,Circular.class&#125;)//将2个类注入至ioc中</span><br><span class="line">@Configuration</span><br><span class="line">public class Config&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>AutoConfigurationImportSelector：自动配置导入选择器  </p>
 <p> <img src="\images\springboot3.2.jpg" alt="123"></p>
 <p>SpringBootApplication静态run方法最终会调用selectImports方法，该方法作用为将所有需要导入的组件以全类名的方式返回，最终这些组件就会被注入到容器中。此方法是通过调用本类中的getAutoConfigurationEntry来获取自动配置类的全类名的。</p>
 <hr>
@@ -425,11 +427,82 @@
 <p>所有在配置文件中能配置的属性都是在xxxxProperties类中封装着；配置文件能配置什么就可以参照某个功能对应的这个属性类。</p>
 <hr>
 <h4 id="（2）-AutoConfigurationPackage自动配置包"><a href="#（2）-AutoConfigurationPackage自动配置包" class="headerlink" title="（2）@AutoConfigurationPackage自动配置包"></a>（2）@AutoConfigurationPackage自动配置包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@Import(&#123;Registrar.class&#125;)</span><br><span class="line">public @interface AutoConfigurationPackage &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）@Import：通过导入的方式实现把实例加入springIOC容器中。  </p>
-<p>用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Circular &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Square &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Import(&#123;Square.class,Circular.class&#125;)//将2个类注入至ioc中</span><br><span class="line">@Configuration</span><br><span class="line">public class Config&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）Registrar.class：注册员<br> <img src="\images\springboot3.0.jpg" alt="123"><br>AnnotationMetadata metadata，该类为@SpringBootApplication这个注解上的相关元信息。<br>BeanDefinitionRegistry registry，该类可以理解为是一个最终的注册表。</p>
+<p>&nbsp;&nbsp;&nbsp;Registrar.class：注册员<br> <img src="\images\springboot3.0.jpg" alt="123"><br>AnnotationMetadata metadata，该类为@SpringBootApplication这个注解上的相关元信息。<br>BeanDefinitionRegistry registry，该类可以理解为是一个最终的注册表。</p>
 <p> <img src="\images\springboot3.1.jpg" alt="123"><br>通过@SpringBootApplication注解元信息，得到整个springboot的作用域。<strong>也就是说配套之前@ComponentScan扫描的位置，以及通过AutoConfigurationImportSelector得到并过滤出最终的注入名单，最后调用register方法向容器中注入。</strong></p>
+<h4 id="番外：-Conditional派生注解"><a href="#番外：-Conditional派生注解" class="headerlink" title="番外：@Conditional派生注解"></a>番外：@Conditional派生注解</h4><p>作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">@Conditional扩展注解</th>
+<th style="text-align:left">作用（判断是否满足当前指定条件）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">@Conditional扩展注解</td>
+<td style="text-align:left">作用（判断是否满足当前指定条件）</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnJava</td>
+<td style="text-align:left">系统的java版本是否符合要求</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnBean</td>
+<td style="text-align:left">容器中存在指定Bean；</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnMissingBean</td>
+<td style="text-align:left">容器中不存在指定Bean；</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnExpression</td>
+<td style="text-align:left">满足SpEL表达式指定</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnClass</td>
+<td style="text-align:left">系统中有指定的类</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnMissingClass</td>
+<td style="text-align:left">系统中没有指定的类</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnSingleCandidate</td>
+<td style="text-align:left">容器中只有一个指定的Bean，或者这个Bean是首选Bean</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnProperty</td>
+<td style="text-align:left">系统中指定的属性是否有指定的值</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnResource</td>
+<td style="text-align:left">类路径下是否存在指定资源文件</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnWebApplication</td>
+<td style="text-align:left">当前是web环境</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnNotWebApplication</td>
+<td style="text-align:left">当前不是web环境</td>
+</tr>
+<tr>
+<td style="text-align:left">@ConditionalOnJndi</td>
+<td style="text-align:left">JNDI存在指定项</td>
+</tr>
+</tbody>
+</table>
 <hr>
+<ul>
+<li>总结：<ul>
+<li>主函数main中调用SpringBootApplication的静态run方法来启用springboot项目。</li>
+<li>run方法会通过断言检查项目中有没有@SpringBootApplication，没有报错</li>
+<li>run通过调用selectImports方法得到最终要注入容器中的xxxxAtuoConfiguration全类名清单</li>
+<li>Registrar中的registerBeanDefinitions方法会将清单里的自动配置类注入到容器中</li>
+<li>程序运行时，会用到@ComponentScan在配置好的路径下，进行扫描执行。</li>
+</ul>
+</li>
+</ul>
 <p>&nbsp;&nbsp;至此，本章内容已分析完毕，当中滤过了很多细节，但好在重要的部分都有，也相信大家都能够收获满满。综合来看，springboot其实就是spring的升级版，在某些方面进一步升华，为广大开发者提供了便捷，但是其背后的思想，也是我们不可忽视的部分！</p>
 
       
@@ -660,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-三-：-探秘核心注解"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(三)： 探秘核心注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-SpringBootConfiguration"><span class="nav-number">1.1.</span> <span class="nav-text">1、@SpringBootConfiguration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-ComponentScan"><span class="nav-number">1.2.</span> <span class="nav-text">2、@ComponentScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-EnableAutoConfiguration"><span class="nav-number">1.3.</span> <span class="nav-text">3、@EnableAutoConfiguration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）-Import-AutoConfigurationImportSelector-class"><span class="nav-number">1.3.1.</span> <span class="nav-text">（1）@Import({AutoConfigurationImportSelector.class})</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）-AutoConfigurationPackage自动配置包"><span class="nav-number">1.3.2.</span> <span class="nav-text">（2）@AutoConfigurationPackage自动配置包</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-三-：-探秘核心注解"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(三)： 探秘核心注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-SpringBootConfiguration"><span class="nav-number">1.1.</span> <span class="nav-text">1、@SpringBootConfiguration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-ComponentScan"><span class="nav-number">1.2.</span> <span class="nav-text">2、@ComponentScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-EnableAutoConfiguration"><span class="nav-number">1.3.</span> <span class="nav-text">3、@EnableAutoConfiguration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）-Import-AutoConfigurationImportSelector-class"><span class="nav-number">1.3.1.</span> <span class="nav-text">（1）@Import({AutoConfigurationImportSelector.class})</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）-AutoConfigurationPackage自动配置包"><span class="nav-number">1.3.2.</span> <span class="nav-text">（2）@AutoConfigurationPackage自动配置包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#番外：-Conditional派生注解"><span class="nav-number">1.3.3.</span> <span class="nav-text">番外：@Conditional派生注解</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -694,7 +767,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.6k</span>
+    <span title="Site words total count">16.9k</span>
   
 </div>
 
