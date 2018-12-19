@@ -86,18 +86,21 @@
 
 
 
-<meta name="description" content="test">
+<meta name="description" content="熟练运用SpringBoot(八)：Druid配置1、介绍&amp;nbsp;&amp;nbsp;Druid是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了日志监控，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池(据说是目前最好的连接池,不知道速度有没有BoneCP快)。 2、配置参数&amp;nbsp;&amp;nbsp;和其它连接池一">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="J.U.C常用工具类CountDownLatch">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/01/J.U.C常用工具类CountDownLatch/index.html">
+<meta property="og:title" content="熟练运用SpringBoot(八)：Druid配置">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/17/熟练运用SpringBoot(八)：Druid配置/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="test">
+<meta property="og:description" content="熟练运用SpringBoot(八)：Druid配置1、介绍&amp;nbsp;&amp;nbsp;Druid是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了日志监控，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池(据说是目前最好的连接池,不知道速度有没有BoneCP快)。 2、配置参数&amp;nbsp;&amp;nbsp;和其它连接池一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-04T02:06:10.476Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot8.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot8.1.jpg">
+<meta property="og:updated_time" content="2018-12-19T15:08:29.940Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="J.U.C常用工具类CountDownLatch">
-<meta name="twitter:description" content="test">
+<meta name="twitter:title" content="熟练运用SpringBoot(八)：Druid配置">
+<meta name="twitter:description" content="熟练运用SpringBoot(八)：Druid配置1、介绍&amp;nbsp;&amp;nbsp;Druid是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了日志监控，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池(据说是目前最好的连接池,不知道速度有没有BoneCP快)。 2、配置参数&amp;nbsp;&amp;nbsp;和其它连接池一">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot8.0.jpg">
 
 
 
@@ -127,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/01/J.U.C常用工具类CountDownLatch/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/17/熟练运用SpringBoot(八)：Druid配置/">
 
 
 
 
 
-  <title>J.U.C常用工具类CountDownLatch | 突突的技术博客</title>
+  <title>熟练运用SpringBoot(八)：Druid配置 | 突突的技术博客</title>
   
 
 
@@ -251,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/01/J.U.C常用工具类CountDownLatch/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/17/熟练运用SpringBoot(八)：Druid配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">J.U.C常用工具类CountDownLatch</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(八)：Druid配置</h1>
         
 
         <div class="post-meta">
@@ -280,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T23:12:00+08:00">
-                2018-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T00:00:00+08:00">
+                2018-12-17
               </time>
             
 
@@ -303,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程</span>
+                  <a href="/categories/熟练运用SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">熟练运用SpringBoot</span>
                   </a>
                 </span>
 
@@ -321,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/01/J.U.C常用工具类CountDownLatch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/J.U.C常用工具类CountDownLatch/" itemprop="commentCount"></span>
+                <a href="/2018/12/17/熟练运用SpringBoot(八)：Druid配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/17/熟练运用SpringBoot(八)：Druid配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +354,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  1字
+                  1k字
                 </span>
               
 
@@ -367,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  4分钟
                 </span>
               
             </div>
@@ -388,7 +391,133 @@
       
 
       
-        <h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2>
+        <h2 id="熟练运用SpringBoot-八-：Druid配置"><a href="#熟练运用SpringBoot-八-：Druid配置" class="headerlink" title="熟练运用SpringBoot(八)：Druid配置"></a>熟练运用SpringBoot(八)：Druid配置</h2><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>&nbsp;&nbsp;Druid是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了日志监控，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池(据说是目前最好的连接池,不知道速度有没有BoneCP快)。</p>
+<h3 id="2、配置参数"><a href="#2、配置参数" class="headerlink" title="2、配置参数"></a>2、配置参数</h3><p>&nbsp;&nbsp;和其它连接池一样Druid的DataSource类为：com.alibaba.druid.pool.DruidDataSource，基本配置参数如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">配置</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">name</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">配置这个属性的意义在于，如果存在多个数据源，监控的时候可以通过名字来区分开来。如果没有配置，将会生成一个名字，格式是：”DataSource-“ + System.identityHashCode(this)当前对象的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">jdbcUrl</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">连接数据库的url，不同数据库不一样。例如：jdbc:mysql://localhost:3306/druid1  jdbc:mysql://localhost:3306/druid1</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">数据库连接用户名</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">数据库连接密码</td>
+</tr>
+<tr>
+<td style="text-align:left">driverClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">低版本connector：com.mysql.jdbc.Driver  高版本connector：com.mysql.cj.jdbc.Driver</td>
+</tr>
+<tr>
+<td style="text-align:left">initialSize</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时</td>
+</tr>
+<tr>
+<td style="text-align:left">maxActive</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">最大连接池数量</td>
+</tr>
+<tr>
+<td style="text-align:left">minIdle</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">最小连接池数量</td>
+</tr>
+<tr>
+<td style="text-align:left">maxWait</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。</td>
+</tr>
+<tr>
+<td style="text-align:left">validationQuery</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnBorrow</td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnReturn</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能</td>
+</tr>
+<tr>
+<td style="text-align:left">testWhileIdle</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。</td>
+</tr>
+<tr>
+<td style="text-align:left">timeBetweenEvictionRunsMillis</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">有两个含义：（1）Destroy线程会检测连接的间隔时间。  （2testWhileIdle的判断依据，详细看testWhileIdle属性的说明</td>
+</tr>
+<tr>
+<td style="text-align:left">numTestsPerEvictionRun</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">不再使用，一个DruidDataSource只支持一个EvictionRun</td>
+</tr>
+<tr>
+<td style="text-align:left">minEvictableIdleTimeMillis</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">connectionInitSqls</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">物理连接初始化的时候执行的sql</td>
+</tr>
+<tr>
+<td style="text-align:left">exceptionSorter</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">当数据库抛出一些不可恢复的异常时，抛弃连接</td>
+</tr>
+<tr>
+<td style="text-align:left">filters</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：监控统计用的filter:stat日志用的filter:log4j防御sql注入的filter:wall</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3、使用"><a href="#3、使用" class="headerlink" title="3、使用"></a>3、使用</h3><ul>
+<li><p>maven</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">		&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">	    &lt;version&gt;1.1.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<ul>
+<li>数据源</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     *  配置druid数据源</span><br><span class="line">     */</span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource() throws SQLException &#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE&amp;zeroDateTimeBehavior=convertToNull&amp;readFromMasterWhenNoSlaves=true&amp;allowMasterDownConnections=true&amp;allowSlavesDownConnections=true&amp;roundRobinLoadBalance=true&amp;useSSL=false&amp;serverTimezone=UTC&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>监控</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//web监控filter</span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean webStatFilter()&#123;</span><br><span class="line">        FilterRegistrationBean bean = new FilterRegistrationBean();</span><br><span class="line">        bean.setFilter(new WebStatFilter());</span><br><span class="line">        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();</span><br><span class="line">        //拦截请求排除.js,.css,/druid/*相关</span><br><span class="line">        initParams.put(&quot;exclusions&quot;,&quot;*.js,*.css,/druid/*&quot;);</span><br><span class="line">        bean.setInitParameters(initParams);</span><br><span class="line">        //项目url的所有请求都拦截</span><br><span class="line">        bean.setUrlPatterns(Arrays.asList(&quot;/*&quot;));</span><br><span class="line">        return  bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//监控后台servlet</span><br><span class="line">    @Bean</span><br><span class="line">    public ServletRegistrationBean statViewServlet()&#123;</span><br><span class="line">        //后台访问的url是/druid/*</span><br><span class="line">        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);</span><br><span class="line">        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();</span><br><span class="line">        //后台账号密码</span><br><span class="line">        initParams.put(&quot;loginUsername&quot;,&quot;admin&quot;);</span><br><span class="line">        initParams.put(&quot;loginPassword&quot;,&quot;123456&quot;);</span><br><span class="line">        //白名单</span><br><span class="line">        initParams.put(&quot;allow&quot;,&quot;&quot;);//默认就是允许所有访问</span><br><span class="line">        //黑名单</span><br><span class="line">        initParams.put(&quot;deny&quot;,&quot;&quot;);</span><br><span class="line">        bean.setInitParameters(initParams);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果<br><img src="\images\springboot8.0.jpg" alt="123"><br><img src="\images\springboot8.1.jpg" alt="123"></li>
+</ul>
+
       
     </div>
     
@@ -449,8 +578,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/01/熟练运用Spring(一)：概述/" rel="next" title="熟练运用Spring(一)：概述">
-                <i class="fa fa-chevron-left"></i> 熟练运用Spring(一)：概述
+              <a href="/2018/12/17/熟练运用SpringBoot(七)：异步任务/" rel="next" title="熟练运用SpringBoot(七)：异步任务">
+                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(七)：异步任务
               </a>
             
           </div>
@@ -459,8 +588,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/02/熟练运用Spring(二)：IOC入门/" rel="prev" title="熟练运用Spring(二)：IOC/DI入门">
-                熟练运用Spring(二)：IOC/DI入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/熟练运用SpringBoot(九)：jpa的使用/" rel="prev" title="熟练运用SpringBoot(九)：jpa的使用">
+                熟练运用SpringBoot(九)：jpa的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#test"><span class="nav-number">1.</span> <span class="nav-text">test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-八-：Druid配置"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(八)：Druid配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置参数"><span class="nav-number">1.2.</span> <span class="nav-text">2、配置参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用"><span class="nav-number">1.3.</span> <span class="nav-text">3、使用</span></a></li></ol></li></ol></div>
             
 
           </div>

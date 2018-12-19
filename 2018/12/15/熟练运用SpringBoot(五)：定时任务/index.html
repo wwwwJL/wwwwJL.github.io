@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用SpringBoot(五)：定时任务1、场景&amp;nbsp;&amp;nbsp;项目开发过程中，业务上经常需要定时任务，springboot默认已经帮我们实现了，只需要添加相关注解，就可以轻松实现。 2、使用 mvn  123456789&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;	&amp;lt;arti">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用SpringBoot(五)：定时任务">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/15/熟练运用SpringBoot(五)：定时任务/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用SpringBoot(五)：定时任务1、场景&amp;nbsp;&amp;nbsp;项目开发过程中，业务上经常需要定时任务，springboot默认已经帮我们实现了，只需要添加相关注解，就可以轻松实现。 2、使用 mvn  123456789&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;	&amp;lt;arti">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T02:19:07.121Z">
+<meta property="og:updated_time" content="2018-12-19T15:09:35.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(五)：定时任务">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:description" content="熟练运用SpringBoot(五)：定时任务1、场景&amp;nbsp;&amp;nbsp;项目开发过程中，业务上经常需要定时任务，springboot默认已经帮我们实现了，只需要添加相关注解，就可以轻松实现。 2、使用 mvn  123456789&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;	&amp;lt;arti">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  309字
                 </span>
               
 
@@ -388,7 +388,23 @@
       
 
       
-        
+        <h2 id="熟练运用SpringBoot-五-：定时任务"><a href="#熟练运用SpringBoot-五-：定时任务" class="headerlink" title="熟练运用SpringBoot(五)：定时任务"></a>熟练运用SpringBoot(五)：定时任务</h2><h3 id="1、场景"><a href="#1、场景" class="headerlink" title="1、场景"></a>1、场景</h3><p>&nbsp;&nbsp;项目开发过程中，业务上经常需要定时任务，springboot默认已经帮我们实现了，只需要添加相关注解，就可以轻松实现。</p>
+<h3 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h3><ul>
+<li>mvn</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">	&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>config</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableScheduling//项目开启定时任务功能</span><br><span class="line">public class SpringbootApplication &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(SpringbootApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>test</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private int count = 0;</span><br><span class="line">private static final SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;HH:mm:ss&quot;);</span><br><span class="line"></span><br><span class="line">@Scheduled(cron = &quot;*/6 * * * * ?&quot;)//没过6s执行1次</span><br><span class="line">private void add()&#123;</span><br><span class="line">    System.out.println(dateFormat.format(new Date()) + &quot; &quot; + ++count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>cron对应的参数，是spring自带的spel表达式，有兴趣的同学可以自行去学习。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Scheduled(fixedDelay = 6000)</span><br><span class="line">  private void add1()&#123;</span><br><span class="line">    System.out.println(dateFormat.format(new Date()) + &quot; &quot; + ++count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Scheduled(fixedDelay=6000)：上一次执行完毕时间点之后6秒再执行<br>@Scheduled(fixedRate = 6000)：上一次开始执行时间点之后6秒再执行<br>@Scheduled(initialDelay=1000, fixedRate=6000)：第一次延迟1秒后执行，之后按fixedRate的规则每6秒执行一次</p>
+
       
     </div>
     
@@ -459,8 +475,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/16/熟练运用SpringBoot(六)：邮件服务/" rel="prev" title="熟练运用SpringBoot(六)：邮件服务">
-                熟练运用SpringBoot(六)：邮件服务 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/16/熟练运用SpringBoot(六)：邮件任务/" rel="prev" title="熟练运用SpringBoot(六)：邮件任务">
+                熟练运用SpringBoot(六)：邮件任务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -540,7 +565,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -599,6 +624,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-五-：定时任务"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(五)：定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、场景"><span class="nav-number">1.1.</span> <span class="nav-text">1、场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、使用"><span class="nav-number">1.2.</span> <span class="nav-text">2、使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +667,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18k</span>
+    <span title="Site words total count">20.2k</span>
   
 </div>
 
