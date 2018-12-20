@@ -94,10 +94,12 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用SpringBoot(七)：异步任务1、什么是异步任务？&amp;nbsp;&amp;nbsp;异步对应的是同步，同步指程序按照定义顺序依次执行，每一行程序都必须等待上一行程序执行完成之后才能执行。异步指程序在顺序执行时，不等待异步的语句返回结果就执行后面的程序。 2、同步异步区别及实现 同步  12345678910111213141516171819202122@Componentpublic cla">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-19T15:44:48.479Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot8.2.jpg">
+<meta property="og:updated_time" content="2018-12-20T14:14:02.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(七)：异步任务">
 <meta name="twitter:description" content="熟练运用SpringBoot(七)：异步任务1、什么是异步任务？&amp;nbsp;&amp;nbsp;异步对应的是同步，同步指程序按照定义顺序依次执行，每一行程序都必须等待上一行程序执行完成之后才能执行。异步指程序在顺序执行时，不等待异步的语句返回结果就执行后面的程序。 2、同步异步区别及实现 同步  12345678910111213141516171819202122@Componentpublic cla">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot8.2.jpg">
 
 
 
@@ -351,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  400字
+                  661字
                 </span>
               
 
@@ -367,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -401,6 +403,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableAsync//项目开启异步任务</span><br><span class="line">public class SpringbootApplication &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(SpringbootApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class Task &#123;</span><br><span class="line"></span><br><span class="line">    @Async//也可以在类上</span><br><span class="line">    public void doOne()&#123;</span><br><span class="line">        System.out.println(&quot;任务1开始&quot;);</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(3000);</span><br><span class="line">            System.out.println(&quot;任务1完成，耗时：&quot; +(System.currentTimeMillis()-startTime));</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Async</span><br><span class="line">    public void doTwo()&#123;</span><br><span class="line">        同上...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Async</span><br><span class="line">    public void doThree()&#123;</span><br><span class="line">        同上...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br><span class="line">总任务结束，耗时：11</span><br><span class="line">任务1开始</span><br><span class="line">任务2开始</span><br><span class="line">任务3开始</span><br></pre></td></tr></table></figure>
+<h3 id="自定义线程池"><a href="#自定义线程池" class="headerlink" title="自定义线程池"></a>自定义线程池</h3><ul>
+<li>配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class TaskPoolConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Executor taskExecutor() &#123;</span><br><span class="line">        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();</span><br><span class="line"></span><br><span class="line">        //核心池大小：线程池创建时候初始化的线程数</span><br><span class="line">        executor.setCorePoolSize(1);</span><br><span class="line"></span><br><span class="line">        //最大池大小：线程池最大的线程数，只有在缓冲队列满了之后才会申请超过核心线程数的线程</span><br><span class="line">        executor.setMaxPoolSize(1);</span><br><span class="line"></span><br><span class="line">        //等待队列容量：用来缓冲执行任务的队列</span><br><span class="line">        executor.setQueueCapacity(200);</span><br><span class="line"></span><br><span class="line">        //空闲时间60秒：当超过了核心线程出之外的线程在空闲时间到达之后会被销毁</span><br><span class="line">        executor.setKeepAliveSeconds(60);</span><br><span class="line"></span><br><span class="line">        //线程池名的前缀：设置好了之后可以方便我们定位处理任务所在的线程池</span><br><span class="line">        executor.setThreadNamePrefix(&quot;taskExecutor-&quot;);</span><br><span class="line"></span><br><span class="line">        //线程池对拒绝任务的处理策略：</span><br><span class="line">        //这里采用了CallerRunsPolicy策略，当线程池没有处理能力的时候，该策略会直接在 execute 方法的调用线程中运行被拒绝的任务；</span><br><span class="line">        //如果执行程序已关闭，则会丢弃该任务</span><br><span class="line">        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line"></span><br><span class="line">        return executor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="\images\springboot8.2.jpg" alt="123"></p>
 
       
     </div>
@@ -462,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/16/熟练运用SpringBoot(六)：邮件任务/" rel="next" title="熟练运用SpringBoot(六)：邮件任务">
-                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(六)：邮件任务
+              <a href="/2018/12/17/熟练运用SpringBoot(八)：Druid配置/" rel="next" title="熟练运用SpringBoot(八)：Druid配置">
+                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(八)：Druid配置
               </a>
             
           </div>
@@ -472,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/17/熟练运用SpringBoot(八)：Druid配置/" rel="prev" title="熟练运用SpringBoot(八)：Druid配置">
-                熟练运用SpringBoot(八)：Druid配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/熟练运用SpringBoot(九)：jpa的使用/" rel="prev" title="熟练运用SpringBoot(九)：整合jpa的使用">
+                熟练运用SpringBoot(九)：整合jpa的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -630,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-七-：异步任务"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(七)：异步任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是异步任务？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是异步任务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、同步异步区别及实现"><span class="nav-number">1.2.</span> <span class="nav-text">2、同步异步区别及实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-七-：异步任务"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(七)：异步任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是异步任务？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是异步任务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、同步异步区别及实现"><span class="nav-number">1.2.</span> <span class="nav-text">2、同步异步区别及实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义线程池"><span class="nav-number">1.3.</span> <span class="nav-text">自定义线程池</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -664,7 +671,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.2k</span>
+    <span title="Site words total count">20.8k</span>
   
 </div>
 
