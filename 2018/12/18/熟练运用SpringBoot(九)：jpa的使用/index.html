@@ -95,7 +95,7 @@
 <meta property="og:description" content="熟练运用SpringBoot(九)：jpa的使用1、简单介绍什么是JPA?&amp;nbsp;&amp;nbsp;JPA(Java Persistence API)是Sun官方提出的Java持久化规范。它为Java开发人员提供了一种对象/关联映射工具来管理Java应用中的关系数据。他的出现主要是为了简化现有的持久化开发工作和整合ORM技术，结束现在Hibernate，TopLink，JDO等ORM框架各自为营的局">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot9.0.jpg">
-<meta property="og:updated_time" content="2018-12-23T02:37:30.934Z">
+<meta property="og:updated_time" content="2018-12-23T07:00:58.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(九)：整合jpa的使用">
 <meta name="twitter:description" content="熟练运用SpringBoot(九)：jpa的使用1、简单介绍什么是JPA?&amp;nbsp;&amp;nbsp;JPA(Java Persistence API)是Sun官方提出的Java持久化规范。它为Java开发人员提供了一种对象/关联映射工具来管理Java应用中的关系数据。他的出现主要是为了简化现有的持久化开发工作和整合ORM技术，结束现在Hibernate，TopLink，JDO等ORM框架各自为营的局">
@@ -353,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  339字
+                  1.5k字
                 </span>
               
 
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  6分钟
                 </span>
               
             </div>
@@ -404,6 +404,199 @@
 <li><p>JpaRepository&lt;T, ID&gt; extends PagingAndSortingRepository&lt;T, ID&gt;, QueryByExampleExecutor<t>：供开发者最终使用的springdatajpa接口<br><img src="\images\springboot9.0.jpg" alt="123"></t></p>
 </li>
 </ul>
+<h4 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h4><ul>
+<li>基本功能</li>
+<li>定义符合规范的方法命名</li>
+<li>@Query查询<h3 id="2、快速使用"><a href="#2、快速使用" class="headerlink" title="2、快速使用"></a>2、快速使用</h3></li>
+<li><p>mvn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置druid，创建实体类，继承JpaRepository</p>
+<ul>
+<li><p>配置druid</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class MysqlConfiguration &#123;</span><br><span class="line">      @Bean</span><br><span class="line">      public DataSource dataSource(Environment environment) throws SQLException &#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span><br><span class="line">        dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE&amp;zeroDateTimeBehavior=convertToNull&amp;readFromMasterWhenNoSlaves=true&amp;allowMasterDownConnections=true&amp;allowSlavesDownConnections=true&amp;roundRobinLoadBalance=true&amp;useSSL=false&amp;serverTimezone=UTC&quot;);</span><br><span class="line">        dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">        dataSource.setPassword(&quot;ww&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建实体类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Data//lombok</span><br><span class="line">@Entity//实体类，会通过此类在数据库中生成表</span><br><span class="line">@Table(name = &quot;tb_dog&quot;,//自定义生成表的名称，若不配置，则默认表名称与类名相同</span><br><span class="line">       indexes = &#123;@Index(columnList = &quot;name&quot;)&#125;)//配置索引</span><br><span class="line">public class Dog &#123;</span><br><span class="line"></span><br><span class="line">      @Id//该字段为主键，也可以对主键进行一系列策略配置</span><br><span class="line">      private String id;</span><br><span class="line">      @Column(name = &quot;name&quot;)//字段配置，可通过该注解进行自定义地段名称，长度限制，是否非空等操作。</span><br><span class="line">      private String name;</span><br><span class="line">      private int age</span><br><span class="line"></span><br><span class="line">      @Temporal(TemporalType.TIMESTAMP)</span><br><span class="line">      //设置日期格式</span><br><span class="line">      //TemporalType.TIMESTAMP 年月日时分秒（默认）</span><br><span class="line">      //TemporalType.DATE 年月日</span><br><span class="line">      //TemporalType.TIME 时分秒</span><br><span class="line">      private Date brith;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>继承JpaRepository</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface DogRepository extends JpaRepository&lt;Dog, String&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test()&#123;</span><br><span class="line">    Dog dog = new Dog(&quot;相关参数&quot;);</span><br><span class="line">    dogRepository.save(dog);//若该类主键有值，则修改，没值，则新增</span><br><span class="line">    dogRepository.delete(dog);</span><br><span class="line">    dogRepository.count();</span><br><span class="line">    dogRepository.findById();</span><br><span class="line">    dogRepository.findAll();</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3、高级特性"><a href="#3、高级特性" class="headerlink" title="3、高级特性"></a>3、高级特性</h3><ul>
+<li><p>开启事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@EnableTransactionManagement</span><br><span class="line">可在类上、方法上加。可在启动类上或者配置类上加。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义实体类扫描位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@EntityScan(全包名)</span><br><span class="line">可在类上、方法上加。可在启动类上或者配置类上加。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义Repository扫描位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@EnableJpaRepositories(全包名)</span><br><span class="line">可在类上、方法上加。可在启动类上或者配置类上加。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果没有自定义jpa扫描配置的话，则扫描位置与@SpringBootApplication（springboot系列第三章有详细讲解）一致，默认本包+子包。</p>
+<ul>
+<li>@EntityListeners(AuditingEntityListener.class)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">修饰在实体类上，作用为对此实体类进行操作监听，</span><br><span class="line">通常配合对表中的时间戳进行操作，彻底释放了开发</span><br><span class="line">者对每个表的时间戳的操作，更新时间全部交给监听器来实现。</span><br><span class="line"></span><br><span class="line">  @CreatedDate//在表创建时，对该字段进行塞值</span><br><span class="line">private Date createTime;</span><br><span class="line">@LastModifiedDate//在表更新时，进行塞值</span><br><span class="line">private Date updateTime;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同时想要操作生效，还需要在启动类加上<br>@EnableJpaAuditing<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableJpaAuditing</span><br><span class="line">public class Application&#123;</span><br><span class="line">      ...,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4、详细使用"><a href="#4、详细使用" class="headerlink" title="4、详细使用"></a>4、详细使用</h3><ul>
+<li><p>基本功能<br>编写接口继承JpaRepository既有crud及分页等基本功能。在快速使用中，已做介绍，这里不在讲解。</p>
+</li>
+<li><p>定义符合规范的方法命名<br>在接口中，方法名若符合命名规范，则可拥有对应功能</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">关键字</th>
+<th style="text-align:left">方法命名</th>
+<th style="text-align:left">对应sql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">And</td>
+<td style="text-align:left">findByNameAndPwd</td>
+<td style="text-align:left">where name= ? and pwd =?</td>
+</tr>
+<tr>
+<td style="text-align:left">Or</td>
+<td style="text-align:left">findByNameOrSex</td>
+<td style="text-align:left">where name= ? or sex=?</td>
+</tr>
+<tr>
+<td style="text-align:left">Is,Equals</td>
+<td style="text-align:left">findById,findByIdEquals</td>
+<td style="text-align:left">where id= ?</td>
+</tr>
+<tr>
+<td style="text-align:left">Between</td>
+<td style="text-align:left">findByIdBetween</td>
+<td style="text-align:left">where id between ? and ?</td>
+</tr>
+<tr>
+<td style="text-align:left">LessThan</td>
+<td style="text-align:left">findByIdLessThan</td>
+<td style="text-align:left">where id &lt; ?</td>
+</tr>
+<tr>
+<td style="text-align:left">LessThanEquals</td>
+<td style="text-align:left">findByIdLessThanEquals</td>
+<td style="text-align:left">where id &lt;= ?</td>
+</tr>
+<tr>
+<td style="text-align:left">GreaterThan</td>
+<td style="text-align:left">findByIdGreaterThan</td>
+<td style="text-align:left">where id &gt; ?</td>
+</tr>
+<tr>
+<td style="text-align:left">GreaterThanEquals</td>
+<td style="text-align:left">findByIdGreaterThanEquals</td>
+<td style="text-align:left">where id &gt; = ?</td>
+</tr>
+<tr>
+<td style="text-align:left">After</td>
+<td style="text-align:left">findByIdAfter</td>
+<td style="text-align:left">where id &gt; ?</td>
+</tr>
+<tr>
+<td style="text-align:left">Before</td>
+<td style="text-align:left">findByIdBefore</td>
+<td style="text-align:left">where id &lt; ?</td>
+</tr>
+<tr>
+<td style="text-align:left">IsNull</td>
+<td style="text-align:left">findByNameIsNull</td>
+<td style="text-align:left">where name is null</td>
+</tr>
+<tr>
+<td style="text-align:left">isNotNull,NotNull</td>
+<td style="text-align:left">findByNameNotNull</td>
+<td style="text-align:left">where name is not null</td>
+</tr>
+<tr>
+<td style="text-align:left">Like</td>
+<td style="text-align:left">findByNameLike</td>
+<td style="text-align:left">where name like ?</td>
+</tr>
+<tr>
+<td style="text-align:left">NotLike</td>
+<td style="text-align:left">findByNameNotLike</td>
+<td style="text-align:left">where name not like ?</td>
+</tr>
+<tr>
+<td style="text-align:left">StartingWith</td>
+<td style="text-align:left">findByNameStartingWith</td>
+<td style="text-align:left">where name like ‘?%’</td>
+</tr>
+<tr>
+<td style="text-align:left">EndingWith</td>
+<td style="text-align:left">findByNameEndingWith</td>
+<td style="text-align:left">where name like ‘%?’</td>
+</tr>
+<tr>
+<td style="text-align:left">Containing</td>
+<td style="text-align:left">findByNameContaining</td>
+<td style="text-align:left">where name like ‘%?%’</td>
+</tr>
+<tr>
+<td style="text-align:left">OrderBy</td>
+<td style="text-align:left">findByIdOrderByXDesc</td>
+<td style="text-align:left">where id=? order by x desc</td>
+</tr>
+<tr>
+<td style="text-align:left">Not</td>
+<td style="text-align:left">findByNameNot</td>
+<td style="text-align:left">where name &lt;&gt; ?</td>
+</tr>
+<tr>
+<td style="text-align:left">In</td>
+<td style="text-align:left">findByIdIn(Collection&lt;?&gt; c)</td>
+<td style="text-align:left">where id in (?)</td>
+</tr>
+<tr>
+<td style="text-align:left">NotIn</td>
+<td style="text-align:left">findByIdNotIn(Collection&lt;?&gt; c)</td>
+<td style="text-align:left">where id not  in (?)</td>
+</tr>
+<tr>
+<td style="text-align:left">True</td>
+<td style="text-align:left">findByAaaTue</td>
+<td style="text-align:left">where aaa = true</td>
+</tr>
+<tr>
+<td style="text-align:left">False</td>
+<td style="text-align:left">findByAaaFalse</td>
+<td style="text-align:left">where aaa = false</td>
+</tr>
+<tr>
+<td style="text-align:left">IgnoreCase</td>
+<td style="text-align:left">findByNameIgnoreCase</td>
+<td style="text-align:left">where UPPER(name)=UPPER(?)</td>
+</tr>
+</tbody>
+</table>
+<p>简单查询：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface DogRepository extends JpaRepository&lt;Dog, String&gt; &#123;</span><br><span class="line">  Dog findByName(String name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>复杂查询：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;Dog&gt; findALL(Pageable pageable);</span><br><span class="line"></span><br><span class="line">当查询中有多个参数的时候Pageable建议做为最后一个参数传入</span><br><span class="line">Page&lt;Dog&gt; findByName(String name,Pageable pageable);</span><br><span class="line"></span><br><span class="line">Pageable 是spring封装的分页实现类，使用的时候需要传入页数、每页条数和排序规则</span><br><span class="line">@Test</span><br><span class="line">public void test()&#123;</span><br><span class="line">    int page=1,size=10;</span><br><span class="line">    Sort sort = new Sort(Direction.DESC, &quot;id&quot;);</span><br><span class="line">    Pageable pageable = new PageRequest(page, size, sort);</span><br><span class="line">    dogRepository.findALL(pageable);</span><br><span class="line">    dogRepository.findByName(&quot;test&quot;, pageable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>@Query查询<br>自定义查询，分别有2种sql写法：</p>
+<ul>
+<li><p>JPQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface DogRepository extends JpaRepository&lt;Dog, String&gt; &#123;</span><br><span class="line">  @Query(&quot;select * from Dog g where g.name = ?1&quot;)</span><br><span class="line">  Dog findByName(String name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface DogRepository extends JpaRepository&lt;Dog, String&gt; &#123;</span><br><span class="line">  @Query(nativeQuery = true, &quot;select * from tb_dog where name = ?1&quot;)</span><br><span class="line">  Dog findByName(String name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>如涉及到删除和修改在需要加上@Modifying。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Modifying</span><br><span class="line">@Query(&quot;delete from Dog g where g.name = ?1&quot;)</span><br><span class="line">void deleteByName(String name);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -465,8 +658,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/17/熟练运用SpringBoot(七)：异步任务/" rel="next" title="熟练运用SpringBoot(七)：异步任务">
-                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(七)：异步任务
+              <a href="/2018/12/17/熟练运用SpringBoot(八)：Druid配置/" rel="next" title="熟练运用SpringBoot(八)：Druid配置">
+                <i class="fa fa-chevron-left"></i> 熟练运用SpringBoot(八)：Druid配置
               </a>
             
           </div>
@@ -633,7 +826,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-九-：jpa的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(九)：jpa的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、简单介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JPA"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是JPA?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Data-JPA"><span class="nav-number">1.1.2.</span> <span class="nav-text">Spring Data JPA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统一的Repository接口"><span class="nav-number">1.1.3.</span> <span class="nav-text">统一的Repository接口</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-九-：jpa的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(九)：jpa的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、简单介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JPA"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是JPA?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Data-JPA"><span class="nav-number">1.1.2.</span> <span class="nav-text">Spring Data JPA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统一的Repository接口"><span class="nav-number">1.1.3.</span> <span class="nav-text">统一的Repository接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用功能"><span class="nav-number">1.1.4.</span> <span class="nav-text">常用功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速使用"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、高级特性"><span class="nav-number">1.3.</span> <span class="nav-text">3、高级特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、详细使用"><span class="nav-number">1.4.</span> <span class="nav-text">4、详细使用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -667,7 +860,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21k</span>
+    <span title="Site words total count">22.2k</span>
   
 </div>
 
