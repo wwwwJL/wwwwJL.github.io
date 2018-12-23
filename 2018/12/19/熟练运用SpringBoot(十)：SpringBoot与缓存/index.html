@@ -86,18 +86,23 @@
 
 
 
-<meta name="description" content="SpringBoot与缓存">
+<meta name="description" content="SpringBoot与缓存1、简介&amp;nbsp;&amp;nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。 2、不得不说的JSR107规范&amp;nbsp;&amp;nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java c">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用SpringBoot(十)：SpringBoot与缓存">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/19/熟练运用SpringBoot(十)：SpringBoot与缓存/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="SpringBoot与缓存">
+<meta property="og:description" content="SpringBoot与缓存1、简介&amp;nbsp;&amp;nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。 2、不得不说的JSR107规范&amp;nbsp;&amp;nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-23T07:37:01.766Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.1.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.2.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.3.jpg">
+<meta property="og:updated_time" content="2018-12-23T14:21:06.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(十)：SpringBoot与缓存">
-<meta name="twitter:description" content="SpringBoot与缓存">
+<meta name="twitter:description" content="SpringBoot与缓存1、简介&amp;nbsp;&amp;nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。 2、不得不说的JSR107规范&amp;nbsp;&amp;nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java c">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot10.0.jpg">
 
 
 
@@ -351,7 +356,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  4字
+                  1.5k字
                 </span>
               
 
@@ -367,7 +372,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  6分钟
                 </span>
               
             </div>
@@ -388,7 +393,83 @@
       
 
       
-        <h2 id="SpringBoot与缓存"><a href="#SpringBoot与缓存" class="headerlink" title="SpringBoot与缓存"></a>SpringBoot与缓存</h2>
+        <h2 id="SpringBoot与缓存"><a href="#SpringBoot与缓存" class="headerlink" title="SpringBoot与缓存"></a>SpringBoot与缓存</h2><h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><p>&nbsp;&nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。</p>
+<h3 id="2、不得不说的JSR107规范"><a href="#2、不得不说的JSR107规范" class="headerlink" title="2、不得不说的JSR107规范"></a>2、不得不说的JSR107规范</h3><p>&nbsp;&nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java cache规范。  </p>
+<p><code>Java Caching定义了5个核心接口，分别是CachingProvider, CacheManager, Cache, Entry 和 Expiry。</code></p>
+<ol>
+<li><p>CachingProvider<br>定义了创建、配置、获取、管理和控制多个CacheManager。一个应用可以在运行期访问多个CachingProvider。</p>
+</li>
+<li><p>CacheManager<br>定义了创建、配置、获取、管理和控制多个唯一命名的Cache，这些Cache存在于CacheManager的上下文中。一个CacheManager仅被一个CachingProvider所拥有。</p>
+</li>
+<li><p>Cache<br>是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。</p>
+</li>
+<li><p>Entry<br>是一个存储在Cache中的key-value对.</p>
+</li>
+<li><p>Expiry<br>每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
+</li>
+</ol>
+<p><img src="\images\springboot10.0.jpg" alt="123"></p>
+<p>mvn<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;javax.cache&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;cache-api&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是在实际开发中，开发者自己去遵循JSR107会比较麻烦，所以通常在生产中，我们会用到Spring提供的缓存抽象。</p>
+<h3 id="3、Spring缓存抽象"><a href="#3、Spring缓存抽象" class="headerlink" title="3、Spring缓存抽象"></a>3、Spring缓存抽象</h3><p>&nbsp;&nbsp;Spring从3.1开始定义了org.springframework.cache.Cache和org.springframework.cache.CacheManager接口来统一不同的缓存技术，并支持使用JSR-107注解简化开发。</p>
+<p>基本流畅为：<br>1.通过CacheManager得到对应Cache<br>2.对其Cache进行crud</p>
+<ul>
+<li>缓存注解<br><img src="\images\springboot10.1.jpg" alt="123"><br><img src="\images\springboot10.2.jpg" alt="123"><br><img src="\images\springboot10.3.jpg" alt="123"></li>
+</ul>
+<h3 id="4、快速使用"><a href="#4、快速使用" class="headerlink" title="4、快速使用"></a>4、快速使用</h3><ul>
+<li><p>mvn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在原来基础上引入cache</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启缓存注解  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableCaching</span><br><span class="line">public class SpringbootApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(SpringbootApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定方法添加缓存注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class OrderService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private OrderRepository orderRepository;</span><br><span class="line"></span><br><span class="line">    @Cacheable(cacheNames = &quot;order&quot;)</span><br><span class="line">    //cacheNames指定缓存组件名称。注意：必须设置，不然调用此方法会报错</span><br><span class="line">    public Order find(Integer id)&#123;</span><br><span class="line">        System.out.println(&quot;not cache&quot;);</span><br><span class="line">        return orderRepository.findById(id).get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当url访问第二次以后，在控制上，就不再打印not cache了，可见缓存已生效！</p>
+<h3 id="5、-Cacheable属性使用详解"><a href="#5、-Cacheable属性使用详解" class="headerlink" title="5、@Cacheable属性使用详解"></a>5、@Cacheable属性使用详解</h3><p>&nbsp;&nbsp;@Cacheable是用来声明方法是可缓存的。将结果存储到缓存中以便后续使用相同参数调用时不需执行实际的方法。直接从缓存中取值。最简单的格式需要制定缓存名称。</p>
+<ol>
+<li><p>cacheNames/value<br>指定缓存组件的名字，作用为将方法返回的结果放在指定缓存组件中。（可指定多个）</p>
+</li>
+<li><p>key<br>缓存指定的key，默认使用方法参数的值为key，这里配置key有2种方式</p>
+<ul>
+<li>SPEL<br><code>@Cacheable(cacheNames = &quot;order&quot;, key = &quot;#root.methodName+&#39;[&#39;+#id+&#39;]&#39;&quot;)</code></li>
+<li>keyGenerator</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class CacheConfiguration &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(&quot;myKeyGenerator&quot;)</span><br><span class="line">    public KeyGenerator keyGenerator()&#123;</span><br><span class="line">        return new KeyGenerator() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Object generate(Object target, Method method, Object... params) &#123;</span><br><span class="line">                return method.getName()+&quot;[&quot;+ Arrays.asList(params).toString()+&quot;]&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">    System.out.println(&quot;not cache&quot;);</span><br><span class="line">    return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>condition<br>方法参数符合条件下才缓存</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">参数id&lt;1的时候，结果不进缓存</span><br><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;, condition = &quot;#id&lt;1&quot;)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">      System.out.println(&quot;not cache&quot;);</span><br><span class="line">      return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>unless<br>否定缓存，当unless指定条件为true时，返回结果则不会缓存，也可以对返回结果做判断</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;, unless = &quot;#result == null&quot;)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">      System.out.println(&quot;not cache&quot;);</span><br><span class="line">      return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>sync<br>是否开启异步模式，若多个线程对同一个key做操作，如果是同步，则会通过锁进行同步保证。</li>
+</ol>
+<h3 id="6、-CachePut属性使用详解"><a href="#6、-CachePut属性使用详解" class="headerlink" title="6、@CachePut属性使用详解"></a>6、@CachePut属性使用详解</h3><p>&nbsp;&nbsp;如果缓存需要更新，且不干扰方法的执行,可以使用注解@CachePut。@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。</p>
+<p><code>属性与@Cacheable一致</code></p>
+<p>在使用时，需要注意更新缓存时，要指定更新哪个k-v，不然缓存很容易出现脏数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@CachePut(cacheNames = &quot;order&quot;, key = &quot;&apos;find&apos;+&apos;[&apos;+#result.id+&apos;]&apos;&quot;)</span><br><span class="line">public Order save(Order order)&#123;</span><br><span class="line">    return orderRepository.save(order);</span><br><span class="line">&#125;</span><br><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;, sync = true)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">    System.out.println(&quot;not cache&quot;);</span><br><span class="line">    return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7、-CacheEvict属性使用详解"><a href="#7、-CacheEvict属性使用详解" class="headerlink" title="7、@CacheEvict属性使用详解"></a>7、@CacheEvict属性使用详解</h3><p>&nbsp;&nbsp;主要针对方法配置，能够根据一定的条件对缓存进行清空。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@CacheEvict(cacheNames = &quot;order&quot;, key = &quot;&apos;find&apos;+&apos;[&apos;+#result.id+&apos;]&apos;&quot;)</span><br><span class="line">public void delete(Integer id)&#123;</span><br><span class="line">    orderRepository.deleteById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>key<br>要删除的key</p>
+</li>
+<li><p>allEntries（默认false）<br>清除该cache下面的所有k-v</p>
+</li>
+<li><p>beforeInvocation（默认false）<br>在运行指定方法之前清除k-v操作，无论方法是否执行顺利，缓存都清除</p>
+</li>
+</ul>
+<h3 id="8、-Caching"><a href="#8、-Caching" class="headerlink" title="8、@Caching"></a>8、@Caching</h3><p>&nbsp;&nbsp;用于复杂的缓存策略。</p>
+<h3 id="9、-CacheConfig"><a href="#9、-CacheConfig" class="headerlink" title="9、@CacheConfig"></a>9、@CacheConfig</h3><p>&nbsp;&nbsp;作用于类上，用于抽取缓存公共的配置</p>
+<p>例如之前每个方法上的缓存注解都配置相同的cacheNames，这个就可以抽取出来，统一配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@CacheConfig(cacheNames = &quot;order&quot;)</span><br><span class="line">public class OrderService &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>&nbsp;&nbsp;Spring提供的缓存抽象，CacheManager默认使用的是ConcurrentCacheManager，将数据保存在ConcurrentMap&lt;Object,Object&gt;种，但是在开发中，基于缓存，一般都是用的中间件来实现：redis，ehcache，memcached…<br>下一章节，我们就以redis为例，实现springboot整合redis，来进行nosql的操作！</p>
+
       
     </div>
     
@@ -549,7 +630,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot与缓存"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot与缓存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot与缓存"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot与缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、简介"><span class="nav-number">1.1.</span> <span class="nav-text">1、简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、不得不说的JSR107规范"><span class="nav-number">1.2.</span> <span class="nav-text">2、不得不说的JSR107规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Spring缓存抽象"><span class="nav-number">1.3.</span> <span class="nav-text">3、Spring缓存抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、快速使用"><span class="nav-number">1.4.</span> <span class="nav-text">4、快速使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、-Cacheable属性使用详解"><span class="nav-number">1.5.</span> <span class="nav-text">5、@Cacheable属性使用详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、-CachePut属性使用详解"><span class="nav-number">1.6.</span> <span class="nav-text">6、@CachePut属性使用详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、-CacheEvict属性使用详解"><span class="nav-number">1.7.</span> <span class="nav-text">7、@CacheEvict属性使用详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、-Caching"><span class="nav-number">1.8.</span> <span class="nav-text">8、@Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、-CacheConfig"><span class="nav-number">1.9.</span> <span class="nav-text">9、@CacheConfig</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +732,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.2k</span>
+    <span title="Site words total count">24.1k</span>
   
 </div>
 
