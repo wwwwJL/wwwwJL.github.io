@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.1.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.2.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.3.jpg">
-<meta property="og:updated_time" content="2018-12-23T14:21:06.961Z">
+<meta property="og:updated_time" content="2018-12-24T12:59:03.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(十)：SpringBoot与缓存">
 <meta name="twitter:description" content="SpringBoot与缓存1、简介&amp;nbsp;&amp;nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。 2、不得不说的JSR107规范&amp;nbsp;&amp;nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java c">
@@ -468,7 +468,7 @@
 <h3 id="9、-CacheConfig"><a href="#9、-CacheConfig" class="headerlink" title="9、@CacheConfig"></a>9、@CacheConfig</h3><p>&nbsp;&nbsp;作用于类上，用于抽取缓存公共的配置</p>
 <p>例如之前每个方法上的缓存注解都配置相同的cacheNames，这个就可以抽取出来，统一配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@CacheConfig(cacheNames = &quot;order&quot;)</span><br><span class="line">public class OrderService &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>&nbsp;&nbsp;Spring提供的缓存抽象，CacheManager默认使用的是ConcurrentCacheManager，将数据保存在ConcurrentMap&lt;Object,Object&gt;种，但是在开发中，基于缓存，一般都是用的中间件来实现：redis，ehcache，memcached…<br>下一章节，我们就以redis为例，实现springboot整合redis，来进行nosql的操作！</p>
+<p>&nbsp;&nbsp;Spring提供的缓存抽象，默认使用的配置类为<code>org.springframework.boot.autoconfigure.cache.SimpleCacheConfiguration</code>，CacheManager默认使用的cacheManager是ConcurrentCacheManager，在使用中将数据保存在ConcurrentMap&lt;Object,Object&gt;中。但是在开发中，基于缓存，一般都是用的中间件来实现：redis，ehcache，memcached…<br>下一章节，我们就以redis为例，实现springboot整合redis，来进行nosql的操作！</p>
 
       
     </div>
@@ -732,7 +732,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.9k</span>
+    <span title="Site words total count">24.5k</span>
   
 </div>
 

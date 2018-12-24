@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;g">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用SpringBoot(十一)：redis的使用">
 <meta property="og:url" content="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-23T07:35:45.340Z">
+<meta property="og:updated_time" content="2018-12-24T13:53:40.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(十一)：redis的使用">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;g">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  141字
                 </span>
               
 
@@ -388,7 +388,12 @@
       
 
       
-        
+        <h2 id="熟练运用SpringBoot-十一-：redis的使用"><a href="#熟练运用SpringBoot-十一-：redis的使用" class="headerlink" title="熟练运用SpringBoot(十一)：redis的使用"></a>熟练运用SpringBoot(十一)：redis的使用</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 <a href="https://wwwwjl.github.io/2019/01/01/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8redis%28%E4%B8%80%29%EF%BC%9A%E6%A6%82%E8%BF%B0/">熟练运行redis(一)：概述</a>。</p>
+<h3 id="2、快速使用"><a href="#2、快速使用" class="headerlink" title="2、快速使用"></a>2、快速使用</h3><ul>
+<li>mvn<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">	    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    	&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">        &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     
@@ -522,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -599,6 +613,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-十一-：redis的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(十一)：redis的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速使用"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +656,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.9k</span>
+    <span title="Site words total count">24.5k</span>
   
 </div>
 

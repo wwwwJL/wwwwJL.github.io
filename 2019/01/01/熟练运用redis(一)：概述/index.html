@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="熟练运用redis(一)：概述1、概述&amp;nbsp;&amp;nbsp;redis是完全开源免费的，是一个高性能的key-value数据库。支持存储的value类型很多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。 &amp;nbsp;&amp;nbsp;特点：  支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用redis(一)：概述">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/01/熟练运用redis(一)：概述/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="熟练运用redis(一)：概述1、概述&amp;nbsp;&amp;nbsp;redis是完全开源免费的，是一个高性能的key-value数据库。支持存储的value类型很多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。 &amp;nbsp;&amp;nbsp;特点：  支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-23T14:54:58.872Z">
+<meta property="og:updated_time" content="2018-12-24T12:50:42.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用redis(一)：概述">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:description" content="熟练运用redis(一)：概述1、概述&amp;nbsp;&amp;nbsp;redis是完全开源免费的，是一个高性能的key-value数据库。支持存储的value类型很多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。 &amp;nbsp;&amp;nbsp;特点：  支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  438字
                 </span>
               
 
@@ -388,7 +388,36 @@
       
 
       
-        
+        <h2 id="熟练运用redis-一-：概述"><a href="#熟练运用redis-一-：概述" class="headerlink" title="熟练运用redis(一)：概述"></a>熟练运用redis(一)：概述</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis是完全开源免费的，是一个高性能的key-value数据库。支持存储的value类型很多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。</p>
+<p>&nbsp;&nbsp;<strong>特点</strong>：</p>
+<ol>
+<li><p>支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</p>
+</li>
+<li><p>不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</p>
+</li>
+<li><p>支持数据备份，即master-slave模式的数据备份。</p>
+</li>
+</ol>
+<p>&nbsp;&nbsp;<strong>优势</strong>：</p>
+<ol>
+<li><p>性能极高：读速度110000次/s，写速度81000次/s。</p>
+</li>
+<li><p>丰富的数据类型：Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</p>
+</li>
+<li><p>原子性：所有操作都是原子性的，要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，通过MULTI和EXEC指令实现。</p>
+</li>
+<li><p>丰富的特性：Redis还支持key过期，基数统计，地图功能，发布订阅等等特性。</p>
+</li>
+</ol>
+<h3 id="2、redis能做什么？"><a href="#2、redis能做什么？" class="headerlink" title="2、redis能做什么？"></a>2、redis能做什么？</h3><p>&nbsp;&nbsp;redis以其超高的性能，完美的文档，简洁易懂的源码和丰富的客户端库支持在开源中间件领域广受好评。国内外很多大型互联网公司都在使用redis。比如Twitter，YouPorn，暴雪娱乐，Github，StackOverflow，腾讯，阿里，京东，华为，新浪微博等等，很多中小型公司也都有应用。</p>
+<p>使用场景：</p>
+<ol>
+<li><p>记录文章的点赞数、评论数和点击数 (hash)。</p>
+</li>
+<li><p>记录用户的帖子 ID 列表 (排序)，便于快速显示用户的帖子列表 (zset)。</p>
+</li>
+</ol>
+
       
     </div>
     
@@ -522,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -599,6 +637,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用redis-一-：概述"><span class="nav-number">1.</span> <span class="nav-text">熟练运用redis(一)：概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、redis能做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">2、redis能做什么？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +680,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.9k</span>
+    <span title="Site words total count">24.5k</span>
   
 </div>
 
