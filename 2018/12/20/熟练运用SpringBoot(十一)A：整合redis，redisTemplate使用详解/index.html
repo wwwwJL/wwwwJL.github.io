@@ -86,23 +86,34 @@
 
 
 
-<meta name="description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn 1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;">
+<meta name="description" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。本文将介绍springboot2.x与redis整合使用，重点剖析redisTemplate的部分高级使用方法！ 2、快速使用 mvn 1234567891011121314&amp;lt;">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用SpringBoot(十一)：redis的使用">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/index.html">
+<meta property="og:title" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn 1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;">
+<meta property="og:description" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。本文将介绍springboot2.x与redis整合使用，重点剖析redisTemplate的部分高级使用方法！ 2、快速使用 mvn 1234567891011121314&amp;lt;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.5.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.6.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.8.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.1.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.2.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.3.jpg">
-<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.4.jpg">
-<meta property="og:updated_time" content="2018-12-25T16:41:07.566Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.9.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.10.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.11.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.12.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.13.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.14.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.15.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.16.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.17.jpg">
+<meta property="og:updated_time" content="2018-12-26T14:03:54.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用SpringBoot(十一)：redis的使用">
-<meta name="twitter:description" content="熟练运用SpringBoot(十一)：redis的使用1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。 2、快速使用 mvn 1234567891011121314&amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;">
+<meta name="twitter:title" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解">
+<meta name="twitter:description" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。本文将介绍springboot2.x与redis整合使用，重点剖析redisTemplate的部分高级使用方法！ 2、快速使用 mvn 1234567891011121314&amp;lt;">
 <meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot11.0.jpg">
 
 
@@ -133,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解/">
 
 
 
 
 
-  <title>熟练运用SpringBoot(十一)：redis的使用 | 突突的技术博客</title>
+  <title>熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解 | 突突的技术博客</title>
   
 
 
@@ -257,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/20/熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -274,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(十一)：redis的使用</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解</h1>
         
 
         <div class="post-meta">
@@ -327,8 +338,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/熟练运用SpringBoot(十一)：redis的使用/" itemprop="commentCount"></span>
+                <a href="/2018/12/20/熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -357,7 +368,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  898字
+                  1.2k字
                 </span>
               
 
@@ -394,7 +405,7 @@
       
 
       
-        <h2 id="熟练运用SpringBoot-十一-：redis的使用"><a href="#熟练运用SpringBoot-十一-：redis的使用" class="headerlink" title="熟练运用SpringBoot(十一)：redis的使用"></a>熟练运用SpringBoot(十一)：redis的使用</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 <a href="https://wwwwjl.github.io/2019/01/01/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8redis%28%E4%B8%80%29%EF%BC%9A%E6%A6%82%E8%BF%B0/">熟练运行redis(一)：概述</a>。</p>
+        <h2 id="熟练运用SpringBoot-十一-A：整合redis，redisTemplate使用详解"><a href="#熟练运用SpringBoot-十一-A：整合redis，redisTemplate使用详解" class="headerlink" title="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解"></a>熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 <a href="https://wwwwjl.github.io/2019/01/01/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8redis%28%E4%B8%80%29%EF%BC%9A%E6%A6%82%E8%BF%B0/">熟练运行redis(一)：概述</a>。<strong>本文将介绍springboot2.x与redis整合使用，重点剖析redisTemplate的部分高级使用方法！</strong></p>
 <h3 id="2、快速使用"><a href="#2、快速使用" class="headerlink" title="2、快速使用"></a>2、快速使用</h3><ul>
 <li><p>mvn</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	   &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">	   &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    	&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">        &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
@@ -420,38 +431,50 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stringRedisTemplate.opsForValue() 操作string类型</span><br><span class="line">stringRedisTemplate.opsForList() 操作list类型</span><br><span class="line">stringRedisTemplate.opsForSet() 操作set类型</span><br><span class="line">stringRedisTemplate.opsForHash() 操作hash类型</span><br><span class="line">stringRedisTemplate.opsForZset() 操作zset类型</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>redisTemplate</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test4()&#123;</span><br><span class="line">	redisTemplate.opsForValue().set(&quot;order&quot;,orderService.find(2));</span><br><span class="line">	System.out.println(redisTemplate.opsForValue().get(&quot;order&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test4()&#123;</span><br><span class="line">	redisTemplate.opsForValue().set(&quot;order&quot;,orderService.findOne(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="\images\springboot11.5.jpg" alt="123"></p>
 </li>
 </ul>
-<p><code>注意：在使用redisTemplate保存对象时，如果被保存的对象没有实现jkd提供的序列化接口Serializable，则会报错org.springframework.data.redis.serializer.SerializationException</code></p>
-<p>  <img src="\images\springboot11.1.jpg" alt="123"><br>  可以看到，通过redisTemplate保存后的数据，很难直观识别，所以这种方式并不推荐。</p>
-<ul>
-<li><p>在保存对象时，redisTemplate有如下3种方式进行序列化处理：</p>
+<p><code>在使用redisTemplate保存对象时，程序出现了org.springframework.data.redis.serializer.SerializationException错误提示。于是我debug了源码，找到了答案！</code></p>
+<p>  <img src="\images\springboot11.6.jpg" alt="123"></p>
+<p><code>可以看到，在redisTemplate保存对象时，如果没有给redisTemplate配置序列化时，组件会默认使用JdkSerializationRedisSerializer（由spring提供，通过原生jdk序列来封装好的组件）来对对象进行序列化。</code></p>
+<p>所以这里我们让Order这个类来实现Serializable接口，来看看结果如何？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Order implements Serializable&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="\images\springboot11.8.jpg" alt="123"></p>
+<p>通过JdkSerializationRedisSerializer序列化后，redisTemplate set成功后，get出来，反序列化也没啥问题。</p>
+<p>  <img src="\images\springboot11.1.jpg" alt="123"><br>可是，数据保存在redis中，不管是key，还是value都不易阅读，而且总长度较长。</p>
+<h3 id="4、论如何正确的搞定redisTemlate序列化及反序列化"><a href="#4、论如何正确的搞定redisTemlate序列化及反序列化" class="headerlink" title="4、论如何正确的搞定redisTemlate序列化及反序列化"></a>4、论如何正确的搞定redisTemlate序列化及反序列化</h3><p>在保存对象时，redisTemplate有如下3种方式进行序列化处理：</p>
 <ul>
 <li>默认使用jdk序列化机制，将序列化后的数据保存到redis中。</li>
 <li>自己将对象转成json格式</li>
-<li>修改redisTemplate默认序列化机制</li>
-</ul>
-<p>接下来我们重点介绍<strong>修改redisTemplate默认序列化机制</strong>这个方案。</p>
+<li><p>修改redisTemplate默认序列化机制</p>
+<p>以上除了第一种需要将对应对象实现Serializer接口，另外两种则不需要。<br>接下来我们重点介绍 <strong>修改redisTemplate默认序列化机制</strong> 这个方案。</p>
 <ol>
 <li>首先需要查看redisAutoConfiguration内部，仿照源码，重新注入redisTemplate。<br><img src="\images\springboot11.2.jpg" alt="123"></li>
-<li>复制出来，进行替换默认序列化机制操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class RedisConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException &#123;</span><br><span class="line">        RedisTemplate&lt;Object, Object&gt; template = new RedisTemplate();</span><br><span class="line">        template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        template.setDefaultSerializer(new Jackson2JsonRedisSerializer&lt;&gt;(Object.class));</span><br><span class="line">        return template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>复制出来，进行替换默认序列化机制操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class RedisConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException &#123;</span><br><span class="line">        RedisTemplate&lt;Object, Object&gt; template = new RedisTemplate();</span><br><span class="line">        template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line"></span><br><span class="line">        //设置redisTemplate默认序列化机制</span><br><span class="line">        template.setDefaultSerializer(...);</span><br><span class="line"></span><br><span class="line">        return template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>起初我并不知道有Jackson2JsonRedisSerializer这个东西，但是可以从setDefaultSerializer点进源码可以看到RedisSerializer。<br><img src="\images\springboot11.3.jpg" alt="123"><br><img src="\images\springboot11.4.jpg" alt="123"><br>通过ide工具，就可以知道，他的实现类有哪些，然后根据自己的实际需要，去传递对应的实现类参数。</p>
+<p>既然setDefaultSerializer是设置序列化的方法，我们就点进去看看，需要传什么参数。<br><img src="\images\springboot11.3.jpg" alt="123"><br><img src="\images\springboot11.9.jpg" alt="123"><br>通过ide工具，可以看到RedisSerializer有哪些实现类。一般在生产中，我们用Jackson作为处理json相关的工具，所以这里我们可以用Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer作为参数，来修改redisTemplate的序列机制。</p>
 </li>
 </ul>
-<h3 id="4、自定义CacheManager"><a href="#4、自定义CacheManager" class="headerlink" title="4、自定义CacheManager"></a>4、自定义CacheManager</h3><p>&nbsp;&nbsp;在上一章节 <strong><a href="https://wwwwjl.github.io/2018/12/19/%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8SpringBoot(%E5%8D%81%29%EF%BC%9ASpringBoot%E4%B8%8E%E7%BC%93%E5%AD%98/#more">熟练运用SpringBoot(十)：SpringBoot与缓存</a></strong>，我们介绍了springboot如何通过spring提供的缓存抽象来实现缓存功能，这里我们就来探究，通过redis来与springboot整合，最终实现缓存功能。  </p>
+<h4 id="Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？"><a href="#Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？" class="headerlink" title="Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？"></a>Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？</h4><ul>
+<li>相同点<br>都能序列化成json，保存在redis中。</li>
+<li><p>不同点</p>
 <ul>
-<li>配置redisCacheManager<br>1.x版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public RedisCacheManager redisCacheManager(RedisTemplate redisTemplate) &#123;</span><br><span class="line">    RedisCacheManager rcm = new RedisCacheManager(redisTemplate);</span><br><span class="line">    return rcm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>Jackson2JsonRedisSerializer<br><img src="\images\springboot11.10.jpg" alt="123"><br><img src="\images\springboot11.11.jpg" alt="123"><br>以上，在通过redisTemplate从redis中取数据，反序列化的过程中出错了。这时我们可以使用jackson提供的ObjectMapper对象来帮助解决。</p>
+<p><img src="\images\springboot11.12.jpg" alt="123"></p>
+</li>
+<li><p>GenericJackson2JsonRedisSerializer<br><img src="\images\springboot11.13.jpg" alt="123"><br><img src="\images\springboot11.14.jpg" alt="123"></p>
+<p>相比前者，这个在json中加入@class属性，类的全路径包名，方便反序列化。</p>
 </li>
 </ul>
-<p>2.x版本<br>RedisCacheManager配置这块改动很大！也是借鉴了这篇博客 <strong><a href="https://rickgong.iteye.com/blog/2414263" target="_blank" rel="noopener">SpringBoot2.0的CacheManager配置</a></strong> ，才给我了一些启发。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) &#123;</span><br><span class="line">    RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()</span><br><span class="line">      .entryTtl(Duration.ofHours(1))//过期时间</span><br><span class="line">      .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new Jackson2JsonRedisSerializer&lt;&gt;(Object.class)));//value序列化配置</span><br><span class="line">        return RedisCacheManager</span><br><span class="line">                .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))</span><br><span class="line">                .cacheDefaults(redisCacheConfiguration).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自定义key配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Bean(&quot;myKeyGenerator&quot;)</span><br><span class="line">public KeyGenerator keyGenerator()&#123;</span><br><span class="line">    return new KeyGenerator() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Object generate(Object target, Method method, Object... params) &#123;</span><br><span class="line">            return target.getClass().getName()+&quot;.&quot;+method.getName()+ Arrays.asList(params);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>这两种实现各有利弊，<strong>Jackson2JsonRedisSerializer能保证数据序列化后，干净的存储到redis，但不能提供反序列化的操作</strong>。<strong>GenericJackson2JsonRedisSerializer能提供反序列化的方便，但序列化后某种程度会污染数据</strong>，就好像鱼和熊掌不可兼得，大家可自行选择。</p>
+<hr>
+<p>在刚才redisTemplate的使用中，我们着重讲解了 <strong>修改redisTemplate默认序列化机制</strong> ,将数据序列化后保存到redis中，不知道大家有没有注意到有个小细节。<br><img src="\images\springboot11.15.jpg" alt="123"><br><img src="\images\springboot11.16.jpg" alt="123"><br>明明在操作时，key是order，可保存在redis中，却变成了”order”，多了个双引号，但是这并不影响我们日常使用，如果觉得看起来不爽，可以在redisTemplate注入的时候进行配置。<br><img src="\images\springboot11.17.jpg" alt="123"></p>
+<hr>
+<p>&nbsp;&nbsp;下一章节，我们结合本章和上一章节的知识点，将spring-cache和redisTemplate完美的整合起来，实现高性能服务。</p>
 
       
     </div>
@@ -523,8 +546,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/21/熟练运用SpringBoot(十二)：整合rabbitMQ/" rel="prev" title="熟练运用SpringBoot(十二)：整合rabbitMQ">
-                熟练运用SpringBoot(十二)：整合rabbitMQ <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务/" rel="prev" title="熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务">
+                熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +636,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-十一-：redis的使用"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(十一)：redis的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速使用"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、高级使用"><span class="nav-number">1.3.</span> <span class="nav-text">3、高级使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、自定义CacheManager"><span class="nav-number">1.4.</span> <span class="nav-text">4、自定义CacheManager</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-十一-A：整合redis，redisTemplate使用详解"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、快速使用"><span class="nav-number">1.2.</span> <span class="nav-text">2、快速使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、高级使用"><span class="nav-number">1.3.</span> <span class="nav-text">3、高级使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、论如何正确的搞定redisTemlate序列化及反序列化"><span class="nav-number">1.4.</span> <span class="nav-text">4、论如何正确的搞定redisTemlate序列化及反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？"><span class="nav-number">1.4.1.</span> <span class="nav-text">Jackson2JsonRedisSerializer和GenericJackson2JsonRedisSerializer之间有啥区别？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -715,7 +738,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.9k</span>
+    <span title="Site words total count">26.8k</span>
   
 </div>
 
