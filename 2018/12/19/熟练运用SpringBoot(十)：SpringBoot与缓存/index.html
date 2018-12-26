@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.1.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.2.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot10.3.jpg">
-<meta property="og:updated_time" content="2018-12-24T12:59:03.056Z">
+<meta property="og:updated_time" content="2018-12-26T15:43:59.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(十)：SpringBoot与缓存">
 <meta name="twitter:description" content="SpringBoot与缓存1、简介&amp;nbsp;&amp;nbsp;我们都知道，一个程序的瓶颈通常都在数据库，很多场景需要获取相同的数据。比如网站页面数据等，需要一次次的请求数据库，导致大部分时间都浪费在数据库查询和方法调用上，这时就可以利用到缓存来缓解这个问题。 2、不得不说的JSR107规范&amp;nbsp;&amp;nbsp;为了统一java缓存的开发规范，及系统的扩展性，J2EE发布了JSR107来对java c">
@@ -356,7 +356,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  1.5k字
+                  1.6k字
                 </span>
               
 
@@ -427,7 +427,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class OrderService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private OrderRepository orderRepository;</span><br><span class="line"></span><br><span class="line">    @Cacheable(cacheNames = &quot;order&quot;)</span><br><span class="line">    //cacheNames指定缓存组件名称。注意：必须设置，不然调用此方法会报错</span><br><span class="line">    public Order find(Integer id)&#123;</span><br><span class="line">        System.out.println(&quot;not cache&quot;);</span><br><span class="line">        return orderRepository.findById(id).get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>当url访问第二次以后，在控制上，就不再打印not cache了，可见缓存已生效！</p>
+<p>当url访问第二次以后，在控制台上，就不再打印not cache了，可见缓存已生效！</p>
 <h3 id="5、-Cacheable属性使用详解"><a href="#5、-Cacheable属性使用详解" class="headerlink" title="5、@Cacheable属性使用详解"></a>5、@Cacheable属性使用详解</h3><p>&nbsp;&nbsp;@Cacheable是用来声明方法是可缓存的。将结果存储到缓存中以便后续使用相同参数调用时不需执行实际的方法。直接从缓存中取值。最简单的格式需要制定缓存名称。</p>
 <ol>
 <li><p>cacheNames/value<br>指定缓存组件的名字，作用为将方法返回的结果放在指定缓存组件中。（可指定多个）</p>
@@ -453,8 +453,8 @@
 </ol>
 <h3 id="6、-CachePut属性使用详解"><a href="#6、-CachePut属性使用详解" class="headerlink" title="6、@CachePut属性使用详解"></a>6、@CachePut属性使用详解</h3><p>&nbsp;&nbsp;如果缓存需要更新，且不干扰方法的执行,可以使用注解@CachePut。@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。</p>
 <p><code>属性与@Cacheable一致</code></p>
-<p>在使用时，需要注意更新缓存时，要指定更新哪个k-v，不然缓存很容易出现脏数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@CachePut(cacheNames = &quot;order&quot;, key = &quot;&apos;find&apos;+&apos;[&apos;+#result.id+&apos;]&apos;&quot;)</span><br><span class="line">public Order save(Order order)&#123;</span><br><span class="line">    return orderRepository.save(order);</span><br><span class="line">&#125;</span><br><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;, sync = true)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">    System.out.println(&quot;not cache&quot;);</span><br><span class="line">    return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用时，需要注意更新缓存时，要指定更新哪一个key，不然缓存很容易出现脏数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@CachePut(cacheNames = &quot;order&quot;, key = &quot;&apos;find&apos;+&apos;[&apos;+#result.id+&apos;]&apos;&quot;)</span><br><span class="line">                        这里需要更新的key 是调用find方法时，由myKeyGenerator生成的key，所以这里需要手动拼接</span><br><span class="line">public Order save(Order order)&#123;</span><br><span class="line">    return orderRepository.save(order);</span><br><span class="line">&#125;</span><br><span class="line">@Cacheable(cacheNames = &quot;order&quot;, keyGenerator = &quot;myKeyGenerator&quot;, sync = true)</span><br><span class="line">public Order find(Integer id)&#123;</span><br><span class="line">    System.out.println(&quot;not cache&quot;);</span><br><span class="line">    return orderRepository.findById(id).get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="7、-CacheEvict属性使用详解"><a href="#7、-CacheEvict属性使用详解" class="headerlink" title="7、@CacheEvict属性使用详解"></a>7、@CacheEvict属性使用详解</h3><p>&nbsp;&nbsp;主要针对方法配置，能够根据一定的条件对缓存进行清空。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@CacheEvict(cacheNames = &quot;order&quot;, key = &quot;&apos;find&apos;+&apos;[&apos;+#result.id+&apos;]&apos;&quot;)</span><br><span class="line">public void delete(Integer id)&#123;</span><br><span class="line">    orderRepository.deleteById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>key<br>要删除的key</p>

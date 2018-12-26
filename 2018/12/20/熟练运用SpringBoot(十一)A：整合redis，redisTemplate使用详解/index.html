@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.15.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.16.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/springboot11.17.jpg">
-<meta property="og:updated_time" content="2018-12-26T14:03:54.919Z">
+<meta property="og:updated_time" content="2018-12-26T15:49:50.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解">
 <meta name="twitter:description" content="熟练运用SpringBoot(十一)A：整合redis，redisTemplate使用详解1、概述&amp;nbsp;&amp;nbsp;redis是目前业界使用最广泛的内存数据存储。具体介绍可以去看 熟练运行redis(一)：概述。本文将介绍springboot2.x与redis整合使用，重点剖析redisTemplate的部分高级使用方法！ 2、快速使用 mvn 1234567891011121314&amp;lt;">
@@ -470,6 +470,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 <p>这两种实现各有利弊，<strong>Jackson2JsonRedisSerializer能保证数据序列化后，干净的存储到redis，但不能提供反序列化的操作</strong>。<strong>GenericJackson2JsonRedisSerializer能提供反序列化的方便，但序列化后某种程度会污染数据</strong>，就好像鱼和熊掌不可兼得，大家可自行选择。</p>
 <hr>
 <p>在刚才redisTemplate的使用中，我们着重讲解了 <strong>修改redisTemplate默认序列化机制</strong> ,将数据序列化后保存到redis中，不知道大家有没有注意到有个小细节。<br><img src="\images\springboot11.15.jpg" alt="123"><br><img src="\images\springboot11.16.jpg" alt="123"><br>明明在操作时，key是order，可保存在redis中，却变成了”order”，多了个双引号，但是这并不影响我们日常使用，如果觉得看起来不爽，可以在redisTemplate注入的时候进行配置。<br><img src="\images\springboot11.17.jpg" alt="123"></p>
@@ -546,7 +547,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务/" rel="prev" title="熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务">
+              <a href="/2018/12/21/熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务/" rel="prev" title="熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务">
                 熟练运用SpringBoot(十一)B：利用redisTemplate、spring-cache实现高性能服务 <i class="fa fa-chevron-right"></i>
               </a>
             
