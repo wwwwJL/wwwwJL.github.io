@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。接下来就为大家一一介绍。 2、string&amp;nbsp;&amp;nbsp;在redis中，string表示的是一个动态字符串，是可以修改的字符串。当字符串长度小于1M时，扩容都是加倍现有的占用空间，但如">
+<meta name="description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。所有的数据结构都是以唯一的字符串作为key，不同的数据结构差异在于value的不一样。 详细可参考 菜鸟教程 redis">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熟练运用redis(二)：基础数据结构">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/02/熟练运用redis(二)：基础数据结构/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。接下来就为大家一一介绍。 2、string&amp;nbsp;&amp;nbsp;在redis中，string表示的是一个动态字符串，是可以修改的字符串。当字符串长度小于1M时，扩容都是加倍现有的占用空间，但如">
+<meta property="og:description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。所有的数据结构都是以唯一的字符串作为key，不同的数据结构差异在于value的不一样。 详细可参考 菜鸟教程 redis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-25T13:07:14.192Z">
+<meta property="og:updated_time" content="2018-12-27T09:15:43.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用redis(二)：基础数据结构">
-<meta name="twitter:description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。接下来就为大家一一介绍。 2、string&amp;nbsp;&amp;nbsp;在redis中，string表示的是一个动态字符串，是可以修改的字符串。当字符串长度小于1M时，扩容都是加倍现有的占用空间，但如">
+<meta name="twitter:description" content="熟练运用redis(二)：基础数据结构1、概述&amp;nbsp;&amp;nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。所有的数据结构都是以唯一的字符串作为key，不同的数据结构差异在于value的不一样。 详细可参考 菜鸟教程 redis">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  352字
+                  102字
                 </span>
               
 
@@ -388,42 +388,8 @@
       
 
       
-        <h2 id="熟练运用redis-二-：基础数据结构"><a href="#熟练运用redis-二-：基础数据结构" class="headerlink" title="熟练运用redis(二)：基础数据结构"></a>熟练运用redis(二)：基础数据结构</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。接下来就为大家一一介绍。</p>
-<h3 id="2、string"><a href="#2、string" class="headerlink" title="2、string"></a>2、string</h3><p>&nbsp;&nbsp;在redis中，string表示的是一个动态字符串，是可以修改的字符串。当字符串长度小于1M时，扩容都是加倍现有的占用空间，但如果超过1M，扩容则只多扩1M的空间。<code>注意：最大长度为512M。</code></p>
-<ol>
-<li><p>初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; set test test</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取value</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; get test</span><br><span class="line">&quot;test&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取value长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; strlen test</span><br><span class="line">(integer) 4</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取字串(start,end)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; getrange test 1 2</span><br><span class="line">&quot;es&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>覆盖字串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; setrange test 1</span><br><span class="line">(integer) 4</span><br><span class="line">&gt; get test</span><br><span class="line">&quot;twxt&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>追加字串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; append test www</span><br><span class="line">(integer) 7</span><br><span class="line">&gt; get test</span><br><span class="line">&quot;twxtwww&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>redis没有提供字串插入方法和字串删除方法。</code></p>
-<ol start="7">
-<li>计数器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; set tt 1</span><br><span class="line">OK</span><br><span class="line">&gt; incr tt</span><br><span class="line">(integer) 2</span><br><span class="line">&gt; get tt</span><br><span class="line">&quot;2&quot;</span><br><span class="line">&gt; incrby tt 100</span><br><span class="line">(integer) 102</span><br><span class="line">&gt; get tt</span><br><span class="line">&quot;102&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>计数器不能超过Long.Max，不能低于Long.MIN，否则会报错</code></p>
-<ol start="8">
-<li><p>删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; del tt</span><br><span class="line">(integer) 1 # 1:成功，0:不存在</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>过期删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; expire tt 60</span><br><span class="line">(integer) 1  # 1:成功，0:不存在</span><br><span class="line">&gt; ttl tt</span><br><span class="line">(integer) 50  # 50秒的寿命，-2:变量不存在，-1:没有设置过期时间</span><br><span class="line">&gt; get tt</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+        <h2 id="熟练运用redis-二-：基础数据结构"><a href="#熟练运用redis-二-：基础数据结构" class="headerlink" title="熟练运用redis(二)：基础数据结构"></a>熟练运用redis(二)：基础数据结构</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;redis有5个基本数据结构，string、list、hash、set和zset。它们是日常开发中使用频率非常高应用最为广泛的数据结构。所有的数据结构都是以唯一的字符串作为key，不同的数据结构差异在于value的不一样。</p>
+<p>详细可参考 <strong><a href="http://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="noopener">菜鸟教程 redis</a></strong></p>
 
       
     </div>
@@ -585,7 +551,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -653,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用redis-二-：基础数据结构"><span class="nav-number">1.</span> <span class="nav-text">熟练运用redis(二)：基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、string"><span class="nav-number">1.2.</span> <span class="nav-text">2、string</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用redis-二-：基础数据结构"><span class="nav-number">1.</span> <span class="nav-text">熟练运用redis(二)：基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -687,7 +653,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.8k</span>
+    <span title="Site words total count">26.5k</span>
   
 </div>
 
