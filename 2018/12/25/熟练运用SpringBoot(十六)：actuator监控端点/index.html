@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="熟练运用SpringBoot(十六)：监控端点">
+<meta name="description" content="熟练运用SpringBoot(十六)：actuator监控端点1、概述&amp;nbsp;&amp;nbsp;actuaotr是spring boot项目中非常强大的一个功能，有助于对应用程序进行监控和管理，通过restful api请求来监管、审计、收集应用的运行情况，针对微服务而言它是必不可少的一个环节。 对于监控的信息，一般分为2类：  由系统提供好的信息，这个需要关闭安全控制。 由用户定义，希望可以返回固">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用SpringBoot(十六)：监控端点">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：监控端点/index.html">
+<meta property="og:title" content="熟练运用SpringBoot(十六)：actuator监控端点">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：actuator监控端点/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="熟练运用SpringBoot(十六)：监控端点">
+<meta property="og:description" content="熟练运用SpringBoot(十六)：actuator监控端点1、概述&amp;nbsp;&amp;nbsp;actuaotr是spring boot项目中非常强大的一个功能，有助于对应用程序进行监控和管理，通过restful api请求来监管、审计、收集应用的运行情况，针对微服务而言它是必不可少的一个环节。 对于监控的信息，一般分为2类：  由系统提供好的信息，这个需要关闭安全控制。 由用户定义，希望可以返回固">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-23T14:42:09.166Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/springboot16.0.jpg">
+<meta property="og:updated_time" content="2018-12-28T13:48:47.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用SpringBoot(十六)：监控端点">
-<meta name="twitter:description" content="熟练运用SpringBoot(十六)：监控端点">
+<meta name="twitter:title" content="熟练运用SpringBoot(十六)：actuator监控端点">
+<meta name="twitter:description" content="熟练运用SpringBoot(十六)：actuator监控端点1、概述&amp;nbsp;&amp;nbsp;actuaotr是spring boot项目中非常强大的一个功能，有助于对应用程序进行监控和管理，通过restful api请求来监管、审计、收集应用的运行情况，针对微服务而言它是必不可少的一个环节。 对于监控的信息，一般分为2类：  由系统提供好的信息，这个需要关闭安全控制。 由用户定义，希望可以返回固">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/springboot16.0.jpg">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：监控端点/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：actuator监控端点/">
 
 
 
 
 
-  <title>熟练运用SpringBoot(十六)：监控端点 | 突突的技术博客</title>
+  <title>熟练运用SpringBoot(十六)：actuator监控端点 | 突突的技术博客</title>
   
 
 
@@ -251,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：监控端点/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/25/熟练运用SpringBoot(十六)：actuator监控端点/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(十六)：监控端点</h1>
+          <h1 class="post-title" itemprop="name headline">熟练运用SpringBoot(十六)：actuator监控端点</h1>
         
 
         <div class="post-meta">
@@ -321,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/25/熟练运用SpringBoot(十六)：监控端点/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/25/熟练运用SpringBoot(十六)：监控端点/" itemprop="commentCount"></span>
+                <a href="/2018/12/25/熟练运用SpringBoot(十六)：actuator监控端点/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/25/熟练运用SpringBoot(十六)：actuator监控端点/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  11字
+                  144字
                 </span>
               
 
@@ -388,7 +390,13 @@
       
 
       
-        <h2 id="熟练运用SpringBoot-十六-：监控端点"><a href="#熟练运用SpringBoot-十六-：监控端点" class="headerlink" title="熟练运用SpringBoot(十六)：监控端点"></a>熟练运用SpringBoot(十六)：监控端点</h2>
+        <h2 id="熟练运用SpringBoot-十六-：actuator监控端点"><a href="#熟练运用SpringBoot-十六-：actuator监控端点" class="headerlink" title="熟练运用SpringBoot(十六)：actuator监控端点"></a>熟练运用SpringBoot(十六)：actuator监控端点</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>&nbsp;&nbsp;actuaotr是spring boot项目中非常强大的一个功能，有助于对应用程序进行监控和管理，通过restful api请求来监管、审计、收集应用的运行情况，针对微服务而言它是必不可少的一个环节。</p>
+<p>对于监控的信息，一般分为2类：</p>
+<ul>
+<li>由系统提供好的信息，这个需要关闭安全控制。<br><img src="\images\springboot16.0.jpg" alt="123"></li>
+<li>由用户定义，希望可以返回固定的一些信息，比如版本，服务名称等等。</li>
+</ul>
+
       
     </div>
     
@@ -459,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/26/熟练运用SpringBoot(十九)：整合Restful/" rel="prev" title="熟练运用SpringBoot(十九)：整合Restful">
-                熟练运用SpringBoot(十九)：整合Restful <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/26/熟练运用SpringBoot(十七)：整合SpringSecurity使用/" rel="prev" title="熟练运用SpringBoot(十七)：整合SpringSecurity使用">
+                熟练运用SpringBoot(十七)：整合SpringSecurity使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-十六-：监控端点"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(十六)：监控端点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟练运用SpringBoot-十六-：actuator监控端点"><span class="nav-number">1.</span> <span class="nav-text">熟练运用SpringBoot(十六)：actuator监控端点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +659,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.5k</span>
+    <span title="Site words total count">26.6k</span>
   
 </div>
 
