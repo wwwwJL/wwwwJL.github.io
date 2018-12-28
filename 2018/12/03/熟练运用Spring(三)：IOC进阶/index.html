@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了快速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T13:41:13.607Z">
+<meta property="og:updated_time" content="2018-12-28T07:43:44.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熟练运用Spring(三)：IOC&#x2F;DI进阶">
 <meta name="twitter:description" content="熟练运用spring(三)：IOC/DI进阶&amp;nbsp;&amp;nbsp;上一章节，我们对Spring IOC进行了快速入门，这一章节，会对其中的使用细节与相关高级知识做具体讲解。 1、环境与profile12345678910111213@Configurationpublic class Spring03Config &amp;#123;    @Bean    public DataSource data">
@@ -431,7 +431,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">String getProperty(String key);</span><br><span class="line"></span><br><span class="line">String getProperty(String key, String defaultValue);</span><br><span class="line"></span><br><span class="line">&lt;T&gt; T getProperty(String key, Class&lt;T&gt; clzz);//比如配置文件是value是个数字，但是你需要将他转换成string类型，就可以用到这个方法</span><br><span class="line"></span><br><span class="line">&lt;T&gt; T getProperty(String key, Class&lt;T&gt; clzz, T defaultValue);</span><br><span class="line"></span><br><span class="line">String getRequiredProperty(String key);//若没有key对应的value，则会报错</span><br><span class="line"></span><br><span class="line">&lt;T&gt; T getRequiredProperty(String key, Class&lt;T&gt; clzz);</span><br><span class="line"></span><br><span class="line">boolean acceptsProfiles(String... profiles);//判断当前环境是否是参数环境</span><br></pre></td></tr></table></figure>
 <hr>
-<p>  &nbsp;&nbsp;至此，第2章的内容已结束了，这一章很关键，熟练掌握会对之后springboot的学习打下基础。</p>
+<p>  &nbsp;&nbsp;至此，第3章的内容已结束了，这一章很关键，熟练掌握会对之后springboot的学习打下基础。</p>
 
       
     </div>
