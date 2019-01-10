@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="技术改变一切">
+<meta name="description" content="并发编程(一)：基础知识1、进程与线程1.1 进程操作系统上运行的每个程序都是一个进程。它可以看成程序执行的一个实例，一个进程无法访问另一个进程的变量和数据结构。如果想让一个进程访问另一个进程的资源，需要使用进程间通信，比如管道，文件，套接字（socket）等。 1.2 线程线程是轻量级的进程。表示在某个进程中一条单独的执行流，拥有自己的程序执行计数器，和栈。   使用线程可以把占据时间长的程序中">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟练运用redis(九)：发布订阅">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/09/熟练运用redis(九)：发布订阅/index.html">
+<meta property="og:title" content="并发编程(一)：基础知识">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/01/并发编程(一)：基础知识/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="技术改变一切">
+<meta property="og:description" content="并发编程(一)：基础知识1、进程与线程1.1 进程操作系统上运行的每个程序都是一个进程。它可以看成程序执行的一个实例，一个进程无法访问另一个进程的变量和数据结构。如果想让一个进程访问另一个进程的资源，需要使用进程间通信，比如管道，文件，套接字（socket）等。 1.2 线程线程是轻量级的进程。表示在某个进程中一条单独的执行流，拥有自己的程序执行计数器，和栈。   使用线程可以把占据时间长的程序中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-23T15:03:09.613Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/并发1.0.jpg">
+<meta property="og:updated_time" content="2019-01-10T05:44:06.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟练运用redis(九)：发布订阅">
-<meta name="twitter:description" content="技术改变一切">
+<meta name="twitter:title" content="并发编程(一)：基础知识">
+<meta name="twitter:description" content="并发编程(一)：基础知识1、进程与线程1.1 进程操作系统上运行的每个程序都是一个进程。它可以看成程序执行的一个实例，一个进程无法访问另一个进程的变量和数据结构。如果想让一个进程访问另一个进程的资源，需要使用进程间通信，比如管道，文件，套接字（socket）等。 1.2 线程线程是轻量级的进程。表示在某个进程中一条单独的执行流，拥有自己的程序执行计数器，和栈。   使用线程可以把占据时间长的程序中">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/并发1.0.jpg">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/09/熟练运用redis(九)：发布订阅/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/01/并发编程(一)：基础知识/">
 
 
 
 
 
-  <title>熟练运用redis(九)：发布订阅 | 突突的技术博客</title>
+  <title>并发编程(一)：基础知识 | 突突的技术博客</title>
   
 
 
@@ -251,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/09/熟练运用redis(九)：发布订阅/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/01/并发编程(一)：基础知识/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟练运用redis(九)：发布订阅</h1>
+          <h1 class="post-title" itemprop="name headline">并发编程(一)：基础知识</h1>
         
 
         <div class="post-meta">
@@ -280,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T00:00:00+08:00">
-                2019-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T00:00:00+08:00">
+                2018-12-01
               </time>
             
 
@@ -303,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/熟练运用redis/" itemprop="url" rel="index">
-                    <span itemprop="name">熟练运用redis</span>
+                  <a href="/categories/并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">并发编程</span>
                   </a>
                 </span>
 
@@ -321,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/09/熟练运用redis(九)：发布订阅/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/09/熟练运用redis(九)：发布订阅/" itemprop="commentCount"></span>
+                <a href="/2018/12/01/并发编程(一)：基础知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/并发编程(一)：基础知识/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +353,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  0字
+                  1k字
                 </span>
               
 
@@ -367,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -388,7 +390,72 @@
       
 
       
-        
+        <h2 id="并发编程-一-：基础知识"><a href="#并发编程-一-：基础知识" class="headerlink" title="并发编程(一)：基础知识"></a>并发编程(一)：基础知识</h2><h3 id="1、进程与线程"><a href="#1、进程与线程" class="headerlink" title="1、进程与线程"></a>1、进程与线程</h3><h4 id="1-1-进程"><a href="#1-1-进程" class="headerlink" title="1.1 进程"></a>1.1 进程</h4><p>操作系统上运行的每个程序都是一个进程。它可以看成程序执行的一个实例，一个进程无法访问另一个进程的变量和数据结构。如果想让一个进程访问另一个进程的资源，需要使用进程间通信，比如管道，文件，套接字（socket）等。</p>
+<h4 id="1-2-线程"><a href="#1-2-线程" class="headerlink" title="1.2 线程"></a>1.2 线程</h4><p>线程是轻量级的进程。表示在某个进程中一条单独的执行流，拥有自己的程序执行计数器，和栈。</p>
+<hr>
+<ul>
+<li><p>使用线程可以把占据时间长的程序中的任务放到后台去处理，程序的运行速度可能加快。</p>
+</li>
+<li><p>线程数量若控制不好,则会影响性能。因为操作系统需要在它们之间切换，更多的线程需要更多的内存空间，线程的中止需要考虑其对程序运行的影响。</p>
+</li>
+</ul>
+<hr>
+<p><strong>进程是所有线程的集合，每一个线程是进程中的一条执行路径。</strong></p>
+<h3 id="2、创建线程"><a href="#2、创建线程" class="headerlink" title="2、创建线程"></a>2、创建线程</h3><h4 id="2-1-继承Thread"><a href="#2-1-继承Thread" class="headerlink" title="2.1 继承Thread"></a>2.1 继承Thread</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class HelloThread extends Thread &#123;    </span><br><span class="line">   @Override    </span><br><span class="line">   public void run() &#123;        </span><br><span class="line">     System.out.println(&quot;hello&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;    </span><br><span class="line">  Thread thread = new HelloThread();    </span><br><span class="line">  thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>run方法类似于单线程时的mian方法，创建线程并开启运行时，该线程会从run方法的第一条执行至最后一条。</p>
+<p><code>为什么调用的start，则执行的是run？</code></p>
+<ul>
+<li><p>start：启动该线程，使其成为单独的执行流，操作系统会为它分配相关资源，分配时间片供它执行，执行的起点为run。</p>
+</li>
+<li><p>run：不会启动该线程，仅仅是在原来线程中调用执行run方法而已。</p>
+</li>
+</ul>
+<h4 id="2-2-实现runnable接口"><a href="#2-2-实现runnable接口" class="headerlink" title="2.2 实现runnable接口"></a>2.2 实现runnable接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Runnable &#123;    </span><br><span class="line">  public abstract void run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class HelloRunnable implements Runnable &#123;    </span><br><span class="line">  @Override    </span><br><span class="line">  public void run() &#123;        </span><br><span class="line">    System.out.println(&quot;hello&quot;);    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;    </span><br><span class="line">  Thread helloThread = new Thread(new HelloRunnable());    </span><br><span class="line">  helloThread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>在java中，一个类只支持单继承，但是接口可以实现多个，同时runnable本质也还是通过thread创建并启动现成的。</code></p>
+<hr>
+<p>在单cpu的机器上，同一时刻只能执行一个线程，但也可以执行多线程任务，cpu在执行过程中，会把时间分为很多时间片，哪个线程争取到了时间片，便执行。</p>
+<p>在运行中，操作系统为我们屏蔽了这种差异，带来的感觉就好像系统可以同一时间执行多个任务，但多个任务执行顺序是不一定的，谁先争取到了时间片，谁就先执行。</p>
+<hr>
+<h3 id="3、线程基本属性和方法"><a href="#3、线程基本属性和方法" class="headerlink" title="3、线程基本属性和方法"></a>3、线程基本属性和方法</h3><ul>
+<li><p>id，name<br>每个线程都有1个id和name，支持可以自定义。</p>
+</li>
+<li><p>优先级  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public final void setPriority(int newPriority);</span><br><span class="line">public final int getPriority();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通常来讲会有1-10的等级（默认为5），再根据操作系统不同会有偏差。对操作系统来说，这个优先级仅仅是一种建议或提示，并非强制。</p>
+<ul>
+<li>状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public State getState();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public enum State &#123;  </span><br><span class="line">  NEW,  //刚创建，但没有调用start</span><br><span class="line">  RUNNABLE, //调用start后，但不代表就在运行，有可能当前cpu的时间片并非运行此线程</span><br><span class="line">  BLOCKED,  //阻塞</span><br><span class="line">  WAITING,  //阻塞</span><br><span class="line">  TIMED_WAITING, //阻塞</span><br><span class="line">  TERMINATED; //运行结束后</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="\images\并发1.0.jpg" alt="123"></p>
+<ul>
+<li>是否daemon线程（守护）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public final void setDaemon(boolean on);</span><br><span class="line">public final boolean isDaemon();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当程序只剩下守护线程时，不管该线程时候运行完毕，程序都会退出。<br>可以根据业务场景进行设置，同时负责垃圾回收机制的线程，就是daemon线程。</p>
+<ul>
+<li>sleep<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static native void sleep(long millis) throws InterruptedException;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>让该线程睡眠参数时间。</p>
+<ul>
+<li>yield<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static native void yield();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>表示该线程主动让出cpu。但和优先级一样，对操作系统来说，也仅仅是一种建议。</p>
+<ul>
+<li>join<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final void join() throws InterruptedException;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final synchronized void join(long millis) throws InterruptedException;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws InterruptedException &#123;    </span><br><span class="line">  Thread thread = new HelloThread();    </span><br><span class="line">  thread.start();    </span><br><span class="line">  thread.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表示外面的线程等待里面创建出来的线程执行结束后，在执行。</p>
+
       
     </div>
     
@@ -449,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/08/熟练运用redis(八)：Scan/" rel="next" title="熟练运用redis(八)：Scan">
-                <i class="fa fa-chevron-left"></i> 熟练运用redis(八)：Scan
+              <a href="/2018/12/01/熟练运用Spring(一)：概述/" rel="next" title="熟练运用Spring(一)：概述">
+                <i class="fa fa-chevron-left"></i> 熟练运用Spring(一)：概述
               </a>
             
           </div>
@@ -459,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/10/熟练运用redis(十)：主从复制/" rel="prev" title="熟练运用redis(十)：主从复制">
-                熟练运用redis(十)：主从复制 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/02/熟练运用Spring(二)：IOC入门/" rel="prev" title="熟练运用Spring(二)：IOC/DI入门">
+                熟练运用Spring(二)：IOC/DI入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -540,7 +616,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +627,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -599,6 +675,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发编程-一-：基础知识"><span class="nav-number">1.</span> <span class="nav-text">并发编程(一)：基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、进程与线程"><span class="nav-number">1.1.</span> <span class="nav-text">1、进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-进程"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-线程"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 线程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、创建线程"><span class="nav-number">1.2.</span> <span class="nav-text">2、创建线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-继承Thread"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 继承Thread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-实现runnable接口"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 实现runnable接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、线程基本属性和方法"><span class="nav-number">1.3.</span> <span class="nav-text">3、线程基本属性和方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -626,7 +718,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.6k</span>
+    <span title="Site words total count">28.7k</span>
   
 </div>
 
