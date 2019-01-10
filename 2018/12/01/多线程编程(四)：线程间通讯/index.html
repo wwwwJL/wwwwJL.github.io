@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="并发编程(二)：线程安全1、什么是线程安全问题？当多个线程同时共享同一个全局变量或静态变量，做写的操作时，可能会发生数据冲突问题，这就是线程安全问题。但是做读操作是不会发生数据冲突问题。 2、引发线程安全的原因每个线程都是一条单独的执行流，有自己的程序计数器，栈。但线程之间  可以共享内存，也可以说他们共享堆，可以访问到相同的数据或对象。   当多条线程访问相同数据时，会引发竞态条件、内存可见性问">
+<meta name="description" content="多线程编程(四)：线程间通讯1、介绍多线程除了竞争访问操作共享资源外，也需要相互协作，而本章将会介绍java中多线程协作的基本机制，wait/notify。 2、使用场景 生产者消费者写作模式，生产者将数据放在队列上，消费者从队列中获取，若队列长度有限，在队列满的时候，生产者需要等待，在队列空的时候，消费者需要等待。  同时开始，类似运动员比赛，在枪声响起，多个线程统一开始执行。  等待结束，多个">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并发编程(二)：线程安全">
-<meta property="og:url" content="http://wwwwJL.github.io/2018/12/01/并发编程(二)：线程安全/index.html">
+<meta property="og:title" content="多线程编程(四)：线程间通讯">
+<meta property="og:url" content="http://wwwwJL.github.io/2018/12/01/多线程编程(四)：线程间通讯/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="并发编程(二)：线程安全1、什么是线程安全问题？当多个线程同时共享同一个全局变量或静态变量，做写的操作时，可能会发生数据冲突问题，这就是线程安全问题。但是做读操作是不会发生数据冲突问题。 2、引发线程安全的原因每个线程都是一条单独的执行流，有自己的程序计数器，栈。但线程之间  可以共享内存，也可以说他们共享堆，可以访问到相同的数据或对象。   当多条线程访问相同数据时，会引发竞态条件、内存可见性问">
+<meta property="og:description" content="多线程编程(四)：线程间通讯1、介绍多线程除了竞争访问操作共享资源外，也需要相互协作，而本章将会介绍java中多线程协作的基本机制，wait/notify。 2、使用场景 生产者消费者写作模式，生产者将数据放在队列上，消费者从队列中获取，若队列长度有限，在队列满的时候，生产者需要等待，在队列空的时候，消费者需要等待。  同时开始，类似运动员比赛，在枪声响起，多个线程统一开始执行。  等待结束，多个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T06:37:53.158Z">
+<meta property="og:updated_time" content="2019-01-10T10:25:27.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并发编程(二)：线程安全">
-<meta name="twitter:description" content="并发编程(二)：线程安全1、什么是线程安全问题？当多个线程同时共享同一个全局变量或静态变量，做写的操作时，可能会发生数据冲突问题，这就是线程安全问题。但是做读操作是不会发生数据冲突问题。 2、引发线程安全的原因每个线程都是一条单独的执行流，有自己的程序计数器，栈。但线程之间  可以共享内存，也可以说他们共享堆，可以访问到相同的数据或对象。   当多条线程访问相同数据时，会引发竞态条件、内存可见性问">
+<meta name="twitter:title" content="多线程编程(四)：线程间通讯">
+<meta name="twitter:description" content="多线程编程(四)：线程间通讯1、介绍多线程除了竞争访问操作共享资源外，也需要相互协作，而本章将会介绍java中多线程协作的基本机制，wait/notify。 2、使用场景 生产者消费者写作模式，生产者将数据放在队列上，消费者从队列中获取，若队列长度有限，在队列满的时候，生产者需要等待，在队列空的时候，消费者需要等待。  同时开始，类似运动员比赛，在枪声响起，多个线程统一开始执行。  等待结束，多个">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/01/并发编程(二)：线程安全/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2018/12/01/多线程编程(四)：线程间通讯/">
 
 
 
 
 
-  <title>并发编程(二)：线程安全 | 突突的技术博客</title>
+  <title>多线程编程(四)：线程间通讯 | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/01/并发编程(二)：线程安全/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2018/12/01/多线程编程(四)：线程间通讯/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">并发编程(二)：线程安全</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程(四)：线程间通讯</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程</span>
+                  <a href="/categories/多线程编程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程编程</span>
                   </a>
                 </span>
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/01/并发编程(二)：线程安全/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/并发编程(二)：线程安全/" itemprop="commentCount"></span>
+                <a href="/2018/12/01/多线程编程(四)：线程间通讯/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/多线程编程(四)：线程间通讯/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  840字
+                  377字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  1分钟
                 </span>
               
             </div>
@@ -388,43 +388,18 @@
       
 
       
-        <h2 id="并发编程-二-：线程安全"><a href="#并发编程-二-：线程安全" class="headerlink" title="并发编程(二)：线程安全"></a>并发编程(二)：线程安全</h2><h3 id="1、什么是线程安全问题？"><a href="#1、什么是线程安全问题？" class="headerlink" title="1、什么是线程安全问题？"></a>1、什么是线程安全问题？</h3><p>当多个线程同时共享同一个全局变量或静态变量，做写的操作时，可能会发生数据冲突问题，这就是线程安全问题。但是做读操作是不会发生数据冲突问题。</p>
-<h3 id="2、引发线程安全的原因"><a href="#2、引发线程安全的原因" class="headerlink" title="2、引发线程安全的原因"></a>2、引发线程安全的原因</h3><p>每个线程都是一条单独的执行流，有自己的程序计数器，栈。但线程之间  可以共享内存，也可以说他们共享堆，可以访问到相同的数据或对象。  </p>
-<p>当多条线程访问相同数据时，会引发竞态条件、内存可见性问题：</p>
-<ul>
-<li>竞态条件<br><code>当多条线程操作同一对象时，执行结果可能会不正确。</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class CounterThread extends Thread &#123;    </span><br><span class="line">  private static int counter = 0;    </span><br><span class="line">  @Override    </span><br><span class="line">  public void run() &#123;        </span><br><span class="line">    for(int i = 0; i &lt; 1000; i++) &#123;            </span><br><span class="line">      counter++;        </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line">public static void main(String[] args) throws InterruptedException &#123;        </span><br><span class="line">  int num = 1000;        </span><br><span class="line">  Thread[] threads = new Thread[num];        </span><br><span class="line">  for(int i = 0; i &lt; num; i++) &#123;            </span><br><span class="line">    threads[i] = new CounterThread();            </span><br><span class="line">    threads[i].start();        </span><br><span class="line">  &#125;        </span><br><span class="line">  for(int i = 0; i &lt; num; i++) &#123;            </span><br><span class="line">    threads[i].join();        </span><br><span class="line">  &#125;        </span><br><span class="line">  System.out.println(counter);    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>预期结果为100w，但实际几乎都不会是100w，经常是99w左右。</p>
-<p>原因：</p>
-<ol>
-<li>counter++不是原子操作：取当前counter值，在基础上+1，复制给counter。</li>
-<li>多个线程可能同时在取counter值时，都取到了相同值，此时这些线程在值基础上+1，误差就出来。</li>
+        <h2 id="多线程编程-四-：线程间通讯"><a href="#多线程编程-四-：线程间通讯" class="headerlink" title="多线程编程(四)：线程间通讯"></a>多线程编程(四)：线程间通讯</h2><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>多线程除了竞争访问操作共享资源外，也需要相互协作，而本章将会介绍java中多线程协作的基本机制，wait/notify。</p>
+<h3 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h3><ol>
+<li><p>生产者消费者写作模式，生产者将数据放在队列上，消费者从队列中获取，若队列长度有限，在队列满的时候，生产者需要等待，在队列空的时候，消费者需要等待。</p>
+</li>
+<li><p>同时开始，类似运动员比赛，在枪声响起，多个线程统一开始执行。</p>
+</li>
+<li><p>等待结束，多个线程下，在某个线程还没执行完毕，需要等待全部线程执行完毕，在进行之后操作。</p>
+</li>
 </ol>
-<p>解决方案：</p>
-<ol>
-<li>synchronized</li>
-<li>显式锁</li>
-<li>原子变量</li>
-</ol>
-<ul>
-<li>内存可见性问题<br><code>多条线程在访问共享数据时，一条线程对其进行修改，另一个线程不一定能立刻感知。</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class VisibilityDemo &#123;    </span><br><span class="line">  private static boolean shutdown = false;    </span><br><span class="line">  static class HelloThread extends Thread &#123;        </span><br><span class="line">    @Override        </span><br><span class="line">    public void run() &#123;            </span><br><span class="line">      while(!shutdown)&#123;                </span><br><span class="line">        // do nothing            </span><br><span class="line">      &#125;            </span><br><span class="line">      System.out.println(&quot;exit hello&quot;);        </span><br><span class="line">      &#125;   </span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line">public static void main(String[] args) throws InterruptedException &#123;        </span><br><span class="line">  new HelloThread().start();        </span><br><span class="line">  Thread.sleep(1000);        </span><br><span class="line">  shutdown = true;        </span><br><span class="line">  System.out.println(&quot;exit main&quot;);   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>预期结果为两条线程都在控制台打印。但实际执行HelloThread永远不会打印。</p>
-<p>原因：</p>
-<ol>
-<li>在操作系统中，除了内存，数据还会被缓存在cpu寄存器及缓存中，当访问一个变量，该线程会先从cpu缓存中获取数据，当修改一个变量，该线程也会先对对应的cpu缓存进行修改，稍后才会被同步到内存中。</li>
-</ol>
-<p>解决方案：</p>
-<ol>
-<li>volatile</li>
-<li>synchronized</li>
-<li>显式锁</li>
-</ol>
-<h3 id="3、关于多线程的一些思考"><a href="#3、关于多线程的一些思考" class="headerlink" title="3、关于多线程的一些思考"></a>3、关于多线程的一些思考</h3><p>既然使用多线程会出现如上的多种线程安全性问题，但在如今普遍多核的时代，还是推荐使用多线程，多线程可以最大化的利用多cpu的计算能力，能充分利用硬件资源。  </p>
-<p>创建多线程是有成本的，创建线程本身就会消耗操作系统自身资源，会为其创建配套数据结构，栈，程序计数器等，同时创建也需要一定时间。  </p>
-<p>多线程之间的调动和切换也需要成本，当有大量线程时，操作系统会忙于之间的调度，各个时间片对应的当前线程里面的栈值，程序计数器值，cpu缓存值要不停的进行切换，这种上下文切换不仅耗时，还会导致cpu中的缓存失效，从而导致计算能力下降。</p>
+<h3 id="3、wait-notify基本用法"><a href="#3、wait-notify基本用法" class="headerlink" title="3、wait/notify基本用法"></a>3、wait/notify基本用法</h3><p>在java中，所有对象的父类是Object，而wait/notify并非定义在Thread类，而是Object，这样使得每个对象都可以调用。</p>
+<h4 id="3-1-wait等待"><a href="#3-1-wait等待" class="headerlink" title="3.1 wait等待"></a>3.1 wait等待</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public final void wait() throws InterruptedException; //无限制等待</span><br><span class="line">public final native void wait(long timeout) throws InterruptedException; //等待参数时间</span><br></pre></td></tr></table></figure>
+<p>在调用wait后，背面发生些什么？<br>我们都知道，每个对象都有一个锁和等待队列，某个线程在进入synchronized代码块时，会争取获得锁，如果争取不到，则操作系统会把当前线程放至对应的等待队列中。<code>其实每个对象除等待队列，还有另一个队列，为条件队列，该队列作用于线程间的协作。</code></p>
 
       
     </div>
@@ -486,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/01/并发编程(四)：线程间通讯/" rel="next" title="并发编程(四)：线程间通讯">
-                <i class="fa fa-chevron-left"></i> 并发编程(四)：线程间通讯
+              <a href="/2018/12/01/多线程编程(十六)：线程调度/" rel="next" title="多线程编程(十六)：线程调度">
+                <i class="fa fa-chevron-left"></i> 多线程编程(十六)：线程调度
               </a>
             
           </div>
@@ -496,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/01/markdown写作语法/" rel="prev" title="Markdown写作常用语法">
-                Markdown写作常用语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/01/多线程编程(十三)：线程按需交替案例/" rel="prev" title="多线程编程(十三)：线程按需交替案例">
+                多线程编程(十三)：线程按需交替案例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +561,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -654,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发编程-二-：线程安全"><span class="nav-number">1.</span> <span class="nav-text">并发编程(二)：线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是线程安全问题？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是线程安全问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、引发线程安全的原因"><span class="nav-number">1.2.</span> <span class="nav-text">2、引发线程安全的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、关于多线程的一些思考"><span class="nav-number">1.3.</span> <span class="nav-text">3、关于多线程的一些思考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-四-：线程间通讯"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(四)：线程间通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、使用场景"><span class="nav-number">1.2.</span> <span class="nav-text">2、使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、wait-notify基本用法"><span class="nav-number">1.3.</span> <span class="nav-text">3、wait/notify基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-wait等待"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 wait等待</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -688,7 +663,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.7k</span>
+    <span title="Site words total count">29.2k</span>
   
 </div>
 
