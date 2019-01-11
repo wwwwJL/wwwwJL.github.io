@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十)：显式同步锁Lock">
+<meta name="description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程编程(十)：显式同步锁Lock">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/10/多线程编程(十)：显式同步锁Lock/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十)：显式同步锁Lock">
+<meta property="og:description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T07:14:42.018Z">
+<meta property="og:updated_time" content="2019-01-11T15:33:14.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(十)：显式同步锁Lock">
-<meta name="twitter:description" content="多线程编程(十)：显式同步锁Lock">
+<meta name="twitter:description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  12字
+                  643字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,7 +388,26 @@
       
 
       
-        <h2 id="多线程编程-十-：显式同步锁Lock"><a href="#多线程编程-十-：显式同步锁Lock" class="headerlink" title="多线程编程(十)：显式同步锁Lock"></a>多线程编程(十)：显式同步锁Lock</h2>
+        <h2 id="多线程编程-十-：显式同步锁Lock"><a href="#多线程编程-十-：显式同步锁Lock" class="headerlink" title="多线程编程(十)：显式同步锁Lock"></a>多线程编程(十)：显式同步锁Lock</h2><h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。</p>
+<p>显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：</p>
+<ul>
+<li>锁接口Lock，主要实现类ReentranLock（可重入锁）;</li>
+<li>读写锁接口ReadWriteLock，主要实现类ReentranReadWriteLock（可重入读写锁）;</li>
+</ul>
+<p>本章主要介绍接口Lock及ReentranLock，读写锁后续再单独说明。</p>
+<h3 id="2、基本用法"><a href="#2、基本用法" class="headerlink" title="2、基本用法"></a>2、基本用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface Lock &#123;    </span><br><span class="line">  void lock(); //获取锁，若获取不到，则会阻塞直到成功</span><br><span class="line">  void unlock(); //释放锁</span><br><span class="line">  void lockInterruptibly() throws InterruptedException; //同lock，不同为可以相应中断，如果被其他线程中断，则抛出异常  </span><br><span class="line">  boolean tryLock(); //尝试获取锁，若获取不到，立即返回false，不阻塞    </span><br><span class="line">  boolean tryLock(long time, TimeUnit unit) throws InterruptedException; //尝试获取锁，若获取不到，根据参数时间阻塞，时间到后，立即返回      </span><br><span class="line">  Condition newCondition(); //条件，关于Condition，下一章会详细说明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上，可以看出，相比synchronized，显式锁更加灵活。</p>
+<h3 id="3、ReentranLock可重入锁"><a href="#3、ReentranLock可重入锁" class="headerlink" title="3、ReentranLock可重入锁"></a>3、ReentranLock可重入锁</h3><p>ReentranLock具有以下特征：</p>
+<ul>
+<li>可重入，若该线程在持有锁的前提下，再去调用，可直接获得锁。</li>
+<li>可以解决竞态条件。</li>
+<li>可以保证内存可见性。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public ReentrantLock();</span><br><span class="line">public ReentrantLock(boolean fair); //该参数表示锁是否保证公平性，也就是说，等待时间越长则优先获得锁，但会影响性能</span><br></pre></td></tr></table></figure>
+<p><code>使用中，为了避免种种原因，导致无法释放锁，确保unlock可以正常调用，一般在finally里调用unlock。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void incr() &#123;        </span><br><span class="line"> lock.lock();        </span><br><span class="line">  try &#123;            </span><br><span class="line">   count++;        </span><br><span class="line">  &#125; finally &#123;            </span><br><span class="line">   lock.unlock();        </span><br><span class="line">  &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>同时为了避免发生死锁，尽量使用tryLock。</code>在持有一个锁获取另一个锁而获取不到的时候，可以释放已持有的锁，给其他线程尝试锁的机会，然后再重试获取所有的锁。</p>
+<h3 id="4、demo"><a href="#4、demo" class="headerlink" title="4、demo"></a>4、demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class TestLock &#123;</span><br><span class="line"></span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">   Ticket ticket = new Ticket();</span><br><span class="line"></span><br><span class="line">   new Thread(ticket, &quot;1号窗口&quot;).start();</span><br><span class="line">   new Thread(ticket, &quot;2号窗口&quot;).start();</span><br><span class="line">   new Thread(ticket, &quot;3号窗口&quot;).start();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Ticket implements Runnable&#123;</span><br><span class="line"> private int tick = 100;</span><br><span class="line"> private Lock lock = new ReentrantLock();</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"> public void run() &#123;</span><br><span class="line"></span><br><span class="line">   while(true)&#123;</span><br><span class="line"></span><br><span class="line">     lock.lock(); //上锁</span><br><span class="line"></span><br><span class="line">     try&#123;</span><br><span class="line"></span><br><span class="line">       if(tick &gt; 0)&#123;</span><br><span class="line">         try &#123;</span><br><span class="line">           Thread.sleep(200);</span><br><span class="line">         &#125; catch (InterruptedException e) &#123;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         System.out.println(Thread.currentThread().getName() + &quot; 完成售票，余票为：&quot; + --tick);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;finally&#123;</span><br><span class="line">       lock.unlock(); //释放锁</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -459,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/多线程编程(十一)：生产者消费者案例/" rel="prev" title="多线程编程(十一)：生产者消费者案例">
-                多线程编程(十一)：生产者消费者案例 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/11/多线程编程(十一)：Condition线程通信/" rel="prev" title="多线程编程(十一)：Condition线程通信">
+                多线程编程(十一)：Condition线程通信 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +568,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十-：显式同步锁Lock"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十)：显式同步锁Lock</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十-：显式同步锁Lock"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十)：显式同步锁Lock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概念"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、基本用法"><span class="nav-number">1.2.</span> <span class="nav-text">2、基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ReentranLock可重入锁"><span class="nav-number">1.3.</span> <span class="nav-text">3、ReentranLock可重入锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、demo"><span class="nav-number">1.4.</span> <span class="nav-text">4、demo</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +670,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.9k</span>
+    <span title="Site words total count">33.4k</span>
   
 </div>
 

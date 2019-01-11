@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十七)：ThreadLocal">
+<meta name="description" content="多线程编程(十二)：ReadWriteLock读写锁">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十七)：ThreadLocal">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/17/多线程编程(十七)：ThreadLocal/index.html">
+<meta property="og:title" content="多线程编程(十二)：ReadWriteLock读写锁">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十七)：ThreadLocal">
+<meta property="og:description" content="多线程编程(十二)：ReadWriteLock读写锁">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T07:15:31.038Z">
+<meta property="og:updated_time" content="2019-01-11T16:09:25.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十七)：ThreadLocal">
-<meta name="twitter:description" content="多线程编程(十七)：ThreadLocal">
+<meta name="twitter:title" content="多线程编程(十二)：ReadWriteLock读写锁">
+<meta name="twitter:description" content="多线程编程(十二)：ReadWriteLock读写锁">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/17/多线程编程(十七)：ThreadLocal/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/">
 
 
 
 
 
-  <title>多线程编程(十七)：ThreadLocal | 突突的技术博客</title>
+  <title>多线程编程(十二)：ReadWriteLock读写锁 | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/17/多线程编程(十七)：ThreadLocal/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十七)：ThreadLocal</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程(十二)：ReadWriteLock读写锁</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T00:00:00+08:00">
-                2019-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-12T00:00:00+08:00">
+                2019-01-12
               </time>
             
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/17/多线程编程(十七)：ThreadLocal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/17/多线程编程(十七)：ThreadLocal/" itemprop="commentCount"></span>
+                <a href="/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  8字
+                  11字
                 </span>
               
 
@@ -388,7 +388,7 @@
       
 
       
-        <h2 id="多线程编程-十七-：ThreadLocal"><a href="#多线程编程-十七-：ThreadLocal" class="headerlink" title="多线程编程(十七)：ThreadLocal"></a>多线程编程(十七)：ThreadLocal</h2>
+        <h2 id="多线程编程-十二-：ReadWriteLock读写锁"><a href="#多线程编程-十二-：ReadWriteLock读写锁" class="headerlink" title="多线程编程(十二)：ReadWriteLock读写锁"></a>多线程编程(十二)：ReadWriteLock读写锁</h2>
       
     </div>
     
@@ -449,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/16/多线程编程(十六)：线程调度/" rel="next" title="多线程编程(十六)：线程调度">
-                <i class="fa fa-chevron-left"></i> 多线程编程(十六)：线程调度
+              <a href="/2019/01/11/多线程编程(十一)：Condition线程通信/" rel="next" title="多线程编程(十一)：Condition线程通信">
+                <i class="fa fa-chevron-left"></i> 多线程编程(十一)：Condition线程通信
               </a>
             
           </div>
@@ -458,6 +458,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/13/多线程编程(十三)：线程池/" rel="prev" title="多线程编程(十三)：线程池">
+                多线程编程(十三)：线程池 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -545,7 +549,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -613,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十七-：ThreadLocal"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十七)：ThreadLocal</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十二-：ReadWriteLock读写锁"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十二)：ReadWriteLock读写锁</span></a></li></ol></div>
             
 
           </div>
@@ -647,7 +651,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.9k</span>
+    <span title="Site words total count">33.4k</span>
   
 </div>
 

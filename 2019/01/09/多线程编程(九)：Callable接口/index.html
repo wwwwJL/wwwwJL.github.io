@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="多线程编程(九)：Callable接口1、什么是Callable？Callable接口是创建线程一种方式，与Runnable接口的功能类似，但提供了比Runnable更加强大的功能：  可以在任务结束的时候提供一个返回值，Runnable无法提供这个功能  call方法分可以抛出异常，而Runnable的run方法不能抛出异常。   1234567891011class ThreadDemo im">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T13:18:11.013Z">
+<meta property="og:updated_time" content="2019-01-11T14:43:04.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(九)：Callable接口">
 <meta name="twitter:description" content="多线程编程(九)：Callable接口1、什么是Callable？Callable接口是创建线程一种方式，与Runnable接口的功能类似，但提供了比Runnable更加强大的功能：  可以在任务结束的时候提供一个返回值，Runnable无法提供这个功能  call方法分可以抛出异常，而Runnable的run方法不能抛出异常。   1234567891011class ThreadDemo im">
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  334字
+                  349字
                 </span>
               
 
@@ -403,7 +403,7 @@
 <li>实现Callable</li>
 <li>通过线程池创建</li>
 </ol>
-<h3 id="2、用法"><a href="#2、用法" class="headerlink" title="2、用法"></a>2、用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class TestCallable &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ThreadDemo td = new ThreadDemo();</span><br><span class="line"></span><br><span class="line">		//1.执行 Callable 方式，需要 FutureTask 实现类的支持，用于接收运算结果。</span><br><span class="line">		FutureTask&lt;Integer&gt; result = new FutureTask&lt;&gt;(td);</span><br><span class="line"></span><br><span class="line">		new Thread(result).start();</span><br><span class="line"></span><br><span class="line">		//2.接收线程运算后的结果</span><br><span class="line">		try &#123;</span><br><span class="line">			Integer sum = result.get();  //FutureTask 可用于 闭锁</span><br><span class="line">			System.out.println(sum);</span><br><span class="line">		&#125; catch (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThreadDemo implements Callable&lt;Integer&gt;&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public Integer call() throws Exception &#123;</span><br><span class="line">		int sum = 0;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt;= 100000; i++) &#123;</span><br><span class="line">			sum += i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、用法"><a href="#2、用法" class="headerlink" title="2、用法"></a>2、用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class TestCallable &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ThreadDemo td = new ThreadDemo();</span><br><span class="line"></span><br><span class="line">		//1.执行 Callable 方式，需要 FutureTask 实现类的支持，用于接收运算结果。</span><br><span class="line">		FutureTask&lt;Integer&gt; result = new FutureTask&lt;&gt;(td);</span><br><span class="line"></span><br><span class="line">		new Thread(result).start();</span><br><span class="line"></span><br><span class="line">		//2.接收线程运算后的结果</span><br><span class="line">		try &#123;</span><br><span class="line">			Integer sum = result.get();  //FutureTask 可用于 闭锁，也就是说，result执行完毕后，get才赋值给sum</span><br><span class="line">			System.out.println(sum);</span><br><span class="line">		&#125; catch (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThreadDemo implements Callable&lt;Integer&gt;&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public Integer call() throws Exception &#123;</span><br><span class="line">		int sum = 0;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt;= 100000; i++) &#123;</span><br><span class="line">			sum += i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>执行Callable方式，需要FutureTask实现类的支持，用于接收运算结果。FutureTask是Future接口的实现类。</code></p>
 
       
@@ -566,7 +566,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -668,7 +668,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.9k</span>
+    <span title="Site words total count">33.4k</span>
   
 </div>
 
