@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十二)：ReadWriteLock读写锁">
+<meta name="description" content="多线程编程(十二)：ReadWriteLock读写锁1、什么是读写锁？之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！   1234public interface ReadWriteLo">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程编程(十二)：ReadWriteLock读写锁">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/12/多线程编程(十二)：ReadWriteLock读写锁/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十二)：ReadWriteLock读写锁">
+<meta property="og:description" content="多线程编程(十二)：ReadWriteLock读写锁1、什么是读写锁？之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！   1234public interface ReadWriteLo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T16:09:25.444Z">
+<meta property="og:updated_time" content="2019-01-12T03:40:21.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(十二)：ReadWriteLock读写锁">
-<meta name="twitter:description" content="多线程编程(十二)：ReadWriteLock读写锁">
+<meta name="twitter:description" content="多线程编程(十二)：ReadWriteLock读写锁1、什么是读写锁？之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！   1234public interface ReadWriteLo">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  11字
+                  917字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -388,7 +388,37 @@
       
 
       
-        <h2 id="多线程编程-十二-：ReadWriteLock读写锁"><a href="#多线程编程-十二-：ReadWriteLock读写锁" class="headerlink" title="多线程编程(十二)：ReadWriteLock读写锁"></a>多线程编程(十二)：ReadWriteLock读写锁</h2>
+        <h2 id="多线程编程-十二-：ReadWriteLock读写锁"><a href="#多线程编程-十二-：ReadWriteLock读写锁" class="headerlink" title="多线程编程(十二)：ReadWriteLock读写锁"></a>多线程编程(十二)：ReadWriteLock读写锁</h2><h3 id="1、什么是读写锁？"><a href="#1、什么是读写锁？" class="headerlink" title="1、什么是读写锁？"></a>1、什么是读写锁？</h3><p>之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface ReadWriteLock &#123;    </span><br><span class="line">  Lock readLock();    </span><br><span class="line">  Lock writeLock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ReadWriteLock有两把锁（读锁，写锁），读操作使用读锁，写操作使用写锁，需要注意的是：</p>
+<ul>
+<li>读读才能并行</li>
+<li>写写/读写需要互斥</li>
+</ul>
+<p>另外，ReentrantReadWriteLock是可重入的读写锁：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public ReentrantReadWriteLock();</span><br><span class="line">public ReentrantReadWriteLock(boolean fair);</span><br></pre></td></tr></table></figure></p>
+<p>fair表示是否公平，前面章节已经介绍，这里就不赘述了。</p>
+<p>写锁的获取：</p>
+<ol>
+<li>确定保证当前没有其他线程持有任何锁，否则就等待。</li>
+<li>写锁释放后，将等待队列中的一个线程唤醒，唤醒的可能是等待写锁的，也可能是等待读锁的。</li>
+</ol>
+<p>读锁的获取：</p>
+<ol>
+<li>确定该变量有没有被写锁持有，如果没有就可以直接获取读锁。</li>
+<li>获取后，会检查对应的等待队列，逐个唤醒等待读锁的线程。</li>
+</ol>
+<h3 id="2、demo"><a href="#2、demo" class="headerlink" title="2、demo"></a>2、demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">public class TestReadWriteLock &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ReadWriteLockDemo rw = new ReadWriteLockDemo();</span><br><span class="line"></span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				rw.set((int)(Math.random() * 101));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;, &quot;Write:&quot;).start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">			new Thread(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line">				@Override</span><br><span class="line">				public void run() &#123;</span><br><span class="line">					rw.get();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ReadWriteLockDemo&#123;</span><br><span class="line"></span><br><span class="line">	private int number = 0;</span><br><span class="line"></span><br><span class="line">	private ReadWriteLock lock = new ReentrantReadWriteLock();</span><br><span class="line"></span><br><span class="line">	//读</span><br><span class="line">	public void get()&#123;</span><br><span class="line">		lock.readLock().lock(); //上锁</span><br><span class="line"></span><br><span class="line">		try&#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + &quot; : &quot; + number);</span><br><span class="line">		&#125;finally&#123;</span><br><span class="line">			lock.readLock().unlock(); //释放锁</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//写</span><br><span class="line">	public void set(int number)&#123;</span><br><span class="line">		lock.writeLock().lock();</span><br><span class="line"></span><br><span class="line">		try&#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName());</span><br><span class="line">			this.number = number;</span><br><span class="line">		&#125;finally&#123;</span><br><span class="line">			lock.writeLock().unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、通过ReadWriteLock看微服务注册中心的读写优化"><a href="#3、通过ReadWriteLock看微服务注册中心的读写优化" class="headerlink" title="3、通过ReadWriteLock看微服务注册中心的读写优化"></a>3、通过ReadWriteLock看微服务注册中心的读写优化</h3><p>注册中心，大家都知道，里面存放了各个微服务的地址信息，同时也是一个典型的有人读有人写的例子。</p>
+<p>比如有的服务启动的时候会来注册，此时就会修改服务注册表的数据，这个就是写的过程。</p>
+<p>接着，别的服务也会来读这个服务注册表的数据，因为每个服务都需要感知到其他服务在哪些机器上部署。</p>
+<p>所以，这个内存里的服务注册表数据，天然就是有读写并发问题的！可能会有多个线程来写，也可能会有多个线程来读！</p>
+<p>或许你会想，加上synchronized，没错，这样确实可以解决问题。</p>
+<p>伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private Map&lt;String,List&lt;InstanceInfo&gt;&gt; instances;</span><br><span class="line"></span><br><span class="line">public synchronized void register()&#123;</span><br><span class="line">  //注册</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public synchronized Map&lt;String,List&lt;InstanceInfo&gt;&gt; getRegister(String string)&#123;</span><br><span class="line">  //读值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是简单粗暴的synchronized未免不太合适吧，就是之前说的，读读操作并不需要互斥啊，全部线程都串行化，直接会导致处理吞吐量降低！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private Map&lt;String,List&lt;InstanceInfo&gt;&gt; instances;</span><br><span class="line"></span><br><span class="line">private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();</span><br><span class="line">private WriteLock writeLock = lock.writeLock();</span><br><span class="line">private ReadLock readLock = lock.readLock();</span><br><span class="line"></span><br><span class="line">public synchronized void register()&#123;</span><br><span class="line">  //注册</span><br><span class="line">  writeLock.lock();</span><br><span class="line">  ...</span><br><span class="line">  writeLock.unlock();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public synchronized Map&lt;String,List&lt;InstanceInfo&gt;&gt; getRegister(String string)&#123;</span><br><span class="line">  //读值</span><br><span class="line">  readLock.lock();</span><br><span class="line">  ...</span><br><span class="line">  readLock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不光是注册中心，其他类似大部分是读读操作的场景，都应该用到ReadWriteLock来保证线程安全且提升性能，</p>
+<p>总结：<br>ReadWriteLock维护了一对相关的锁，一个用于只读操作，另一个用于写入操作。只要没有writer，读取锁可以有多个reader线程同时保持。写入锁是独占的。</p>
+
       
     </div>
     
@@ -617,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十二-：ReadWriteLock读写锁"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十二)：ReadWriteLock读写锁</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十二-：ReadWriteLock读写锁"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十二)：ReadWriteLock读写锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是读写锁？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是读写锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、demo"><span class="nav-number">1.2.</span> <span class="nav-text">2、demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、通过ReadWriteLock看微服务注册中心的读写优化"><span class="nav-number">1.3.</span> <span class="nav-text">3、通过ReadWriteLock看微服务注册中心的读写优化</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +681,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.4k</span>
+    <span title="Site words total count">34.3k</span>
   
 </div>
 
