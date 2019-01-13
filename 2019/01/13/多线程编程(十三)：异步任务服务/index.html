@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十三)：线程池">
+<meta name="description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十三)：线程池">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：线程池/index.html">
+<meta property="og:title" content="多线程编程(十三)：Executor详解">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：异步任务服务/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十三)：线程池">
+<meta property="og:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T16:08:29.230Z">
+<meta property="og:updated_time" content="2019-01-12T13:21:45.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十三)：线程池">
-<meta name="twitter:description" content="多线程编程(十三)：线程池">
+<meta name="twitter:title" content="多线程编程(十三)：Executor详解">
+<meta name="twitter:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：线程池/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：异步任务服务/">
 
 
 
 
 
-  <title>多线程编程(十三)：线程池 | 突突的技术博客</title>
+  <title>多线程编程(十三)：Executor详解 | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：线程池/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：异步任务服务/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十三)：线程池</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程(十三)：Executor详解</h1>
         
 
         <div class="post-meta">
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/13/多线程编程(十三)：线程池/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/13/多线程编程(十三)：线程池/" itemprop="commentCount"></span>
+                <a href="/2019/01/13/多线程编程(十三)：异步任务服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/13/多线程编程(十三)：异步任务服务/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  10字
+                  989字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  4分钟
                 </span>
               
             </div>
@@ -388,7 +388,37 @@
       
 
       
-        <h2 id="多线程编程-十三-：线程池"><a href="#多线程编程-十三-：线程池" class="headerlink" title="多线程编程(十三)：线程池"></a>多线程编程(十三)：线程池</h2>
+        <h2 id="多线程编程-十三-：Executor详解"><a href="#多线程编程-十三-：Executor详解" class="headerlink" title="多线程编程(十三)：Executor详解"></a>多线程编程(十三)：Executor详解</h2><h3 id="1、什么是Executor？"><a href="#1、什么是Executor？" class="headerlink" title="1、什么是Executor？"></a>1、什么是Executor？</h3><p>在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——<strong>Executor</strong>，<code>可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口</code>。</p>
+<p>以前new Thread()的缺点：</p>
+<ul>
+<li>每次new Thread()耗费性能</li>
+<li>调用new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制创建，之间相互竞争，会导致过多占用系统资源导致系统瘫痪。</li>
+<li>不利于扩展，比如如定时执行、定期执行、线程中断</li>
+</ul>
+<p>采用Executor的优点：</p>
+<ul>
+<li>利于扩展。</li>
+<li>实现类中，提供定时执行、定期执行、单线程、并发数控制等功能。</li>
+</ul>
+<p><code>本章我们着重介绍线程的创建和中断。</code></p>
+<h3 id="2、概念及原理"><a href="#2、概念及原理" class="headerlink" title="2、概念及原理"></a>2、概念及原理</h3><p>在学习前，我们需要先熟悉如下类：</p>
+<ul>
+<li>Runnable和Callable 表示要执行的异步任务</li>
+<li>Executor和ExecutorService 表示执行服务</li>
+<li>Future 表示异步任务返回的结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Executor &#123;    </span><br><span class="line">  void execute(Runnable command); //执行runnable异步任务</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//ExecutorService扩展了Executor</span><br><span class="line">public interface ExecutorService extends Executor &#123;    </span><br><span class="line">  &lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task);    </span><br><span class="line">  &lt;T&gt; Future&lt;T&gt; submit(Runnable task, T result);    </span><br><span class="line">  Future&lt;?&gt; submit(Runnable task);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>submit表示提交一个任务，返回为Future类型，返回后表示任务已提交，不代表已执行，通过Future可以查询异步任务的状态，获取最终结果或取消该任务。</p>
+<p>Runnable没有返回值，第二个submit表示除Runnable，还提供一个结果，在异步任务结束后返回。</p>
+<p>第三个submit则返回null。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface Future&lt;V&gt; &#123;    </span><br><span class="line">  boolean cancel(boolean mayInterruptIfRunning); //取消任务，若任务正在执行，则不一定能取消，参数表示，如果任务正在执行，是否要调用interrupt方法。</span><br><span class="line">  boolean isCancelled(); //任务是否被取消</span><br><span class="line">  boolean isDone(); //任务是否结束，中断，取消，完成都算结束。</span><br><span class="line">  V get() throws InterruptedException, ExecutionException; //返回异步任务的结果，如果任务未执行完，则阻塞直到完成在返回。</span><br><span class="line">  V get(long timeout, TimeUnit unit) throws InterruptedException,ExecutionException, TimeoutException;</span><br><span class="line">  //同上，不同为可以限定阻塞时间，超过时间，抛出TimeoutException</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、基本用法"><a href="#3、基本用法" class="headerlink" title="3、基本用法"></a>3、基本用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class BasicDemo &#123;    </span><br><span class="line">  static class Task implements Callable&lt;Integer&gt; &#123;        </span><br><span class="line">    @Override        </span><br><span class="line">    public Integer call() throws Exception &#123;            </span><br><span class="line">      int sleepSeconds = new Random().nextInt(1000);            </span><br><span class="line">      Thread.sleep(sleepSeconds);            </span><br><span class="line">      return sleepSeconds;        </span><br><span class="line">    &#125;    </span><br><span class="line">  &#125;    </span><br><span class="line"></span><br><span class="line">  public static void main(String[] args) throws InterruptedException &#123;        </span><br><span class="line">    ExecutorService executor = Executors.newSingleThreadExecutor();        </span><br><span class="line">    Future&lt;Integer&gt; future = executor.submit(new Task());</span><br><span class="line">    Thread.sleep(100);        </span><br><span class="line">    try &#123;            </span><br><span class="line">      System.out.println(future.get());        </span><br><span class="line">    &#125; catch (ExecutionException e) &#123;            </span><br><span class="line">      e.printStackTrace();        </span><br><span class="line">    &#125;        </span><br><span class="line"></span><br><span class="line">    executor.shutdown();    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们使用了工具类Executors来创建执行任务（创建单个线程），Executors我们后面再展开讲。不管是谁创建的Exceutor，对使用者而言，用法都一样。</p>
+<p>再看ExecutorService<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface ExecutorService extends Executor &#123;    </span><br><span class="line">  void shutdown();    </span><br><span class="line">  List&lt;Runnable&gt; shutdownNow();    </span><br><span class="line">  boolean isShutdown();    </span><br><span class="line">  boolean isTerminated();    </span><br><span class="line">  boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException;    </span><br><span class="line">  &lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) throws InterruptedException;    </span><br><span class="line">  &lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks,long timeout, TimeUnit unit) throws InterruptedException;    </span><br><span class="line">  &lt;T&gt; T invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) throws InterruptedException, ExecutionException;    </span><br><span class="line">  &lt;T&gt; T invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>shutdown 不再接受任务，但已提交的任务会继续执行，即使该任务还未执行。<br>shutdownNow 不再接受任务且会中断当前任务，一般采用interrupt中断。</p>
+<p>invokeAll 等待所有任务完成，参数为指定等待时间，如果超时还有任务没完成，则会被取消。<br>invokeAny 只要有一个任务在限时内完成便成功返回，其他会被取消。</p>
+
       
     </div>
     
@@ -459,8 +489,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/14/多线程编程(十四)：线程调度/" rel="prev" title="多线程编程(十四)：线程调度">
-                多线程编程(十四)：线程调度 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/14/多线程编程(十四)：线程池/" rel="prev" title="多线程编程(十四)：线程池">
+                多线程编程(十四)：线程池 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +579,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十三-：线程池"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十三)：线程池</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十三-：Executor详解"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十三)：Executor详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是Executor？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是Executor？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、概念及原理"><span class="nav-number">1.2.</span> <span class="nav-text">2、概念及原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、基本用法"><span class="nav-number">1.3.</span> <span class="nav-text">3、基本用法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +681,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.3k</span>
+    <span title="Site words total count">35.3k</span>
   
 </div>
 

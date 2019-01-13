@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="突突的技术博客">
 <meta property="og:description" content="多线程编程(十二)：ReadWriteLock读写锁1、什么是读写锁？之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！   1234public interface ReadWriteLo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-12T03:40:21.544Z">
+<meta property="og:updated_time" content="2019-01-12T11:24:37.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(十二)：ReadWriteLock读写锁">
 <meta name="twitter:description" content="多线程编程(十二)：ReadWriteLock读写锁1、什么是读写锁？之前章节，我们共介绍了两种锁：synchronized和ReentranLock，对共享变量，无论是写还是读，都要求获得相同的锁。仔细想想，这种处理方式并不适合所有场景，比如多个线程的读操作就完全可以并行，在都读多写少的场景中，仅让读操作并行可以明显提高性能！   1234public interface ReadWriteLo">
@@ -414,7 +414,7 @@
 <p>所以，这个内存里的服务注册表数据，天然就是有读写并发问题的！可能会有多个线程来写，也可能会有多个线程来读！</p>
 <p>或许你会想，加上synchronized，没错，这样确实可以解决问题。</p>
 <p>伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private Map&lt;String,List&lt;InstanceInfo&gt;&gt; instances;</span><br><span class="line"></span><br><span class="line">public synchronized void register()&#123;</span><br><span class="line">  //注册</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public synchronized Map&lt;String,List&lt;InstanceInfo&gt;&gt; getRegister(String string)&#123;</span><br><span class="line">  //读值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是简单粗暴的synchronized未免不太合适吧，就是之前说的，读读操作并不需要互斥啊，全部线程都串行化，直接会导致处理吞吐量降低！</p>
+<p>但是简单粗暴的synchronized未免不太合适吧，就像之前说的，读读操作并不需要互斥啊，全部线程都串行化，直接会导致处理吞吐量降低！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private Map&lt;String,List&lt;InstanceInfo&gt;&gt; instances;</span><br><span class="line"></span><br><span class="line">private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();</span><br><span class="line">private WriteLock writeLock = lock.writeLock();</span><br><span class="line">private ReadLock readLock = lock.readLock();</span><br><span class="line"></span><br><span class="line">public synchronized void register()&#123;</span><br><span class="line">  //注册</span><br><span class="line">  writeLock.lock();</span><br><span class="line">  ...</span><br><span class="line">  writeLock.unlock();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public synchronized Map&lt;String,List&lt;InstanceInfo&gt;&gt; getRegister(String string)&#123;</span><br><span class="line">  //读值</span><br><span class="line">  readLock.lock();</span><br><span class="line">  ...</span><br><span class="line">  readLock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>不光是注册中心，其他类似大部分是读读操作的场景，都应该用到ReadWriteLock来保证线程安全且提升性能，</p>
 <p>总结：<br>ReadWriteLock维护了一对相关的锁，一个用于只读操作，另一个用于写入操作。只要没有writer，读取锁可以有多个reader线程同时保持。写入锁是独占的。</p>
@@ -489,8 +489,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/13/多线程编程(十三)：线程池/" rel="prev" title="多线程编程(十三)：线程池">
-                多线程编程(十三)：线程池 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/13/多线程编程(十三)：异步任务服务/" rel="prev" title="多线程编程(十三)：Executor详解">
+                多线程编程(十三)：Executor详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -579,7 +579,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +681,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.3k</span>
+    <span title="Site words total count">35.3k</span>
   
 </div>
 
