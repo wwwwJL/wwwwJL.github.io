@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十五)：ThreadLocal">
+<meta name="description" content="多线程编程(十六)：ThreadLocal1、什么是ThreadLocal？ThreadLocal即线程的本地局部变量，当使用ThreadLocal维护变量时，ThreadLocal会为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。 2、介绍及用法12public T get();public void set(T value);">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十五)：ThreadLocal">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/index.html">
+<meta property="og:title" content="多线程编程(十六)：ThreadLocal">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/01/16/多线程编程(十五)：ThreadLocal/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十五)：ThreadLocal">
+<meta property="og:description" content="多线程编程(十六)：ThreadLocal1、什么是ThreadLocal？ThreadLocal即线程的本地局部变量，当使用ThreadLocal维护变量时，ThreadLocal会为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。 2、介绍及用法12public T get();public void set(T value);">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T16:09:23.475Z">
+<meta property="og:updated_time" content="2019-01-13T09:36:00.875Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十五)：ThreadLocal">
-<meta name="twitter:description" content="多线程编程(十五)：ThreadLocal">
+<meta name="twitter:title" content="多线程编程(十六)：ThreadLocal">
+<meta name="twitter:description" content="多线程编程(十六)：ThreadLocal1、什么是ThreadLocal？ThreadLocal即线程的本地局部变量，当使用ThreadLocal维护变量时，ThreadLocal会为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。 2、介绍及用法12public T get();public void set(T value);">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/16/多线程编程(十五)：ThreadLocal/">
 
 
 
 
 
-  <title>多线程编程(十五)：ThreadLocal | 突突的技术博客</title>
+  <title>多线程编程(十六)：ThreadLocal | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/16/多线程编程(十五)：ThreadLocal/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十五)：ThreadLocal</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程(十六)：ThreadLocal</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T00:00:00+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">
+                2019-01-16
               </time>
             
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/15/多线程编程(十五)：ThreadLocal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/15/多线程编程(十五)：ThreadLocal/" itemprop="commentCount"></span>
+                <a href="/2019/01/16/多线程编程(十五)：ThreadLocal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/16/多线程编程(十五)：ThreadLocal/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  8字
+                  441字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,7 +388,19 @@
       
 
       
-        <h2 id="多线程编程-十五-：ThreadLocal"><a href="#多线程编程-十五-：ThreadLocal" class="headerlink" title="多线程编程(十五)：ThreadLocal"></a>多线程编程(十五)：ThreadLocal</h2>
+        <h2 id="多线程编程-十六-：ThreadLocal"><a href="#多线程编程-十六-：ThreadLocal" class="headerlink" title="多线程编程(十六)：ThreadLocal"></a>多线程编程(十六)：ThreadLocal</h2><h3 id="1、什么是ThreadLocal？"><a href="#1、什么是ThreadLocal？" class="headerlink" title="1、什么是ThreadLocal？"></a>1、什么是ThreadLocal？</h3><p>ThreadLocal即线程的本地局部变量，当使用ThreadLocal维护变量时，ThreadLocal会为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。</p>
+<h3 id="2、介绍及用法"><a href="#2、介绍及用法" class="headerlink" title="2、介绍及用法"></a>2、介绍及用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public T get();</span><br><span class="line">public void set(T value);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protected T initialValue();//设置初始值，当get时，若没有对应值，则会将初始值返回，初始值默认为null</span><br><span class="line">public void remove();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Test extends Thread &#123;</span><br><span class="line">        public static ThreadLocal&lt;Integer&gt; threadLocal = new ThreadLocal&lt;Integer&gt;() &#123;</span><br><span class="line">            protected Integer initialValue() &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        public static void main(String[] args) &#123;</span><br><span class="line">            Thread[] thread = new Thread[5];</span><br><span class="line">            for (int i = 0; i &lt; thread.length; i++) &#123;</span><br><span class="line">                thread[i] = new Thread(new Runnable() &#123;</span><br><span class="line">                    public void run() &#123;</span><br><span class="line">                        Integer count = threadLocal.get();</span><br><span class="line">                        count += new Random().nextInt(10);</span><br><span class="line">                        System.out.println(Thread.currentThread().getName() + &quot;---&quot; + count);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, &quot;线程&quot; + i);</span><br><span class="line">                thread[i].start();</span><br><span class="line">                try &#123;</span><br><span class="line">                    thread[i].join();</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(threadLocal.get());</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">线程0---2</span><br><span class="line">线程1---3</span><br><span class="line">线程2---6</span><br><span class="line">线程3---7</span><br><span class="line">线程4---7</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p>ThreadLocal使得每个线程对同一个变量都有自己的独立副本，因为是独立副本，所以线程绝对安全。</p>
+<h3 id="3、原理"><a href="#3、原理" class="headerlink" title="3、原理"></a>3、原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void set(T value) &#123;    </span><br><span class="line">  Thread t = Thread.currentThread();    </span><br><span class="line">  ThreadLocalMap map = getMap(t);    </span><br><span class="line">  if(map != null)</span><br><span class="line">    map.set(this, value);    </span><br><span class="line">  else        </span><br><span class="line">    createMap(t, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocalMap getMap(Thread t) &#123;    </span><br><span class="line">  return t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void createMap(Thread t, T firstValue) &#123;    </span><br><span class="line">  t.threadLocals = new ThreadLocalMap(this, firstValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上可得出，每个线程都有其对应的map。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public T get() &#123;    </span><br><span class="line">  Thread t = Thread.currentThread();    </span><br><span class="line">  ThreadLocalMap map = getMap(t);    </span><br><span class="line">  if(map != null) &#123;        </span><br><span class="line">    ThreadLocalMap.Entry e = map.getEntry(this);        </span><br><span class="line">    if(e != null)            </span><br><span class="line">    return (T)e.value;    </span><br><span class="line">  &#125;    </span><br><span class="line">  return setInitialValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：<br>每个线程都有一个Map，对于每个ThreadLocal，调用其set/get实际上是以当前线程为key，在ThreadLocal对应Map获取value。</p>
+
       
     </div>
     
@@ -449,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/14/多线程编程(十四)：线程池/" rel="next" title="多线程编程(十四)：线程池">
-                <i class="fa fa-chevron-left"></i> 多线程编程(十四)：线程池
+              <a href="/2019/01/15/多线程编程(十五)：定时任务/" rel="next" title="多线程编程(十五)：定时任务">
+                <i class="fa fa-chevron-left"></i> 多线程编程(十五)：定时任务
               </a>
             
           </div>
@@ -458,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/15/多线程编程(十五)：定时任务/" rel="prev" title="多线程编程(十五)：定时任务">
-                多线程编程(十五)：定时任务 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十五-：ThreadLocal"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十五)：ThreadLocal</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十六-：ThreadLocal"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十六)：ThreadLocal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是ThreadLocal？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是ThreadLocal？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、介绍及用法"><span class="nav-number">1.2.</span> <span class="nav-text">2、介绍及用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、原理"><span class="nav-number">1.3.</span> <span class="nav-text">3、原理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +659,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.7k</span>
+    <span title="Site words total count">38.1k</span>
   
 </div>
 
