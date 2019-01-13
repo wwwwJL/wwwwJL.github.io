@@ -86,18 +86,22 @@
 
 
 
-<meta name="description" content="多线程编程(十五)：ThreadLocal">
+<meta name="description" content="多线程编程基石：java的内存模型1、什么是java的内存模型？在很多时候，我们经常讲java的内存结构和内存模型搞混，对于无论是刚学习的新手，还是工作几年的老鸟，都非常不好！ 1.1 内存结构 以上结构中的各部分在本章不做介绍。 1.2 内存模型java的内存模型就是指共享内存模型，即Java Memory Model，简称JMM。   JMM决定一个线程对共享变量的写入时，能对另一个线程可见。">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十五)：ThreadLocal">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/index.html">
+<meta property="og:title" content="多线程编程基石：java的内存模型">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/01/02/多线程编程基石：java的内存模型/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十五)：ThreadLocal">
+<meta property="og:description" content="多线程编程基石：java的内存模型1、什么是java的内存模型？在很多时候，我们经常讲java的内存结构和内存模型搞混，对于无论是刚学习的新手，还是工作几年的老鸟，都非常不好！ 1.1 内存结构 以上结构中的各部分在本章不做介绍。 1.2 内存模型java的内存模型就是指共享内存模型，即Java Memory Model，简称JMM。   JMM决定一个线程对共享变量的写入时，能对另一个线程可见。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T16:09:23.475Z">
+<meta property="og:image" content="http://wwwwjl.github.io/images/并发2.0.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/并发2.1.jpg">
+<meta property="og:image" content="http://wwwwjl.github.io/images/并发2.2.jpg">
+<meta property="og:updated_time" content="2019-01-13T08:51:22.620Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十五)：ThreadLocal">
-<meta name="twitter:description" content="多线程编程(十五)：ThreadLocal">
+<meta name="twitter:title" content="多线程编程基石：java的内存模型">
+<meta name="twitter:description" content="多线程编程基石：java的内存模型1、什么是java的内存模型？在很多时候，我们经常讲java的内存结构和内存模型搞混，对于无论是刚学习的新手，还是工作几年的老鸟，都非常不好！ 1.1 内存结构 以上结构中的各部分在本章不做介绍。 1.2 内存模型java的内存模型就是指共享内存模型，即Java Memory Model，简称JMM。   JMM决定一个线程对共享变量的写入时，能对另一个线程可见。">
+<meta name="twitter:image" content="http://wwwwjl.github.io/images/并发2.0.jpg">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/02/多线程编程基石：java的内存模型/">
 
 
 
 
 
-  <title>多线程编程(十五)：ThreadLocal | 突突的技术博客</title>
+  <title>多线程编程基石：java的内存模型 | 突突的技术博客</title>
   
 
 
@@ -251,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：ThreadLocal/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/02/多线程编程基石：java的内存模型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十五)：ThreadLocal</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程基石：java的内存模型</h1>
         
 
         <div class="post-meta">
@@ -280,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T00:00:00+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
               </time>
             
 
@@ -321,8 +325,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/15/多线程编程(十五)：ThreadLocal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/15/多线程编程(十五)：ThreadLocal/" itemprop="commentCount"></span>
+                <a href="/2019/01/02/多线程编程基石：java的内存模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/02/多线程编程基石：java的内存模型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +355,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  8字
+                  560字
                 </span>
               
 
@@ -388,7 +392,26 @@
       
 
       
-        <h2 id="多线程编程-十五-：ThreadLocal"><a href="#多线程编程-十五-：ThreadLocal" class="headerlink" title="多线程编程(十五)：ThreadLocal"></a>多线程编程(十五)：ThreadLocal</h2>
+        <h2 id="多线程编程基石：java的内存模型"><a href="#多线程编程基石：java的内存模型" class="headerlink" title="多线程编程基石：java的内存模型"></a>多线程编程基石：java的内存模型</h2><h3 id="1、什么是java的内存模型？"><a href="#1、什么是java的内存模型？" class="headerlink" title="1、什么是java的内存模型？"></a>1、什么是java的内存模型？</h3><p>在很多时候，我们经常讲java的内存结构和内存模型搞混，对于无论是刚学习的新手，还是工作几年的老鸟，都非常不好！</p>
+<h4 id="1-1-内存结构"><a href="#1-1-内存结构" class="headerlink" title="1.1 内存结构"></a>1.1 内存结构</h4><p> <img src="\images\并发2.0.jpg" alt="123"><br>以上结构中的各部分在本章不做介绍。</p>
+<h4 id="1-2-内存模型"><a href="#1-2-内存模型" class="headerlink" title="1.2 内存模型"></a>1.2 内存模型</h4><p>java的内存模型就是指共享内存模型，即Java Memory Model，简称JMM。  </p>
+<p>JMM决定一个线程对共享变量的写入时，能对另一个线程可见。每个线程都有对应自身的内存模型，而JMM定义了线程内存和主内存之间的协作关系。</p>
+<p><code>线程之间的共享变量存储在主内存中，每个线程都有一个私有的本地内存，本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存，写缓冲区，寄存器以及其他的硬件和编译器优化。</code></p>
+<p><img src="\images\并发2.1.jpg" alt="123"></p>
+<p>线程A与线程B之间如要通信的话，必须要经历下面2个步骤：</p>
+<ol>
+<li>首先，线程A把本地内存A中更新过的共享变量刷新到主内存中去。</li>
+<li>然后，线程B到主内存中去读取线程A之前已更新过的共享变量。</li>
+</ol>
+<p>但同时，线程A或B想要修改主内存中的共享变量，则会有以下步骤：</p>
+<ol>
+<li>把更新后的x值临时存放在自己的本地内存A中</li>
+<li>当线程A和线程B需要通信时，线程A首先会把自己本地内存中修改后的x值刷新到主内存中</li>
+<li>随后，线程B到主内存中去读取线程A更新后的x值</li>
+</ol>
+<p><img src="\images\并发2.2.jpg" alt="123"></p>
+<p>总结：<br>什么是Java内存模型？java内存模型简称jmm，定义了一个线程对另一个线程可见。共享变量存放在主内存中，每个线程都有自己的本地内存，当多个线程同时访问一个数据的时候，可能本地内存没有及时刷新到主内存，所以就会发生线程安全问题。</p>
+
       
     </div>
     
@@ -449,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/14/多线程编程(十四)：线程池/" rel="next" title="多线程编程(十四)：线程池">
-                <i class="fa fa-chevron-left"></i> 多线程编程(十四)：线程池
+              <a href="/2019/01/02/多线程编程(二)：线程安全/" rel="next" title="多线程编程(二)：线程安全">
+                <i class="fa fa-chevron-left"></i> 多线程编程(二)：线程安全
               </a>
             
           </div>
@@ -459,8 +482,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/15/多线程编程(十五)：定时任务/" rel="prev" title="多线程编程(十五)：定时任务">
-                多线程编程(十五)：定时任务 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/03/多线程编程(三)：synchronized/" rel="prev" title="多线程编程(三)：synchronized">
+                多线程编程(三)：synchronized <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十五-：ThreadLocal"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十五)：ThreadLocal</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程基石：java的内存模型"><span class="nav-number">1.</span> <span class="nav-text">多线程编程基石：java的内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是java的内存模型？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是java的内存模型？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-内存结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 内存结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-内存模型"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 内存模型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

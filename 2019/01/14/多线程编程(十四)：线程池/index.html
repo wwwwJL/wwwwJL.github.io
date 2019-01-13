@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十四)：线程池">
+<meta name="description" content="多线程编程(十四)：线程池1、什么是线程池？线程池在并发中至关重要，即为一个池子（线程的池子），里面保存着多个线程，目的就是执行提交任务后，不会销毁退出，而是继续等待或执行新的任务。 线程池主要由两个概念组成：  任务队列：保持待执行的任务队列 工作者线程：主体为一个循环，循环从队列中接受并执行任务  它类似生活中的一些排队场景，比如医院排队叫号，银行排队叫号，一般都是有多个窗口提供服务，这些窗口">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程编程(十四)：线程池">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/14/多线程编程(十四)：线程池/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十四)：线程池">
+<meta property="og:description" content="多线程编程(十四)：线程池1、什么是线程池？线程池在并发中至关重要，即为一个池子（线程的池子），里面保存着多个线程，目的就是执行提交任务后，不会销毁退出，而是继续等待或执行新的任务。 线程池主要由两个概念组成：  任务队列：保持待执行的任务队列 工作者线程：主体为一个循环，循环从队列中接受并执行任务  它类似生活中的一些排队场景，比如医院排队叫号，银行排队叫号，一般都是有多个窗口提供服务，这些窗口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-12T13:22:04.488Z">
+<meta property="og:updated_time" content="2019-01-13T04:27:57.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(十四)：线程池">
-<meta name="twitter:description" content="多线程编程(十四)：线程池">
+<meta name="twitter:description" content="多线程编程(十四)：线程池1、什么是线程池？线程池在并发中至关重要，即为一个池子（线程的池子），里面保存着多个线程，目的就是执行提交任务后，不会销毁退出，而是继续等待或执行新的任务。 线程池主要由两个概念组成：  任务队列：保持待执行的任务队列 工作者线程：主体为一个循环，循环从队列中接受并执行任务  它类似生活中的一些排队场景，比如医院排队叫号，银行排队叫号，一般都是有多个窗口提供服务，这些窗口">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  10字
+                  1.4k字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  5分钟
                 </span>
               
             </div>
@@ -388,7 +388,68 @@
       
 
       
-        <h2 id="多线程编程-十四-：线程池"><a href="#多线程编程-十四-：线程池" class="headerlink" title="多线程编程(十四)：线程池"></a>多线程编程(十四)：线程池</h2>
+        <h2 id="多线程编程-十四-：线程池"><a href="#多线程编程-十四-：线程池" class="headerlink" title="多线程编程(十四)：线程池"></a>多线程编程(十四)：线程池</h2><h3 id="1、什么是线程池？"><a href="#1、什么是线程池？" class="headerlink" title="1、什么是线程池？"></a>1、什么是线程池？</h3><p>线程池在并发中至关重要，即为一个池子（线程的池子），里面保存着多个线程，目的就是执行提交任务后，不会销毁退出，而是继续等待或执行新的任务。</p>
+<p>线程池主要由两个概念组成：</p>
+<ul>
+<li>任务队列：保持待执行的任务队列</li>
+<li>工作者线程：主体为一个循环，循环从队列中接受并执行任务</li>
+</ul>
+<p>它类似生活中的一些排队场景，比如医院排队叫号，银行排队叫号，一般都是有多个窗口提供服务，这些窗口类似工作者线程。若干个用户取号并等待叫号，这些也类似任务队列。</p>
+<p>线程池优点：</p>
+<ul>
+<li>可重用线程，避免线程创建的开销（在银行的例子中，不可能一个窗口人员在处理完一个用户后，就辞退他，再来个用户，重新在招人，这显然是不可能的！）</li>
+<li>任务过多时，通过排队，避免创建过多线程，减少资源竞争和消耗，确保任务有序完成。</li>
+</ul>
+<p><code>在上一章节，我们介绍了ExecutorService,它是线程池的接口，而Executor则是ExecutorService的根接口，没仔细看的同学建议翻回去再多看几遍，有助于本章及下一章的学习。</code></p>
+<p>线程池的体系结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.util.concurrent.Executor : 负责线程的使用与调度的根接口</span><br><span class="line">		|--**ExecutorService 子接口: 线程池的主要接口</span><br><span class="line">			|--ThreadPoolExecutor 线程池的实现类</span><br><span class="line">			|--ScheduledExecutorService 子接口：负责线程的调度</span><br><span class="line">				|--ScheduledThreadPoolExecutor ：继承 ThreadPoolExecutor， 实现 ScheduledExecutorService</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、介绍及用法"><a href="#2、介绍及用法" class="headerlink" title="2、介绍及用法"></a>2、介绍及用法</h3><h4 id="2-1-ThreadPoolExecutor"><a href="#2-1-ThreadPoolExecutor" class="headerlink" title="2.1 ThreadPoolExecutor"></a>2.1 ThreadPoolExecutor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize, //核心线程个数</span><br><span class="line">                          int maximumPoolSize,  //最大线程个数</span><br><span class="line">                          long keepAliveTime, //空闲线程存活时间</span><br><span class="line">                          TimeUnit unit,</span><br><span class="line">                          BlockingQueue&lt;Runnable&gt; workQueue);</span><br><span class="line"></span><br><span class="line">public ThreadPoolExecutor(int corePoolSize,</span><br><span class="line">                          int maximumPoolSize,</span><br><span class="line">                          long keepAliveTime,</span><br><span class="line">                          TimeUnit unit,</span><br><span class="line">                          BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                          ThreadFactory threadFactory,</span><br><span class="line">                          RejectedExecutionHandler handler);</span><br></pre></td></tr></table></figure>
+<p>以上为ThreadPoolExecutor的构造方法，第二个多个threadFactory和handler，在使用中一般不会被用到。</p>
+<ul>
+<li><p>maximumPoolSize：池中最大线程个数，池子里线程个数会动态变化，但是不会超过最大值。</p>
+</li>
+<li><p>corePoolSize：池中核心线程个数，并不是一开始就创建这么多，刚创建一个后，实际上会经过判断后再决定是否在创建个线程。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 新任务到来，若当前线程数少于corePoolSize，就会创建一个新线程来执行，即使其他线程空闲，也会创建。</span><br><span class="line">2. 若当前线程数大于等于corePoolSize，便不会立刻创建，则会先`尝试`排队，而不是直接`阻塞入队`。</span><br><span class="line">3. 如果尝试的队列满了，便不会排队，之后会再判断当前线程数是否小于maximumPoolSize</span><br><span class="line">4. 若小于最大数，则直接创建。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>keepAliveTime：当线程池线程个数大于corePoolSize，额外空闲线程的存活时间，也就是非核心线程的空闲存活时间。</p>
+</li>
+<li><p>workQueue：类型为BlockingQueue阻塞队列：</p>
+<ul>
+<li>LinkedBlockingQueue 基于链表的阻塞队列，默认无界，可指定最大长度</li>
+<li>ArrayBlockingQueue 基于数组的有界阻塞队列</li>
+<li>PriorityBlockingQueue 基于堆的无界阻塞优先级队列</li>
+<li>SynchronousQueue 没有实际存储空间的阻塞队列</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-工厂类Executors"><a href="#2-2-工厂类Executors" class="headerlink" title="2.2 工厂类Executors"></a>2.2 工厂类Executors</h4><p>Executors提供了一些静态工厂方法，可方便的创建一些预配置的线程，常用方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newSingleThreadExecutor();</span><br><span class="line">public static ExecutorService newFixedThreadPool(int nThreads);</span><br><span class="line">public static ExecutorService newCachedThreadPool();</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>newSingleThreadExecutor<br>相当于一个线程的线程池，伪代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">newSingleThreadExecutor() &#123;    </span><br><span class="line">  return new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用的队列为无界队列LinkedBlockingQueue，该线程池适用于所有任务被顺序执行的场合。</p>
+<ul>
+<li>newFixedThreadPool<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newFixedThreadPool(int nThreads) &#123;    </span><br><span class="line">  return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因为使用的无界队列LinkedBlockingQueue，若任务过多时，会消耗过多的系统资源</p>
+<ul>
+<li>newCachedThreadPool<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newCachedThreadPool() &#123;    </span><br><span class="line">  return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当新任务来时，如果有空闲线程，则其中一个空闲线程接受任务，反之创建新的线程，该线程存活时间60s，60s内没有新任务，则h终止销毁。</p>
+<p>以上三种线程池在实际生产中，应该如何取舍？</p>
+<ol>
+<li>若所有任务都必须按顺序执行，则选用Executors.newSingleThreadExecutor</li>
+<li>若系统负载一般，单个任务执行时间较短，则Executors.newCachedThreadPool，因为它不用排队，直接会交给空闲线程会之间创建。</li>
+<li>若负载很高，则Executors.newFixedThreadPool。</li>
+<li>若负载极高，且任务执行时间参差不齐，则还是需要自定义ThreadPoolExecutor，根据硬件实力和负载等级传递合适的参数。</li>
+</ol>
+<h3 id="3、demo"><a href="#3、demo" class="headerlink" title="3、demo"></a>3、demo</h3><h4 id="demo1"><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class ThreadPoolDemo implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">	private int i = 0;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		while(i &lt;= 100)&#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + &quot; : &quot; + i++);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class TestThreadPool &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		//1. 创建线程</span><br><span class="line">		ExecutorService pool = Executors.newFixedThreadPool(5);</span><br><span class="line"></span><br><span class="line">		//2. 为线程池中的线程分配任务</span><br><span class="line">		for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">			pool.submit(new ThreadPoolDemo());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//3. 关闭线程池</span><br><span class="line">		pool.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="demo2"><a href="#demo2" class="headerlink" title="demo2"></a>demo2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class TestThreadPool &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		//1. 创建线程池</span><br><span class="line">		ExecutorService pool = Executors.newFixedThreadPool(5);</span><br><span class="line"></span><br><span class="line">		List&lt;Future&lt;Integer&gt;&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">			Future&lt;Integer&gt; future = pool.submit(new Callable&lt;Integer&gt;()&#123;</span><br><span class="line"></span><br><span class="line">				@Override</span><br><span class="line">				public Integer call() throws Exception &#123;</span><br><span class="line">					int sum = 0;</span><br><span class="line"></span><br><span class="line">					for (int i = 0; i &lt;= 100; i++) &#123;</span><br><span class="line">						sum += i;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					return sum;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;);</span><br><span class="line"></span><br><span class="line">			list.add(future);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		pool.shutdown();</span><br><span class="line"></span><br><span class="line">		for (Future&lt;Integer&gt; future : list) &#123;</span><br><span class="line">			System.out.println(future.get());</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -459,8 +520,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/14/多线程编程(十四)：线程调度/" rel="prev" title="多线程编程(十四)：线程调度">
-                多线程编程(十四)：线程调度 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/15/多线程编程(十五)：ThreadLocal/" rel="prev" title="多线程编程(十五)：ThreadLocal">
+                多线程编程(十五)：ThreadLocal <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +610,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十四-：线程池"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十四)：线程池</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十四-：线程池"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十四)：线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是线程池？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是线程池？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、介绍及用法"><span class="nav-number">1.2.</span> <span class="nav-text">2、介绍及用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-ThreadPoolExecutor"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 ThreadPoolExecutor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-工厂类Executors"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 工厂类Executors</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、demo"><span class="nav-number">1.3.</span> <span class="nav-text">3、demo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo1"><span class="nav-number">1.3.1.</span> <span class="nav-text">demo1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo2"><span class="nav-number">1.3.2.</span> <span class="nav-text">demo2</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +712,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.3k</span>
+    <span title="Site words total count">37.7k</span>
   
 </div>
 

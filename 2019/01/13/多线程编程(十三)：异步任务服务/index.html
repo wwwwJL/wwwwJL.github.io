@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
+<meta name="description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。通过new Thread，既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，把工作单元与执行机制分离开来，工作单元包括Runnable和Callable，这样就可以大大简化执行异步任务的">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程编程(十三)：Executor详解">
 <meta property="og:url" content="http://wwwwJL.github.io/2019/01/13/多线程编程(十三)：异步任务服务/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
+<meta property="og:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。通过new Thread，既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，把工作单元与执行机制分离开来，工作单元包括Runnable和Callable，这样就可以大大简化执行异步任务的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-12T13:21:45.399Z">
+<meta property="og:updated_time" content="2019-01-13T01:53:42.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程编程(十三)：Executor详解">
-<meta name="twitter:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口。 以前n">
+<meta name="twitter:description" content="多线程编程(十三)：Executor详解1、什么是Executor？在前面章节中，我们介绍了，多线程的实现。通过new Thread，既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——Executor，把工作单元与执行机制分离开来，工作单元包括Runnable和Callable，这样就可以大大简化执行异步任务的">
 
 
 
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  989字
+                  1k字
                 </span>
               
 
@@ -388,10 +388,9 @@
       
 
       
-        <h2 id="多线程编程-十三-：Executor详解"><a href="#多线程编程-十三-：Executor详解" class="headerlink" title="多线程编程(十三)：Executor详解"></a>多线程编程(十三)：Executor详解</h2><h3 id="1、什么是Executor？"><a href="#1、什么是Executor？" class="headerlink" title="1、什么是Executor？"></a>1、什么是Executor？</h3><p>在前面章节中，我们介绍了，多线程的实现。既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——<strong>Executor</strong>，<code>可以大大简化执行异步任务的开发量。它可以帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口</code>。</p>
+        <h2 id="多线程编程-十三-：Executor详解"><a href="#多线程编程-十三-：Executor详解" class="headerlink" title="多线程编程(十三)：Executor详解"></a>多线程编程(十三)：Executor详解</h2><h3 id="1、什么是Executor？"><a href="#1、什么是Executor？" class="headerlink" title="1、什么是Executor？"></a>1、什么是Executor？</h3><p>在前面章节中，我们介绍了，多线程的实现。通过new Thread，既要手动创建线程，又要手动销毁线程，同时还要执行业务逻辑。本章我们着重介绍，在并发包中，java早已为我们提供了一套解决分离思想的框架——<strong>Executor</strong>，<code>把工作单元与执行机制分离开来，工作单元包括Runnable和Callable，这样就可以大大简化执行异步任务的开发量，帮助我们只关心任务本身，而不去关心任务执行的各种细节，同时也是线程池和任务调度的根接口</code>。</p>
 <p>以前new Thread()的缺点：</p>
 <ul>
-<li>每次new Thread()耗费性能</li>
 <li>调用new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制创建，之间相互竞争，会导致过多占用系统资源导致系统瘫痪。</li>
 <li>不利于扩展，比如如定时执行、定期执行、线程中断</li>
 </ul>
@@ -400,7 +399,7 @@
 <li>利于扩展。</li>
 <li>实现类中，提供定时执行、定期执行、单线程、并发数控制等功能。</li>
 </ul>
-<p><code>本章我们着重介绍线程的创建和中断。</code></p>
+<p><code>本章我们着重介绍利用Executor完成线程的创建和中断。</code></p>
 <h3 id="2、概念及原理"><a href="#2、概念及原理" class="headerlink" title="2、概念及原理"></a>2、概念及原理</h3><p>在学习前，我们需要先熟悉如下类：</p>
 <ul>
 <li>Runnable和Callable 表示要执行的异步任务</li>
@@ -579,7 +578,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +680,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.3k</span>
+    <span title="Site words total count">37.7k</span>
   
 </div>
 

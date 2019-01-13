@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十四)：线程调度">
+<meta name="description" content="多线程编程(十五)：定时任务1、什么是定时任务？定时任务，就相当于开启了一个线程，为它设置一个执行时间和执行任务内容，到时执行。在java中，可实现定时任务的方式有多种：  jdk自带的Timer，ScheduledExecutorService 第三方框架Quartz等等 分布式调度Elastic-job，xxl-job，LTS等等  本章就并发包中的ScheduledExecutorServi">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十四)：线程调度">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/14/多线程编程(十四)：线程调度/index.html">
+<meta property="og:title" content="多线程编程(十五)：定时任务">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：定时任务/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十四)：线程调度">
+<meta property="og:description" content="多线程编程(十五)：定时任务1、什么是定时任务？定时任务，就相当于开启了一个线程，为它设置一个执行时间和执行任务内容，到时执行。在java中，可实现定时任务的方式有多种：  jdk自带的Timer，ScheduledExecutorService 第三方框架Quartz等等 分布式调度Elastic-job，xxl-job，LTS等等  本章就并发包中的ScheduledExecutorServi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T16:08:53.700Z">
+<meta property="og:updated_time" content="2019-01-13T07:00:01.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十四)：线程调度">
-<meta name="twitter:description" content="多线程编程(十四)：线程调度">
+<meta name="twitter:title" content="多线程编程(十五)：定时任务">
+<meta name="twitter:description" content="多线程编程(十五)：定时任务1、什么是定时任务？定时任务，就相当于开启了一个线程，为它设置一个执行时间和执行任务内容，到时执行。在java中，可实现定时任务的方式有多种：  jdk自带的Timer，ScheduledExecutorService 第三方框架Quartz等等 分布式调度Elastic-job，xxl-job，LTS等等  本章就并发包中的ScheduledExecutorServi">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/14/多线程编程(十四)：线程调度/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：定时任务/">
 
 
 
 
 
-  <title>多线程编程(十四)：线程调度 | 突突的技术博客</title>
+  <title>多线程编程(十五)：定时任务 | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/14/多线程编程(十四)：线程调度/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/15/多线程编程(十五)：定时任务/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十四)：线程调度</h1>
+          <h1 class="post-title" itemprop="name headline">多线程编程(十五)：定时任务</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T00:00:00+08:00">
-                2019-01-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T00:00:00+08:00">
+                2019-01-15
               </time>
             
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/14/多线程编程(十四)：线程调度/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/14/多线程编程(十四)：线程调度/" itemprop="commentCount"></span>
+                <a href="/2019/01/15/多线程编程(十五)：定时任务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/15/多线程编程(十五)：定时任务/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  11字
+                  475字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,7 +388,19 @@
       
 
       
-        <h2 id="多线程编程-十四-：线程调度"><a href="#多线程编程-十四-：线程调度" class="headerlink" title="多线程编程(十四)：线程调度"></a>多线程编程(十四)：线程调度</h2>
+        <h2 id="多线程编程-十五-：定时任务"><a href="#多线程编程-十五-：定时任务" class="headerlink" title="多线程编程(十五)：定时任务"></a>多线程编程(十五)：定时任务</h2><h3 id="1、什么是定时任务？"><a href="#1、什么是定时任务？" class="headerlink" title="1、什么是定时任务？"></a>1、什么是定时任务？</h3><p>定时任务，就相当于开启了一个线程，为它设置一个执行时间和执行任务内容，到时执行。在java中，可实现定时任务的方式有多种：</p>
+<ul>
+<li>jdk自带的Timer，ScheduledExecutorService</li>
+<li>第三方框架Quartz等等</li>
+<li>分布式调度Elastic-job，xxl-job，LTS等等</li>
+</ul>
+<p>本章就并发包中的ScheduledExecutorService做详细讲解。</p>
+<h3 id="2、基本用法"><a href="#2、基本用法" class="headerlink" title="2、基本用法"></a>2、基本用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public interface ScheduledExecutorsService extends ExecutorService &#123;    </span><br><span class="line">  //单次执行，在指定延时delay后运行command</span><br><span class="line">  public ScheduledFuture&lt;?&gt; schedule(Runnable command, long delay, TimeUnit unit);</span><br><span class="line"></span><br><span class="line">  //单次执行，在指定延时delay后运行callable</span><br><span class="line">  public &lt;V&gt; ScheduledFuture&lt;V&gt; schedule(Callable&lt;V&gt; callable, long delay, TimeUnit unit);    </span><br><span class="line"></span><br><span class="line">  //固定频率重复执行，第一次执行时间initialDelay，之后每过period，执行一次任务</span><br><span class="line">  public ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);</span><br><span class="line"></span><br><span class="line">  //固定延时重复执行，第一次执行时间initialDelay，之后每次执行规律为上次任务完成后 + period</span><br><span class="line">  public ScheduledFuture&lt;?&gt; scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意ScheduledExecutorService的父类还是ExecutorService，根类还是Executor，若对此不了解，建议重回第十三章仔细观看。</p>
+<p>ScheduledExecutorService主要实现类是ScheduledThreadPoolExecutor，它是线程池ThreadPoolExecutor子类，基于它实现。</p>
+<p>工厂类Executors也提供了一些方便的创建实例的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//单线程定时</span><br><span class="line">public static ScheduledExecutorService newSingleThreadScheduledExecutor();</span><br><span class="line">public static ScheduledExecutorService newSingleThreadScheduledExecutor(ThreadFactory threadFactory);</span><br><span class="line">//多线程定时</span><br><span class="line">public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize);</span><br><span class="line">public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory)</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、demo"><a href="#3、demo" class="headerlink" title="3、demo"></a>3、demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class TestScheduledThreadPool &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		ScheduledExecutorService pool = Executors.newScheduledThreadPool(5);</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">			Future&lt;Integer&gt; result = pool.schedule(new Callable&lt;Integer&gt;()&#123;</span><br><span class="line"></span><br><span class="line">				@Override</span><br><span class="line">				public Integer call() throws Exception &#123;</span><br><span class="line">					int num = new Random().nextInt(100);//生成随机数</span><br><span class="line">					System.out.println(Thread.currentThread().getName() + &quot; : &quot; + num);</span><br><span class="line">					return num;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;, 1, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">			System.out.println(result.get());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		pool.shutdown();//若不调用此方法，则main方法一直执行，程序不会中断</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -449,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/14/多线程编程(十四)：线程池/" rel="next" title="多线程编程(十四)：线程池">
-                <i class="fa fa-chevron-left"></i> 多线程编程(十四)：线程池
+              <a href="/2019/01/15/多线程编程(十五)：ThreadLocal/" rel="next" title="多线程编程(十五)：ThreadLocal">
+                <i class="fa fa-chevron-left"></i> 多线程编程(十五)：ThreadLocal
               </a>
             
           </div>
@@ -458,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/15/多线程编程(十五)：ThreadLocal/" rel="prev" title="多线程编程(十五)：ThreadLocal">
-                多线程编程(十五)：ThreadLocal <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,7 +557,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十四-：线程调度"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十四)：线程调度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十五-：定时任务"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十五)：定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是定时任务？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是定时任务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、基本用法"><span class="nav-number">1.2.</span> <span class="nav-text">2、基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、demo"><span class="nav-number">1.3.</span> <span class="nav-text">3、demo</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -651,7 +659,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.3k</span>
+    <span title="Site words total count">37.7k</span>
   
 </div>
 
