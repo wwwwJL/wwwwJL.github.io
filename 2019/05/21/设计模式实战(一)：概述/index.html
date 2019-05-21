@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
+<meta name="description" content="设计模式实战(一)：概述温馨提示，本文会比较枯燥，以做最大程度的精简。 1、什么是设计模式？&amp;nbsp;&amp;nbsp;设计模式是软件设计中常见问题的通用可重用解决方案，它与具体的语言无关。但它并不能直接转换为代码的已完成设计，它只是一种在许多相同情况下用于解决问题的模板而已。 2、为什么要使用设计模式？&amp;nbsp;&amp;nbsp;使用设计模式可以重构整体架构代码、提高代码复用性、扩展性、减少代码冗余问题">
 <meta name="keywords" content="突突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程编程(十)：显式同步锁Lock">
-<meta property="og:url" content="http://wwwwJL.github.io/2019/01/10/多线程编程(十)：显式同步锁Lock/index.html">
+<meta property="og:title" content="设计模式实战(一)：概述">
+<meta property="og:url" content="http://wwwwJL.github.io/2019/05/21/设计模式实战(一)：概述/index.html">
 <meta property="og:site_name" content="突突的技术博客">
-<meta property="og:description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
+<meta property="og:description" content="设计模式实战(一)：概述温馨提示，本文会比较枯燥，以做最大程度的精简。 1、什么是设计模式？&amp;nbsp;&amp;nbsp;设计模式是软件设计中常见问题的通用可重用解决方案，它与具体的语言无关。但它并不能直接转换为代码的已完成设计，它只是一种在许多相同情况下用于解决问题的模板而已。 2、为什么要使用设计模式？&amp;nbsp;&amp;nbsp;使用设计模式可以重构整体架构代码、提高代码复用性、扩展性、减少代码冗余问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T15:33:14.375Z">
+<meta property="og:updated_time" content="2019-05-21T15:37:27.103Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程编程(十)：显式同步锁Lock">
-<meta name="twitter:description" content="多线程编程(十)：显式同步锁Lock1、概念在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。 显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：  锁接口Lock，主要实现类Ree">
+<meta name="twitter:title" content="设计模式实战(一)：概述">
+<meta name="twitter:description" content="设计模式实战(一)：概述温馨提示，本文会比较枯燥，以做最大程度的精简。 1、什么是设计模式？&amp;nbsp;&amp;nbsp;设计模式是软件设计中常见问题的通用可重用解决方案，它与具体的语言无关。但它并不能直接转换为代码的已完成设计，它只是一种在许多相同情况下用于解决问题的模板而已。 2、为什么要使用设计模式？&amp;nbsp;&amp;nbsp;使用设计模式可以重构整体架构代码、提高代码复用性、扩展性、减少代码冗余问题">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwwJL.github.io/2019/01/10/多线程编程(十)：显式同步锁Lock/">
+  <link rel="canonical" href="http://wwwwJL.github.io/2019/05/21/设计模式实战(一)：概述/">
 
 
 
 
 
-  <title>多线程编程(十)：显式同步锁Lock | 突突的技术博客</title>
+  <title>设计模式实战(一)：概述 | 突突的技术博客</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/01/10/多线程编程(十)：显式同步锁Lock/">
+    <link itemprop="mainEntityOfPage" href="http://wwwwJL.github.io/2019/05/21/设计模式实战(一)：概述/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="突突">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程编程(十)：显式同步锁Lock</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式实战(一)：概述</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">
-                2019-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">
+                2019-05-21
               </time>
             
 
@@ -303,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/多线程编程/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程编程</span>
+                  <a href="/categories/设计模式实战/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式实战</span>
                   </a>
                 </span>
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/10/多线程编程(十)：显式同步锁Lock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/10/多线程编程(十)：显式同步锁Lock/" itemprop="commentCount"></span>
+                <a href="/2019/05/21/设计模式实战(一)：概述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/设计模式实战(一)：概述/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  643字
+                  1k字
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  3分钟
                 </span>
               
             </div>
@@ -388,25 +388,49 @@
       
 
       
-        <h2 id="多线程编程-十-：显式同步锁Lock"><a href="#多线程编程-十-：显式同步锁Lock" class="headerlink" title="多线程编程(十)：显式同步锁Lock"></a>多线程编程(十)：显式同步锁Lock</h2><h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>在Java5.0之前，协调共享对象的访问时可以使用的机制只有synchronized和volatile。Java5.0后增加了一些新的机制——显式锁，但并不是一种替代内置锁的方法，而是当内置锁不适用时，作为一种可选择的高级功能。</p>
-<p>显式锁接口和类位于java.util.concurrent.locks下，主要接口和类有：</p>
+        <h2 id="设计模式实战-一-：概述"><a href="#设计模式实战-一-：概述" class="headerlink" title="设计模式实战(一)：概述"></a>设计模式实战(一)：概述</h2><p>温馨提示，本文会比较枯燥，以做最大程度的精简。</p>
+<h3 id="1、什么是设计模式？"><a href="#1、什么是设计模式？" class="headerlink" title="1、什么是设计模式？"></a>1、什么是设计模式？</h3><p>&nbsp;&nbsp;设计模式是软件设计中常见问题的通用可重用解决方案，它与具体的语言无关。但它并不能直接转换为代码的已完成设计，它只是一种在许多相同情况下用于解决问题的模板而已。</p>
+<h3 id="2、为什么要使用设计模式？"><a href="#2、为什么要使用设计模式？" class="headerlink" title="2、为什么要使用设计模式？"></a>2、为什么要使用设计模式？</h3><p>&nbsp;&nbsp;使用设计模式可以重构整体架构代码、提高代码复用性、扩展性、减少代码冗余问题。它也使得代码真正工程化，就好比是软件工程中的一个基石，若能在项目中良好的运用设计模式，可完美的解决很多问题，同时对你以后阅读框架源码也能打下一个夯实的基础！</p>
+<h3 id="3、学习设计模式的前置条件"><a href="#3、学习设计模式的前置条件" class="headerlink" title="3、学习设计模式的前置条件"></a>3、学习设计模式的前置条件</h3><p>&nbsp;&nbsp;需要拥有良好的JavaSE基础，总共23种设计模式几乎都是围绕着封装、继承、多态的特性！</p>
+<h3 id="4、设计模式的六大原则"><a href="#4、设计模式的六大原则" class="headerlink" title="4、设计模式的六大原则"></a>4、设计模式的六大原则</h3><h4 id="（1）开闭"><a href="#（1）开闭" class="headerlink" title="（1）开闭"></a>（1）开闭</h4><p>&nbsp;&nbsp;对扩展开放，对修改关闭。</p>
+<h4 id="（2）里氏替换"><a href="#（2）里氏替换" class="headerlink" title="（2）里氏替换"></a>（2）里氏替换</h4><p>&nbsp;&nbsp;在继承类时，除了扩展一些新的功能之外，尽量不要删除或者修改对父类方法的引用，也尽量不要重载父类的方法。</p>
+<h4 id="3-单一职责"><a href="#3-单一职责" class="headerlink" title="(3)单一职责"></a>(3)单一职责</h4><p>&nbsp;&nbsp;一个类只负责一个功能领域中的相应职责，或者可以定义为：就一个类而言，应该只有一个引起它变化的原因。</p>
+<h4 id="4-依赖倒置"><a href="#4-依赖倒置" class="headerlink" title="(4)依赖倒置"></a>(4)依赖倒置</h4><p>&nbsp;&nbsp;抽象不应该依赖于细节，细节应当依赖于抽象。换言之，要针对接口编程，而不是针对实现编程。</p>
+<h4 id="5-接口隔离"><a href="#5-接口隔离" class="headerlink" title="(5)接口隔离"></a>(5)接口隔离</h4><p>&nbsp;&nbsp;在定义接口方法时应该合理化，尽量追求简单最小，而不是使用单一的总接口，即客户端不应该依赖那些它不需要的接口。</p>
+<h4 id="6-迪米特"><a href="#6-迪米特" class="headerlink" title="(6)迪米特"></a>(6)迪米特</h4><p>&nbsp;&nbsp;一个对象应该对其他对象有最少的了解；一个类应该对自己需要耦合或调用的类知道得最少，类的内部如何实现、如何复杂都与调用者或者依赖者没关系，调用者或者依赖者只需要知道他需要的方法即可，其他的一概不关心。类与类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响也越大。只与直接的朋友通信。每个对象都必然会与其他对象有耦合关系，两个对象之间的耦合就成为朋友关系，这种关系的类型有很多，例如组合、聚合、依赖等。</p>
+<h3 id="5、分类"><a href="#5、分类" class="headerlink" title="5、分类"></a>5、分类</h3><p>&nbsp;&nbsp;设计模式一共有23种，并被分为三大类：创建型、结构性、行为型：</p>
 <ul>
-<li>锁接口Lock，主要实现类ReentranLock（可重入锁）;</li>
-<li>读写锁接口ReadWriteLock，主要实现类ReentranReadWriteLock（可重入读写锁）;</li>
+<li><p>创建型：对象实例化的模式，创建型模式用于解耦对象的实例化过程。</p>
+</li>
+<li><p>结构型模式：把类或对象结合在一起形成一个更大的结构。</p>
+</li>
+<li><p>行为型模式：类和对象如何交互，及划分责任和算法。</p>
+</li>
 </ul>
-<p>本章主要介绍接口Lock及ReentranLock，读写锁后续再单独说明。</p>
-<h3 id="2、基本用法"><a href="#2、基本用法" class="headerlink" title="2、基本用法"></a>2、基本用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface Lock &#123;    </span><br><span class="line">  void lock(); //获取锁，若获取不到，则会阻塞直到成功</span><br><span class="line">  void unlock(); //释放锁</span><br><span class="line">  void lockInterruptibly() throws InterruptedException; //同lock，不同为可以相应中断，如果被其他线程中断，则抛出异常  </span><br><span class="line">  boolean tryLock(); //尝试获取锁，若获取不到，立即返回false，不阻塞    </span><br><span class="line">  boolean tryLock(long time, TimeUnit unit) throws InterruptedException; //尝试获取锁，若获取不到，根据参数时间阻塞，时间到后，立即返回      </span><br><span class="line">  Condition newCondition(); //条件，关于Condition，下一章会详细说明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上，可以看出，相比synchronized，显式锁更加灵活。</p>
-<h3 id="3、ReentranLock可重入锁"><a href="#3、ReentranLock可重入锁" class="headerlink" title="3、ReentranLock可重入锁"></a>3、ReentranLock可重入锁</h3><p>ReentranLock具有以下特征：</p>
-<ul>
-<li>可重入，若该线程在持有锁的前提下，再去调用，可直接获得锁。</li>
-<li>可以解决竞态条件。</li>
-<li>可以保证内存可见性。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public ReentrantLock();</span><br><span class="line">public ReentrantLock(boolean fair); //该参数表示锁是否保证公平性，也就是说，等待时间越长则优先获得锁，但会影响性能</span><br></pre></td></tr></table></figure>
-<p><code>使用中，为了避免种种原因，导致无法释放锁，确保unlock可以正常调用，一般在finally里调用unlock。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void incr() &#123;        </span><br><span class="line"> lock.lock();        </span><br><span class="line">  try &#123;            </span><br><span class="line">   count++;        </span><br><span class="line">  &#125; finally &#123;            </span><br><span class="line">   lock.unlock();        </span><br><span class="line">  &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>同时为了避免发生死锁，尽量使用tryLock。</code>在持有一个锁获取另一个锁而获取不到的时候，可以释放已持有的锁，给其他线程尝试锁的机会，然后再重试获取所有的锁。</p>
-<h3 id="4、demo"><a href="#4、demo" class="headerlink" title="4、demo"></a>4、demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class TestLock &#123;</span><br><span class="line"></span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">   Ticket ticket = new Ticket();</span><br><span class="line"></span><br><span class="line">   new Thread(ticket, &quot;1号窗口&quot;).start();</span><br><span class="line">   new Thread(ticket, &quot;2号窗口&quot;).start();</span><br><span class="line">   new Thread(ticket, &quot;3号窗口&quot;).start();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Ticket implements Runnable&#123;</span><br><span class="line"> private int tick = 100;</span><br><span class="line"> private Lock lock = new ReentrantLock();</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"> public void run() &#123;</span><br><span class="line"></span><br><span class="line">   while(true)&#123;</span><br><span class="line"></span><br><span class="line">     lock.lock(); //上锁</span><br><span class="line"></span><br><span class="line">     try&#123;</span><br><span class="line"></span><br><span class="line">       if(tick &gt; 0)&#123;</span><br><span class="line">         try &#123;</span><br><span class="line">           Thread.sleep(200);</span><br><span class="line">         &#125; catch (InterruptedException e) &#123;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         System.out.println(Thread.currentThread().getName() + &quot; 完成售票，余票为：&quot; + --tick);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;finally&#123;</span><br><span class="line">       lock.unlock(); //释放锁</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">创建型</td>
+<td style="text-align:left">工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式</td>
+</tr>
+<tr>
+<td style="text-align:left">结构型</td>
+<td style="text-align:left">适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式</td>
+</tr>
+<tr>
+<td style="text-align:left">行为型</td>
+<td style="text-align:left">策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>至此，第1章的内容已结束了，相信只要是认真阅读的同学，都会从中获取收益，在本系列文章中，将会重点介绍分析常用的几个设计模式，并结合工作的业务场景，给出合理的解决方案！</p>
 
       
     </div>
@@ -468,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/09/多线程编程(九)：Callable接口/" rel="next" title="多线程编程(九)：Callable接口">
-                <i class="fa fa-chevron-left"></i> 多线程编程(九)：Callable接口
+              <a href="/2019/01/19/初探JVM(二)：内存结构/" rel="next" title="初探JVM(二)：内存结构">
+                <i class="fa fa-chevron-left"></i> 初探JVM(二)：内存结构
               </a>
             
           </div>
@@ -477,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/11/多线程编程(十一)：Condition线程通信/" rel="prev" title="多线程编程(十一)：Condition线程通信">
-                多线程编程(十一)：Condition线程通信 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -636,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程-十-：显式同步锁Lock"><span class="nav-number">1.</span> <span class="nav-text">多线程编程(十)：显式同步锁Lock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概念"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、基本用法"><span class="nav-number">1.2.</span> <span class="nav-text">2、基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ReentranLock可重入锁"><span class="nav-number">1.3.</span> <span class="nav-text">3、ReentranLock可重入锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、demo"><span class="nav-number">1.4.</span> <span class="nav-text">4、demo</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式实战-一-：概述"><span class="nav-number">1.</span> <span class="nav-text">设计模式实战(一)：概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是设计模式？"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、为什么要使用设计模式？"><span class="nav-number">1.2.</span> <span class="nav-text">2、为什么要使用设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、学习设计模式的前置条件"><span class="nav-number">1.3.</span> <span class="nav-text">3、学习设计模式的前置条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、设计模式的六大原则"><span class="nav-number">1.4.</span> <span class="nav-text">4、设计模式的六大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）开闭"><span class="nav-number">1.4.1.</span> <span class="nav-text">（1）开闭</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）里氏替换"><span class="nav-number">1.4.2.</span> <span class="nav-text">（2）里氏替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-单一职责"><span class="nav-number">1.4.3.</span> <span class="nav-text">(3)单一职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-依赖倒置"><span class="nav-number">1.4.4.</span> <span class="nav-text">(4)依赖倒置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-接口隔离"><span class="nav-number">1.4.5.</span> <span class="nav-text">(5)接口隔离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-迪米特"><span class="nav-number">1.4.6.</span> <span class="nav-text">(6)迪米特</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、分类"><span class="nav-number">1.5.</span> <span class="nav-text">5、分类</span></a></li></ol></li></ol></div>
             
 
           </div>
