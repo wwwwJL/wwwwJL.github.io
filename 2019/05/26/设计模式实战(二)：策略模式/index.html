@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://wwwwjl.github.io/images/shejimoshi2.7.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/shejimoshi2.8.jpg">
 <meta property="og:image" content="http://wwwwjl.github.io/images/shejimoshi2.9.jpg">
-<meta property="og:updated_time" content="2019-05-26T06:02:13.925Z">
+<meta property="og:updated_time" content="2019-05-26T09:43:50.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式实战(二)：策略模式">
 <meta name="twitter:description" content="设计模式实战(二)：策略模式1、什么是策略模式？&amp;nbsp;&amp;nbsp;策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法。或者说是对算法的包装，使得算法的实现和使用分开，并委派给不同的对象管理。 2、为什么要使用策略模式？&amp;nbsp;&amp;nbsp;我们先来看一段代码。   以上代码大致意思为，通过用户id和商品原价，获取对应用户身份的商品折扣价。大体一看，这">
@@ -362,7 +362,7 @@
                   </span>
                 
                 <span title="字数统计">
-                  892字
+                  946字
                 </span>
               
 
@@ -404,21 +404,22 @@
 <p> <img src="\images\shejimoshi2.0.jpg" alt="123"></p>
 <p>以上代码大致意思为，通过用户id和商品原价，获取对应用户身份的商品折扣价。<br>大体一看，这段代码并没什么问题，但是我们在仔细想想，会发现以下几点：</p>
 <ol>
-<li>所有算法都堆积在一个方法内，导致代码可读性降低。</li>
+<li>所有算法都堆积在一个方法内，导致方法膨胀。</li>
 <li>方法内多重if判断，导致代码可读性降低。</li>
-<li>后期若新增或修改或删除某种算法，还是得在这一个方法内编辑，时间长了，代码会成什么样子，导致代码不易扩展。</li>
+<li>后期若新增或修改或删除某种算法，还是得在这一个方法内编辑，时间长了，代码会变的无法阅读，导致代码不易扩展。</li>
 </ol>
 <p> 根据以往的经验，我们也许会将这些算法拆分出来，作为方法再去调用，而从解决问题点1，但这还远远不够。</p>
-<h3 id="3、代码重构"><a href="#3、代码重构" class="headerlink" title="3、代码重构"></a>3、代码重构</h3><p>&nbsp;&nbsp;大致分为3个步骤：<br><code>1.定义一个抽象类</code><br> <img src="\images\shejimoshi2.1.jpg" alt="123"><br><code>2.继承实现抽象方法并注入spring容器中</code>（因spring在企业项目中通用性，固这里采用通过spring进行调用解耦）<br> <img src="\images\shejimoshi2.2.jpg" alt="123"><br> <img src="\images\shejimoshi2.3.jpg" alt="123"><br> <img src="\images\shejimoshi2.4.jpg" alt="123"><br> <img src="\images\shejimoshi2.5.jpg" alt="123"><br><code>3.创建beanId枚举类及springUtils通过方法类</code><br> <img src="\images\shejimoshi2.6.jpg" alt="123"><br> <img src="\images\shejimoshi2.7.jpg" alt="123"><br><code>4.原方法去除多重if</code><br> <img src="\images\shejimoshi2.8.jpg" alt="123"></p>
+<h3 id="3、代码重构"><a href="#3、代码重构" class="headerlink" title="3、代码重构"></a>3、代码重构</h3><p>&nbsp;&nbsp;大致分为3个步骤：<br><code>1.定义一个抽象类</code><br> <img src="\images\shejimoshi2.1.jpg" alt="123"><br><code>2.继承实现抽象方法并注入spring容器中</code>（因spring在企业项目中通用性，固这里采用通过spring进行调用解耦）<br> <img src="\images\shejimoshi2.2.jpg" alt="123"><br> <img src="\images\shejimoshi2.3.jpg" alt="123"><br> <img src="\images\shejimoshi2.4.jpg" alt="123"><br> <img src="\images\shejimoshi2.5.jpg" alt="123"><br><code>3.创建beanId枚举类及springUtils通用方法类</code><br> <img src="\images\shejimoshi2.6.jpg" alt="123"><br> <img src="\images\shejimoshi2.7.jpg" alt="123"><br><code>4.原方法去除多重if</code><br> <img src="\images\shejimoshi2.8.jpg" alt="123"></p>
 <p>运行结果：<br> <img src="\images\shejimoshi2.9.jpg" alt="123"></p>
-<p>以上，可以看到，若后期想要在原本基础扩展，仅需要去创建或修改策略类就好了，即完全符合开闭原则。也消灭了重复冗长的if判断。</p>
-<h3 id="4、进一步优化"><a href="#4、进一步优化" class="headerlink" title="4、进一步优化"></a>4、进一步优化</h3><p>&nbsp;&nbsp;如果有幸这个项目刚好发展的比较好，需要对目前用户每个状态，新增多个计算策略，则每个时段对应的策略又不同，换作是你，你应该怎么去处理呢？</p>
+<p>以上，可以看到，相比之前的多重if判断，此代码显得更有层次，可读性更强，若后期想要扩展，仅需要去创建或修改策略类就好了，即完全符合开闭原则，同时也消灭了重复冗长的if判断。</p>
+<h3 id="4、进一步优化"><a href="#4、进一步优化" class="headerlink" title="4、进一步优化"></a>4、进一步优化</h3><p>&nbsp;&nbsp;利用beanId的方式从spring上下文环境获取bean，本身没有问题，但是beanId毕竟为string类型，容易出现错误，比如多或少了个字母，就会导致程序错误，整个这个模块出错，所以一定要有错误兜底策略，以及将通过beanId从spring中获取，这种自由无限制容易出错的方式，改为从Map中获取，这种封闭安全的方式。</p>
+<p>如果有幸这个项目刚好发展的比较好，需要对目前用户每个状态，新增多个计算策略，则每个时段对应的策略又不同，换作是你，你应该怎么去处理呢？</p>
 <p>解决问题的思路有很多，这里提供一个思路，仅供参考。</p>
 <ul>
 <li>将用户状态和对应beanId保存至redis，提供可配置。</li>
 <li>利用redis发布订阅功能，实现配置实时生效。</li>
 </ul>
-<p>利用beanId的方式从spring上下文环境获取bean，本身没有问题，但是如果beanId出现问题，比如配置错误，就会导致程序错误，整个这个模块出错，所以一定要有配置错误兜底策略，以及beanId安全性的获取替换。<br>源码已上传，可点击  查看。</p>
+<p>源码已上传，可点击  查看。</p>
 <h3 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h3><p>先来总结下策略模式优缺点，及它的使用场景：</p>
 <ul>
 <li><p>优点：</p>
@@ -702,7 +703,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">44.7k</span>
+    <span title="Site words total count">44.8k</span>
   
 </div>
 
